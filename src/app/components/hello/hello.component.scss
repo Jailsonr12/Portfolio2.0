@@ -10,11 +10,9 @@
 
 body {
   font-family: "Courier New", Courier, monospace;
-  font-size: 16px;
 }
 
 //alinhamento centro
-
 header {
   font-family: "Belanosima", sans-serif;
   background: radial-gradient(circle at 50% 35%, #555454df, #221717);
@@ -31,8 +29,12 @@ header {
 }
 
 .name h1 {
-  font-size: 50px;
+  font-size: 4rem;
   color: #FFB3B3;
+}
+
+#mao{
+  width: 1rem;
 }
 
 //title
@@ -46,12 +48,6 @@ header {
 //title color
 .conteiner-start {
   color: #FFFF;
-}
-
-.develope {
-  margin-top: -1rem;
-  margin-bottom: -70px;
-
 }
 
 .fullStack {
@@ -69,6 +65,11 @@ header {
 }
 
 // Img
+
+.imgs a {
+  width: 6rem;
+  height: 6rem
+}
 
 .imgs a {
   display: inline-block;

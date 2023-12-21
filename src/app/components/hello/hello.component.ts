@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-hello',
   templateUrl: './hello.component.html',
-  styleUrls: ['./hello.component.scss'],
+  styleUrls: ['./hello.component.scss','./hello.component.responsive.scss'],
 })
 export class HelloComponent implements OnInit {
   @Input()
@@ -33,19 +33,15 @@ export class HelloComponent implements OnInit {
     this.changeName();
     this.changeIam();
   }
-
   changeName() {
     let i = 0;
-
     setInterval(() => {
       this.title = this.nameTitles[i];
       i = i === +this.nameTitles.length - 1 ? 0 : i + 1;
     }, 3000);
   }
-
   changeIam() {
     let i = 0;
-
     setInterval(() => {
       this.Iam = this.aboutMe[i];
       i = i === +this.aboutMe.length - 1 ? 0 : i + 1;
