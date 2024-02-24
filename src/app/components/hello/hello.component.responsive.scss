@@ -1,10 +1,10 @@
-@media screen and (max-width:360px) {
+@media screen and (min-width: 320px) and (max-width: 480px) {
   //alinhamento centro
   body {
     height: 110vh;
     width: 100vw;
   }
-
+  
   header {
     display: block;
   }
@@ -70,22 +70,18 @@
     text-align: right;
     color: #c9c9c9;
   }
-
   // Img
-
   .imgs a {
     width: 2rem;
     height: 2rem
   }
-
   div .Iam h1 {
     font-size: 1rem;
     text-align: center;
   }
-
 }
 
-@media screen and (max-width:414px) {
+@media screen and (min-width: 481px) and (max-width: 768px) {
 
   //alinhamento centro
   body {
@@ -171,9 +167,9 @@
   }
 }
 
-@media screen and (max-width:1280px) {
+@media screen and (min-width: 1201px) and (max-width: 1630px) {
   body {
-    height: 110vh;
+    // height: 110vh;
     width: 100vw;
   }
   .name h1 {
@@ -195,7 +191,7 @@
   }
 }
 
-@media screen and (max-width:680px) {
+@media screen and (min-width: 769px) and (max-width: 1024px) {
   body {
     height: 110vh;
     width: 100vw;
@@ -282,3 +278,73 @@
     text-align: center;
   }
 }
+
+@media screen and (min-width: 1025px) and (max-width: 1200px){
+   body {
+    height: 110vh;
+    width: 100vw;
+  }
+   //alinhamento centro
+   header {
+    display: block;
+  }
+
+  .conteiner-start {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  //hello
+  .name {
+    text-align: center;
+  }
+
+  .name h1 {
+    font-size: 2rem;
+  }
+
+  #mao {
+    width: 2rem;
+  }
+
+  //title
+  .app div h1 {
+    writing-mode: horizontal-tb;
+    font-size: 6rem;
+  }
+
+  .imgs a {
+    width: 4rem;
+    height: 4rem
+  }
+  
+  .imgs a {
+    display: inline-block;
+    margin-right: .6rem;
+    transition: transform 1.8s ease;
+  }
+
+
+  // Subtitle
+  .Iam h1 {
+    font-family: "Oswald", sans-serif;
+    font-size: 1.5rem;
+    text-align: right;
+    color: #c9c9c9;
+  }
+ 
+   Img
+  imgs a {
+    width: 3rem;
+    height: 3rem
+  }
+ 
+  div .Iam h1 {
+    padding: 0.5rem;
+    font-size: 2rem;
+    text-align: center;
+  } 
+} 
