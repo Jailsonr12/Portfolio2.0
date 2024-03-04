@@ -26,7 +26,7 @@ export class ApresentacaoComponent implements OnInit {
       {
         title: "Primeiro Portfólio",
         img: "./assets/jailsonr12.github.io_portfolio_.png",
-        sobre: "Primeira versão do portifolio",
+        sobre: "Primeira versão do portifólio",
         tecnologia: "HTML, CSS, JavaScript",
         git: "https://github.com/usuario/projeto1",
         link: ""
@@ -41,7 +41,7 @@ export class ApresentacaoComponent implements OnInit {
       },
       {
         title: "Projeto Valorant",
-        img: "./assets/vava_descktop.png",
+        img: "./assets/inicio_vava.png",
         sobre: "Treinando habilidades para reproduzir o design criado",
         tecnologia: "HTML, CSS",
         git: "https://github.com/Jailsonr12/vava",
