@@ -1,10 +1,9 @@
 @media screen and (min-width: 320px) and (max-width: 480px) {
   //alinhamento centro
-  body {
-    height: 110vh;
-    width: 100vw;
+  *{
+    overflow-y: hidden;
   }
-  
+
   header {
     display: block;
   }
@@ -28,6 +27,7 @@
 
   .name h1 {
     font-size: 1.7rem;
+    overflow-y: hidden;
   }
 
   #mao {
@@ -42,6 +42,7 @@
 
   .app div h1 {
     font-size: 2.2rem;
+    overflow-y: hidden;
     writing-mode: vertical-rl;
     text-orientation: upright;
   }
@@ -50,7 +51,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    justify-content: space-between;
     flex-direction: column;
     align-items: flex-start;
   }
@@ -67,27 +67,29 @@
   .Iam h1 {
     font-family: "Oswald", sans-serif;
     font-size: 1rem;
+    overflow-y: hidden;
     text-align: right;
     color: #c9c9c9;
   }
+
   // Img
   .imgs a {
     width: 2rem;
     height: 2rem
   }
+
   div .Iam h1 {
     font-size: 1rem;
+    overflow-y: hidden;
     text-align: center;
   }
 }
-
 @media screen and (min-width: 481px) and (max-width: 768px) {
+  *{
+    overflow-y: hidden;
+  }
 
   //alinhamento centro
-  body {
-    height: 110vh;
-    width: 100vw;
-  }
 
   header {
     display: block;
@@ -112,6 +114,7 @@
 
   .name h1 {
     font-size: 2rem;
+    overflow-y: hidden;
   }
 
   #mao {
@@ -126,6 +129,7 @@
   .app div h1 {
     padding-top: 0.5rem;
     font-size: 3rem;
+    overflow-y: hidden;
     writing-mode: vertical-rl;
     text-orientation: upright;
   }
@@ -150,6 +154,7 @@
   .Iam h1 {
     font-family: "Oswald", sans-serif;
     font-size: 1rem;
+    overflow-y: hidden;
     text-align: right;
     color: #c9c9c9;
   }
@@ -163,15 +168,172 @@
   div .Iam h1 {
     padding-top: 0.5rem;
     font-size: 1.5rem;
+    overflow-y: hidden;
     text-align: center;
   }
 }
-
-@media screen and (min-width: 1201px) and (max-width: 1630px) {
-  body {
-    // height: 110vh;
-    width: 100vw;
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  *{
+    overflow-y: hidden;
   }
+
+  //alinhamento centro
+  header {
+    display: flex;
+  }
+
+  .conteiner-start {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+  }
+
+  //hello
+  .name {
+    flex-direction: column;
+    align-items: center;
+    align-content: space-around;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .name h1 {
+    font-size: 2rem;
+    overflow-y: hidden;
+  }
+
+  #mao {
+    width: 1rem;
+  }
+
+  .name {
+    padding-top: 3rem;
+  }
+
+  //title
+
+  .app {
+    display: flex;
+  }
+
+  .app div h1 {
+    font-size: 2.5rem;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+
+  .fullStack {
+    display: flex;
+    justify-content: space-unset;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .imgs {
+    margin-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Subtitle
+  .Iam h1 {
+    font-family: "Oswald", sans-serif;
+    font-size: 1rem;
+    text-align: right;
+    color: #c9c9c9;
+  }
+
+  // Img
+
+  .imgs a {
+    width: 2.5rem;
+    height: 2.5rem;
+    overflow-x: hidden;
+  }
+
+  div .Iam h1 {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+}
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  
+  //alinhamento centro
+  header {
+    display: block;
+  }
+
+  .conteiner-start {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  //hello
+  .name {
+    text-align: center;
+  }
+
+  .name h1 {
+    font-size: 2rem;
+    overflow-y: hidden;
+  }
+
+  #mao {
+    width: 2rem;
+  }
+
+  //title
+  .app div h1 {
+    writing-mode: horizontal-tb;
+    font-size: 6rem;
+    overflow-y: hidden;
+    
+  }
+
+  .imgs a {
+    width: 4rem;
+    height: 4rem
+  }
+
+  .imgs a {
+    display: inline-block;
+    margin-right: .6rem;
+    transition: transform 1.8s ease;
+  }
+
+
+  // Subtitle
+  .Iam h1 {
+    font-family: "Oswald", sans-serif;
+    font-size: 1.5rem;
+    overflow-y: hidden;
+    text-align: right;
+    color: #c9c9c9;
+  }
+
+  Img imgs a {
+    width: 3rem;
+    height: 3rem
+  }
+
+  div .Iam h1 {
+    padding: 0.5rem;
+    font-size: 2rem;
+    overflow-y: hidden;
+    text-align: center;
+  }
+}
+@media screen and (min-width: 1201px) and (max-width: 1630px) {
+  *{
+    overflow-y: hidden;
+  }
+
   .name h1 {
     font-size: 2.5rem;
   }
@@ -190,161 +352,3 @@
     font-size: 2rem;
   }
 }
-
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  body {
-    height: 110vh;
-    width: 100vw;
-  }
-   //alinhamento centro
-   header {
-    display: block;
-  }
-
-  .conteiner-start {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-  }
-
-  //hello
-  .name {
-    padding: 0.5rem;
-    flex-direction: column;
-    align-items: center;
-    align-content: space-around;
-    justify-items: center;
-    text-align: center;
-  }
-
-  .name h1 {
-    font-size: 3rem;
-  }
-
-  #mao {
-    width: 2rem;
-  }
-
-  //title
-
-  .app {
-    display: flex;
-  }
-
-  .app div h1 {
-    padding: 0.5rem;
-    font-size: 3rem;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-  }
-
-  .fullStack {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .imgs {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-
-
-  // Subtitle
-  .Iam h1 {
-    font-family: "Oswald", sans-serif;
-    font-size: 1rem;
-    text-align: right;
-    color: #c9c9c9;
-  }
-
-  // Img
-
-  .imgs a {
-    width: 3rem;
-    height: 3rem
-  }
-
-  div .Iam h1 {
-    padding: 0.5rem;
-    font-size: 2rem;
-    text-align: center;
-  }
-}
-
-@media screen and (min-width: 1025px) and (max-width: 1200px){
-   body {
-    height: 110vh;
-    width: 100vw;
-  }
-   //alinhamento centro
-   header {
-    display: block;
-  }
-
-  .conteiner-start {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-  }
-
-  //hello
-  .name {
-    text-align: center;
-  }
-
-  .name h1 {
-    font-size: 2rem;
-  }
-
-  #mao {
-    width: 2rem;
-  }
-
-  //title
-  .app div h1 {
-    writing-mode: horizontal-tb;
-    font-size: 6rem;
-  }
-
-  .imgs a {
-    width: 4rem;
-    height: 4rem
-  }
-  
-  .imgs a {
-    display: inline-block;
-    margin-right: .6rem;
-    transition: transform 1.8s ease;
-  }
-
-
-  // Subtitle
-  .Iam h1 {
-    font-family: "Oswald", sans-serif;
-    font-size: 1.5rem;
-    text-align: right;
-    color: #c9c9c9;
-  }
- 
-   Img
-  imgs a {
-    width: 3rem;
-    height: 3rem
-  }
- 
-  div .Iam h1 {
-    padding: 0.5rem;
-    font-size: 2rem;
-    text-align: center;
-  } 
-} 

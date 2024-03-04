@@ -19,7 +19,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HelloComponent implements OnInit {
   @Input() title?: string;
-  @Input() Iam?: string;
+  @Input() iam?: string;
+  @Input() subtitleOne?: String;
+  @Input() subtitleTwo?: String;
+  @Input() git?: String;
+  @Input() linkedin?: String;
+  @Input() curriculum?: String;
 
   nameTitles: Array<string> = [
     'Jaja',
@@ -28,7 +33,7 @@ export class HelloComponent implements OnInit {
     'Roth Jailson',
     'Jailson',
   ];
-
+  
   aboutMe: Array<string> = [
     'Tenho 23 anos e estou cursando Engenharia de Software',
     'Gosto de anime, manga, videogame, ler e ir para academia',
@@ -41,9 +46,14 @@ export class HelloComponent implements OnInit {
 
   ngOnInit(): void {
     this.title = this.title || 'Jailson';
-    this.Iam = this.Iam || 'Muito prazer, este é meu portfólio e um pouco sobre mim';
+    this.iam = this.iam || 'Muito prazer, este é meu portfólio e um pouco sobre mim';
+    this.subtitleOne = 'DESENVOLVEDOR'
+    this.subtitleTwo = 'FULL-STACK'
+    this.git= 'https://github.com/Jailsonr12'
+    this.linkedin = 'https://www.linkedin.com/in/jailsonroth/'
+    this.curriculum = 'https://drive.google.com/file/d/1Tk5cJhaPI956wzaAYvSSaP9MH67Ax0dF/view?usp=drive_link'
     this.changeName();
-    this.changeIam();
+    this.changeiam();
   }
 
   changeName() {
@@ -54,10 +64,10 @@ export class HelloComponent implements OnInit {
     }, 3000);
   }
 
-  changeIam() {
+  changeiam() {
     let i = 0;
     setInterval(() => {
-      this.Iam = this.aboutMe[i];
+      this.iam = this.aboutMe[i];
       i = (i === this.aboutMe.length - 1) ? 0 : i + 1;
     }, 4000);
   }

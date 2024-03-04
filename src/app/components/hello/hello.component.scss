@@ -12,19 +12,19 @@ body {
   font-family: "Courier New", Courier, monospace;
 }
 
-//alinhamento centro
+/* Alinhamento central */
 body {
   font-family: "Belanosima", sans-serif;
-  background: radial-gradient(circle at 50% 35%, #555454df, #221717);
+  background: radial-gradient(circle at 50% 35%, #555454df, #211c1cdc, #221717);
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.5s ease; 
 }
 
-//hello
-
+/* Nome */
 .name {
   display: flex;
 }
@@ -34,30 +34,30 @@ body {
   color: #FFB3B3;
 }
 
-#mao{
+#mao {
   width: 3rem;
 }
 
-//title
-
+/* Título */
 .app div h1 {
   display: flex;
   flex-direction: column;
   font-size: 200px;
 }
 
-//title color
+/* Cor do título */
 .conteiner-start {
   color: #FFFF;
 }
 
+/* Stack completo */
 .fullStack {
   display: flex;
   justify-content: left;
   align-items: center;
 }
 
-// Subtitle
+/* Subtítulo */
 .Iam h1 {
   font-family: "Oswald", sans-serif;
   font-size: 2.6rem;
@@ -65,8 +65,7 @@ body {
   color: #c9c9c9;
 }
 
-// Img
-
+/* Imagens */
 .imgs a {
   width: 6rem;
   height: 6rem

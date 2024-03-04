@@ -1,1 +1,24 @@
-<p>projeto-direita works!</p>
+<!-- app-projeto-direita.component.html -->
+<div class="card-container">
+    <div class="card">
+        <div class="card-title" *ngIf="title">
+            <h3>{{ title }}</h3>
+        </div>
+        <img *ngIf="imageUrl" (click)="openModal(imageUrl)" [src]="imageUrl" alt="Placeholder image">
+        <div class="card-content">
+            <div class="card-sobre" *ngIf="about">
+                <p>Sobre</p>
+                <h3>{{ about }}</h3>
+            </div>
+            <div class="card-sobre" *ngIf="technologies">
+                <p>Tecnologia</p> 
+                <h3>{{ technologies }}</h3> 
+            </div>
+        </div>
+        <div class="card-footer" *ngIf="githubLink || pageLink">
+            <a *ngIf="githubLink" [href]="githubLink">GitHub</a>
+            <a *ngIf="pageLink" [href]="pageLink">Page</a>
+        </div>
+    </div>
+</div>
+<app-modal-img *ngIf="showFullscreen" [fullimag]="true" [fullscreenImageUrl]="fullscreenImageUrl" (closeModal)="closeModal()"></app-modal-img>
