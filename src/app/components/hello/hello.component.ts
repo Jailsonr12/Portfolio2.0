@@ -33,7 +33,7 @@ export class HelloComponent implements OnInit {
     'Roth Jailson',
     'Jailson',
   ];
-  
+
   aboutMe: Array<string> = [
     'Tenho 23 anos e estou cursando Engenharia de Software',
     'Gosto de anime, manga, videogame, ler e ir para academia',
@@ -69,6 +69,6 @@ export class HelloComponent implements OnInit {
     setInterval(() => {
       this.iam = this.aboutMe[i];
       i = (i === this.aboutMe.length - 1) ? 0 : i + 1;
-    }, 4000);
+    }, 4500);
   }
 }

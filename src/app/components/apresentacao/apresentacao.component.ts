@@ -29,7 +29,7 @@ export class ApresentacaoComponent implements OnInit {
         sobre: "Primeira versão do portifólio",
         tecnologia: "HTML, CSS, JavaScript",
         git: "https://github.com/usuario/projeto1",
-        link: ""
+        link: "https://portfolio-brown-seven-63.vercel.app/"
       },
       {
         title: "Projeto final +Devs2Blu 2022",
@@ -47,6 +47,23 @@ export class ApresentacaoComponent implements OnInit {
         git: "https://github.com/Jailsonr12/vava",
         link: ""
       },
+      {
+        title: "Site Do Totoro",
+        img: "./assets/site_do_totoro.png",
+        sobre: "Consumindo Api sobre o Studio Ghibli, onde tem detalhes e trailer do filme (api esta desativa atualmente)",
+        tecnologia: "HTML, CSS, JS",
+        git: "https://github.com/Jailsonr12/siteDoTotoro/tree/master",
+        link: "https://site-do-totoro.vercel.app/home.html"
+      },
+      {
+        title: "CSGO da Depressão",
+        img: "./assets/site_cs_go.png",
+        sobre: "Site colaborativo, sobre o tema csgo",
+        tecnologia: "HTML, CSS, JS",
+        git: "https://github.com/Jailsonr12/Site_CsGo/tree/master",
+        link: "https://site-cs-go.vercel.app/"
+      },
+
     ];
   }
 

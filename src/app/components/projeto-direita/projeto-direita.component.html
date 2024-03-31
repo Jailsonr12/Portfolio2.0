@@ -11,13 +11,13 @@
                 <h3>{{ about }}</h3>
             </div>
             <div class="card-sobre" *ngIf="technologies">
-                <p>Tecnologia</p> 
-                <h3>{{ technologies }}</h3> 
+                <p>Tecnologia</p>
+                <h3>{{ technologies }}</h3>
             </div>
         </div>
         <div class="card-footer" *ngIf="githubLink || pageLink">
-            <a *ngIf="githubLink" [href]="githubLink">GitHub</a>
-            <a *ngIf="pageLink" [href]="pageLink">Page</a>
+            <a *ngIf="githubLink" [href]="githubLink" target="_blank" >GitHub</a>
+            <a *ngIf="pageLink" [href]="pageLink" target="_blank" >Page</a>
         </div>
     </div>
 </div>
