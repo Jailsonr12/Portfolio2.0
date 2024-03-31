@@ -26,7 +26,7 @@ export class ApresentacaoComponent implements OnInit {
       {
         title: "Primeiro Portfólio",
         img: "./assets/jailsonr12.github.io_portfolio_.png",
-        sobre: "Primeira versão do portifólio",
+        sobre: "Primeira versão do portfólio.",
         tecnologia: "HTML, CSS, JavaScript",
         git: "https://github.com/usuario/projeto1",
         link: "https://portfolio-brown-seven-63.vercel.app/"
@@ -34,7 +34,7 @@ export class ApresentacaoComponent implements OnInit {
       {
         title: "Projeto final +Devs2Blu 2022",
         img: "./assets/zelo_br.png",
-        sobre: "Sistema para inovar as ouvidorias",
+        sobre: "Sistema para inovar as ouvidorias.",
         tecnologia: "C#, TypeScript, Angular, HTML, CSS, MySQL",
         git: "https://github.com/more-devs-2-blu/code-go?tab=readme-ov-file",
         link: "https://www.youtube.com/watch?v=_BxGygkm3Lc&t=6s"
@@ -45,12 +45,12 @@ export class ApresentacaoComponent implements OnInit {
         sobre: "Treinando habilidades para reproduzir o design criado",
         tecnologia: "HTML, CSS",
         git: "https://github.com/Jailsonr12/vava",
-        link: ""
+        link: "https://www.figma.com/file/2YUQamnOmVTKvivDOFyuBr/vava?type=design&node-id=5-10&mode=design&t=4386WLy8BK5cmTjy-0"
       },
       {
         title: "Site Do Totoro",
         img: "./assets/site_do_totoro.png",
-        sobre: "Consumindo Api sobre o Studio Ghibli, onde tem detalhes e trailer do filme (api esta desativa atualmente)",
+        sobre: "Consumindo API sobre o Studio Ghibli, onde constam detalhes e trailers do filme (API está desativada atualmente).",
         tecnologia: "HTML, CSS, JS",
         git: "https://github.com/Jailsonr12/siteDoTotoro/tree/master",
         link: "https://site-do-totoro.vercel.app/home.html"
@@ -58,7 +58,7 @@ export class ApresentacaoComponent implements OnInit {
       {
         title: "CSGO da Depressão",
         img: "./assets/site_cs_go.png",
-        sobre: "Site colaborativo, sobre o tema csgo",
+        sobre: "Site colaborativo, sobre o tema CSGO",
         tecnologia: "HTML, CSS, JS",
         git: "https://github.com/Jailsonr12/Site_CsGo/tree/master",
         link: "https://site-cs-go.vercel.app/"
