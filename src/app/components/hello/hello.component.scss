@@ -36,6 +36,7 @@
   box-shadow: var(--hero-card-shadow);
   color: #f7f8fc;
   overflow: hidden;
+  animation: hero-slide-left 0.75s ease-out both;
 }
 
 .github-card {
@@ -43,6 +44,7 @@
   border-radius: 20px;
   background: var(--hero-card-bg);
   box-shadow: var(--hero-card-shadow);
+  animation: hero-slide-right 0.82s ease-out both;
 }
 
 .hero-main {
@@ -51,6 +53,23 @@
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+}
+
+.hero-intro {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+  letter-spacing: 0.02em;
+  color: rgba(247, 248, 252, 0.9);
+  text-transform: none;
+}
+
+.typing-intro {
+  width: fit-content;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid rgba(140, 242, 184, 0.82);
+  animation: intro-caret 0.8s step-end infinite;
 }
 
 .stack-hero {
@@ -111,6 +130,48 @@
   line-height: 1.45;
   color: rgba(247, 248, 252, 0.88);
   text-transform: none;
+}
+
+.primary-stack {
+  margin: 0.45rem 0 0;
+  font-size: clamp(0.82rem, 1.1vw, 0.98rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(214, 230, 255, 0.9);
+}
+
+.cta-row {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.62rem;
+}
+
+.cta-btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.48rem 0.92rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #e9f2ff;
+  border: 1px solid rgba(143, 196, 255, 0.5);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(88, 166, 255, 0.3), transparent 45%),
+    linear-gradient(155deg, #15223b 0%, #0f1729 100%);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(191, 223, 255, 0.7);
+}
+
+.cta-btn.secondary {
+  background: rgba(88, 166, 255, 0.14);
 }
 
 .social-row a {
@@ -335,4 +396,36 @@
 .github-link svg {
   width: 0.95rem;
   height: 0.95rem;
+}
+
+@keyframes hero-slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes hero-slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes intro-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgba(140, 242, 184, 0.82);
+  }
 }

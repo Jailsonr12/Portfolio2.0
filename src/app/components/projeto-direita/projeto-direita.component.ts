@@ -13,15 +13,15 @@ export class ProjetoDireitaComponent {
   @Input() githubLink: string | undefined;
   @Input() pageLink: string | undefined;
   
-  showFullscreen: boolean = false;
-  fullscreenImageUrl: string = '';
+  isProjectModalOpen = false;
 
-  openModal(imageUrl: string) {
-    this.showFullscreen = true;
-    this.fullscreenImageUrl = imageUrl;
+  openProjectModal(): void {
+    this.isProjectModalOpen = true;
+    document.body.style.overflow = 'hidden';
   }
 
-  closeModal() {
-    this.showFullscreen = false;
+  closeProjectModal(): void {
+    this.isProjectModalOpen = false;
+    document.body.style.overflow = '';
   }
 }

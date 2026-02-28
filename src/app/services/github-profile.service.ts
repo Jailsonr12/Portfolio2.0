@@ -16,6 +16,17 @@ export interface GitHubProfile {
   following: number;
 }
 
+export interface GitHubRepo {
+  id: number;
+  name: string;
+  html_url: string;
+  homepage: string | null;
+  description: string | null;
+  stargazers_count: number;
+  language: string | null;
+  updated_at: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -27,5 +38,10 @@ export class GitHubProfileService {
       `https://api.github.com/users/${encodeURIComponent(username)}`
     );
   }
-}
 
+  getRepos(username: string): Observable<GitHubRepo[]> {
+    return this.http.get<GitHubRepo[]>(
+      `https://api.github.com/users/${encodeURIComponent(username)}/repos?sort=updated&per_page=12`
+    );
+  }
+}

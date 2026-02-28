@@ -38,6 +38,16 @@
     min-height: 56vh;
   }
 
+  .hero-intro {
+    font-size: 0.95rem;
+  }
+
+  .typing-intro {
+    white-space: normal;
+    border-right: none;
+    animation: none;
+  }
+
   .stack-hero span {
     font-size: clamp(2.6rem, 16vw, 4.8rem);
     line-height: 0.9;

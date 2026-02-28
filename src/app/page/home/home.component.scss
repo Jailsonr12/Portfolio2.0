@@ -13,10 +13,30 @@
   min-height: 100vh;
   position: relative;
   background:
-    radial-gradient(circle at 20% 10%, rgba(88, 166, 255, 0.2), transparent 35%),
-    radial-gradient(circle at 80% 0%, rgba(140, 242, 184, 0.12), transparent 30%),
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(88, 166, 255, 0.2),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 0%,
+      rgba(140, 242, 184, 0.12),
+      transparent 30%
+    ),
     linear-gradient(180deg, var(--home-bg-soft) 0%, var(--home-bg) 100%);
   color: var(--home-text);
+}
+
+.feedback {
+  margin: 0.35rem auto 0;
+  max-width: 1240px;
+  padding: 0 1rem;
+  color: rgba(219, 231, 252, 0.9);
+  font-size: 0.88rem;
+}
+
+.feedback.error {
+  color: #ff9e9e;
 }
 
 .hero-block {
@@ -36,12 +56,390 @@
   padding: 1rem 0 2.5rem;
   border-top-left-radius: 26px;
   border-top-right-radius: 26px;
-  background: linear-gradient(
-    180deg,
-    rgba(8, 12, 22, 0.9) 0%,
-    rgba(7, 11, 20, 0.84) 18%,
-    rgba(7, 11, 20, 0) 100%
-  );
+}
+
+.about-block {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0.2rem 1rem 2.4rem;
+}
+
+.curriculo-block {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0.2rem 1rem 2.4rem;
+}
+
+.featured-project-block,
+.duo-project-block {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0.2rem 1rem 1.2rem;
+}
+
+.featured-project-card,
+.duo-project-card {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(88, 166, 255, 0.22), transparent 45%),
+    linear-gradient(155deg, #121a2c 0%, #0a101d 100%);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.34);
+  padding: clamp(1rem, 2.1vw, 1.6rem);
+}
+
+.featured-project-card .eyebrow,
+.duo-project-card .eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: rgba(235, 241, 255, 0.76);
+}
+
+.featured-project-card h2,
+.duo-project-card h3 {
+  margin: 0.5rem 0 0;
+}
+
+.featured-project-card p,
+.duo-project-card p {
+  margin: 0.45rem 0 0;
+  color: rgba(235, 241, 255, 0.86);
+}
+
+.project-cover {
+  width: 100%;
+  height: clamp(170px, 25vw, 250px);
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(8, 12, 22, 0.45);
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.tech {
+  font-size: 0.82rem;
+  color: rgba(195, 223, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.actions {
+  margin-top: 0.72rem;
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.actions a {
+  display: inline-flex;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  color: #e9f2ff;
+  border: 1px solid rgba(143, 196, 255, 0.5);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(88, 166, 255, 0.3), transparent 45%),
+    linear-gradient(155deg, #15223b 0%, #0f1729 100%);
+}
+
+.duo-project-block {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  padding-bottom: 2rem;
+}
+
+.linkedin-block {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0.2rem 1rem 2.4rem;
+}
+
+.curriculo-card {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(88, 166, 255, 0.22), transparent 45%),
+    linear-gradient(155deg, #121a2c 0%, #0a101d 100%);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.34);
+  padding: clamp(1rem, 2.1vw, 1.6rem);
+}
+
+.linkedin-card {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(88, 166, 255, 0.22), transparent 45%),
+    linear-gradient(155deg, #121a2c 0%, #0a101d 100%);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.34);
+  padding: clamp(1rem, 2.1vw, 1.6rem);
+}
+
+.about-card {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(88, 166, 255, 0.22), transparent 45%),
+    linear-gradient(155deg, #121a2c 0%, #0a101d 100%);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.34);
+  padding: clamp(1rem, 2.1vw, 1.6rem);
+}
+
+.about-header .eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: rgba(235, 241, 255, 0.76);
+}
+
+.about-header h2 {
+  margin: 0.42rem 0 0;
+  font-size: clamp(1.28rem, 2.6vw, 1.9rem);
+  line-height: 1.15;
+}
+
+.about-header p {
+  margin: 0.6rem 0 0;
+  color: rgba(235, 241, 255, 0.87);
+  max-width: 70ch;
+}
+
+.about-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 0.9rem;
+}
+
+.about-column h3 {
+  margin: 0;
+  font-size: 0.86rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(209, 225, 248, 0.84);
+}
+
+.pillar-list,
+.highlight-list,
+.timeline-list {
+  margin-top: 0.55rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.pillar-item,
+.highlight-item,
+.timeline-item {
+  border: 1px solid rgba(149, 188, 255, 0.26);
+  border-radius: 14px;
+  background: rgba(8, 14, 28, 0.62);
+  padding: 0.7rem 0.75rem;
+}
+
+.pillar-item h4 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.pillar-item p,
+.timeline-item p {
+  margin: 0.35rem 0 0;
+  color: rgba(230, 238, 252, 0.84);
+}
+
+.highlight-label {
+  margin: 0;
+  font-size: 0.73rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(201, 220, 247, 0.7);
+}
+
+.highlight-value {
+  margin: 0.3rem 0 0;
+  color: rgba(236, 243, 255, 0.95);
+  font-weight: 700;
+}
+
+.timeline-period {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--home-accent);
+  font-weight: 700;
+}
+
+.linkedin-card .eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: rgba(235, 241, 255, 0.76);
+}
+
+.linkedin-card h2 {
+  margin: 0.42rem 0 0;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+}
+
+.linkedin-card p {
+  margin: 0.46rem 0 0;
+  color: rgba(235, 241, 255, 0.86);
+}
+
+.linkedin-card a {
+  margin-top: 0.8rem;
+  display: inline-flex;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  color: #e9f2ff;
+  border: 1px solid rgba(143, 196, 255, 0.5);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(88, 166, 255, 0.3), transparent 45%),
+    linear-gradient(155deg, #15223b 0%, #0f1729 100%);
+}
+
+.curriculo-card .eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: rgba(235, 241, 255, 0.76);
+}
+
+.curriculo-card h2 {
+  margin: 0.42rem 0 0;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+}
+
+.curriculo-card p {
+  margin: 0.46rem 0 0;
+  color: rgba(235, 241, 255, 0.84);
+}
+
+.curriculo-preview {
+  margin-top: 0.9rem;
+  width: 100%;
+  display: block;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(8, 12, 22, 0.45);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+  padding: 0;
+  cursor: pointer;
+}
+
+.curriculo-preview img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top;
+}
+
+.curriculo-link {
+  margin-top: 0.8rem;
+  display: inline-flex;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  color: #e9f2ff;
+  border: 1px solid rgba(143, 196, 255, 0.5);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(88, 166, 255, 0.3), transparent 45%),
+    linear-gradient(155deg, #15223b 0%, #0f1729 100%);
+}
+
+.curriculo-actions {
+  margin-top: 0.8rem;
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.curriculo-actions .curriculo-link {
+  margin-top: 0;
+}
+
+.curriculo-link.secondary {
+  background: rgba(88, 166, 255, 0.14);
+}
+
+.curriculo-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: rgba(3, 6, 12, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.curriculo-modal-panel {
+  width: min(980px, 100%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(88, 166, 255, 0.2), transparent 45%),
+    linear-gradient(155deg, #121a2c 0%, #0a101d 100%);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.48);
+  overflow: hidden;
+}
+
+.curriculo-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 0.95rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.curriculo-modal-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.close-btn {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: #edf4ff;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+}
+
+.curriculo-modal-body {
+  padding: 0.75rem;
+}
+
+.curriculo-modal-body iframe {
+  width: 100%;
+  height: min(72vh, 760px);
+  border: none;
+  border-radius: 10px;
+  background: #0c1220;
+}
+
+.curriculo-modal-footer {
+  padding: 0.75rem 0.95rem 0.95rem;
+}
+
+.curriculo-modal-footer a {
+  display: inline-flex;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.48rem 0.9rem;
+  color: #e9f2ff;
+  border: 1px solid rgba(143, 196, 255, 0.5);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(88, 166, 255, 0.3), transparent 45%),
+    linear-gradient(155deg, #15223b 0%, #0f1729 100%);
 }
 
 @media (max-width: 768px) {
@@ -56,4 +454,39 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
   }
+
+  .curriculo-block {
+    padding: 0 0.65rem 1.4rem;
+  }
+
+  .about-block {
+    padding: 0 0.65rem 1.4rem;
+  }
+
+  .featured-project-block,
+  .duo-project-block {
+    padding: 0 0.65rem 1.2rem;
+  }
+
+  .duo-project-block {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .linkedin-block {
+    padding: 0 0.65rem 1.4rem;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .curriculo-modal {
+    padding: 0.5rem;
+  }
+
+  .curriculo-modal-body iframe {
+    height: 68vh;
+  }
+
 }

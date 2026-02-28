@@ -1,12 +1,13 @@
-<section class="projects-shell">
+<section class="projects-shell" [class.in-view]="inView">
   <header class="title">
-    <h1>Projetos</h1>
-    <p>Selecao dos trabalhos em destaque</p>
+    <h1>{{ title }}</h1>
+    <p>{{ subtitle }}</p>
   </header>
 
   <main class="projects-content">
+    <p class="empty-state" *ngIf="!projects.length">Adicione projetos no editor para exibir aqui.</p>
     <ul>
-      <li *ngFor="let projeto of projetos">
+      <li *ngFor="let projeto of projects; let i = index" [style.--i]="i">
         <app-projeto-direita
           [title]="projeto.title"
           [imageUrl]="projeto.img"

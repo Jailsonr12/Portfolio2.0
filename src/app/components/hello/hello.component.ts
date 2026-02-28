@@ -17,8 +17,12 @@ import { GitHubProfileService } from '../../services/github-profile.service';
 export class HelloComponent implements OnInit, OnDestroy {
   @Input() title?: string;
   @Input() iam?: string;
+  @Input() introPrefix?: string;
   @Input() subtitleOne?: string;
   @Input() subtitleTwo?: string;
+  @Input() primaryStack?: string;
+  @Input() typingNames?: string[];
+  @Input() aboutRotator?: string[];
   @Input() git?: string;
   @Input() linkedin?: string;
   @Input() curriculum?: string;
@@ -29,6 +33,7 @@ export class HelloComponent implements OnInit, OnDestroy {
   @Input() profileLocation?: string;
   @Input() profileTimezone?: string;
   @Input() profileWebsite?: string;
+  @Input() profileAvatarUrl?: string;
   @Input() profileFollowers?: number;
   @Input() profileFollowing?: number;
   @Input() profileProfessionalLabel?: string;
@@ -36,29 +41,34 @@ export class HelloComponent implements OnInit, OnDestroy {
   @Input() profileX?: string;
   @Input() profileLinkedinUser?: string;
   @Input() profileLinkedinPath?: string;
+  @Input() showHeroLinkedin = true;
+  @Input() showHeroCurriculum = true;
+  @Input() showProfileGithub = true;
+  @Input() showProfileX = true;
+  @Input() showProfileLinkedin = true;
+  @Input() showProfileWebsite = true;
+  @Input() autoLoadGitHubProfile = true;
 
-  private nameIntervalId?: ReturnType<typeof setInterval>;
   private iamIntervalId?: ReturnType<typeof setInterval>;
+  private nameTypeTimeoutId?: ReturnType<typeof setTimeout>;
+  typedName = '';
+  private nameWordIndex = 0;
+  private nameCharIndex = 0;
+  private deletingName = false;
 
   constructor(private readonly gitHubProfileService: GitHubProfileService) {}
 
-  nameTitles: Array<string> = ['Jaja', 'Jailson da Silva Roth', 'Jailson Roth', 'Roth Jailson', 'Jailson'];
+  nameTitles: Array<string> = ['Jailson'];
 
-  aboutMe: Array<string> = [
-    'Tenho 23 anos e estou cursando Engenharia de Software',
-    'Gosto de anime, manga, videogame, ler e ir para academia',
-    'Tenho experiencia de 1 ano como Desenvolvimento Web full-stack.',
-    'Atualmente trabalho como QA e DevOps na CloudPark',
-    'Conhecimento nas linguagens: Java, TypeScript, Angular, JS e MySQL',
-    'Sempre estou em busca de mais conhecimento e aprimoramento',
-    'Muito prazer, este e meu portfolio e um pouco sobre mim',
-  ];
+  aboutMe: Array<string> = ['Muito prazer, este e meu portfolio e um pouco sobre mim'];
 
   ngOnInit(): void {
     this.title = this.title || 'Jailson';
+    this.introPrefix = this.introPrefix || 'Oi, me chamo';
     this.iam = this.iam || 'Muito prazer, este e meu portfolio e um pouco sobre mim';
     this.subtitleOne = this.subtitleOne || 'DESENVOLVEDOR';
     this.subtitleTwo = this.subtitleTwo || 'FULL-STACK';
+    this.primaryStack = this.primaryStack || 'Angular • TypeScript • Node.js • Java • MySQL';
     this.git = this.git || 'https://github.com/Jailsonr12';
     this.linkedin = this.linkedin || 'https://www.linkedin.com/in/jailsonroth/';
     this.curriculum =
@@ -81,18 +91,30 @@ export class HelloComponent implements OnInit, OnDestroy {
     this.profileLinkedinUser = this.profileLinkedinUser || 'jailsonroth';
     this.profileLinkedinPath = this.profileLinkedinPath || 'in/jailsonroth';
 
-    this.loadGitHubProfile();
-    this.changeName();
+    if (this.typingNames?.length) {
+      this.nameTitles = [...this.typingNames];
+    }
+
+    if (this.aboutRotator?.length) {
+      this.aboutMe = [...this.aboutRotator];
+      this.iam = this.aboutMe[0];
+    }
+
+    if (this.autoLoadGitHubProfile) {
+      this.loadGitHubProfile();
+    }
+
+    this.startNameTyping();
     this.changeiam();
   }
 
   ngOnDestroy(): void {
-    if (this.nameIntervalId) {
-      clearInterval(this.nameIntervalId);
-    }
-
     if (this.iamIntervalId) {
       clearInterval(this.iamIntervalId);
+    }
+
+    if (this.nameTypeTimeoutId) {
+      clearTimeout(this.nameTypeTimeoutId);
     }
   }
 
@@ -107,6 +129,9 @@ export class HelloComponent implements OnInit, OnDestroy {
   }
 
   get githubAvatarUrl(): string {
+    if (this.profileAvatarUrl) {
+      return this.profileAvatarUrl;
+    }
     return `https://github.com/${this.githubUsername}.png`;
   }
 
@@ -196,19 +221,42 @@ export class HelloComponent implements OnInit, OnDestroy {
     return `UTC ${signal}${hours}:${minutes}`;
   }
 
-  changeName(): void {
-    let i = 0;
-    this.nameIntervalId = setInterval(() => {
-      this.title = this.nameTitles[i];
-      i = i === this.nameTitles.length - 1 ? 0 : i + 1;
-    }, 3000);
-  }
-
   changeiam(): void {
+    if (!this.aboutMe.length) {
+      return;
+    }
+
     let i = 0;
     this.iamIntervalId = setInterval(() => {
       this.iam = this.aboutMe[i];
       i = i === this.aboutMe.length - 1 ? 0 : i + 1;
     }, 4500);
+  }
+
+  private startNameTyping(): void {
+    const currentName = this.nameTitles[this.nameWordIndex] || 'Jailson';
+    let nextDelay = 90;
+
+    if (!this.deletingName) {
+      this.nameCharIndex += 1;
+      this.typedName = currentName.slice(0, this.nameCharIndex);
+
+      if (this.nameCharIndex >= currentName.length) {
+        this.deletingName = true;
+        nextDelay = 1100;
+      }
+    } else {
+      this.nameCharIndex -= 1;
+      this.typedName = currentName.slice(0, Math.max(this.nameCharIndex, 0));
+      nextDelay = 45;
+
+      if (this.nameCharIndex <= 0) {
+        this.deletingName = false;
+        this.nameWordIndex = (this.nameWordIndex + 1) % this.nameTitles.length;
+        nextDelay = 250;
+      }
+    }
+
+    this.nameTypeTimeoutId = setTimeout(() => this.startNameTyping(), nextDelay);
   }
 }

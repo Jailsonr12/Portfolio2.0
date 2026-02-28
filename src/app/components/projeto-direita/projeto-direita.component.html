@@ -5,13 +5,9 @@
       <h3>{{ title }}</h3>
     </header>
 
-    <img
-      *ngIf="imageUrl"
-      (click)="openModal(imageUrl)"
-      [src]="imageUrl"
-      [alt]="title || 'Imagem do projeto'"
-      loading="lazy"
-    />
+    <button *ngIf="imageUrl" type="button" class="image-btn" (click)="openProjectModal()">
+      <img [src]="imageUrl" [alt]="title || 'Imagem do projeto'" loading="lazy" />
+    </button>
 
     <div class="card-content">
       <div class="card-sobre" *ngIf="about">
@@ -30,10 +26,26 @@
       <a *ngIf="pageLink" [href]="pageLink" target="_blank" rel="noopener noreferrer">Page</a>
     </footer>
   </article>
-  <app-modal-img
-    *ngIf="showFullscreen"
-    [fullimag]="true"
-    [fullscreenImageUrl]="fullscreenImageUrl"
-    (closeModal)="closeModal()"
-  ></app-modal-img>
 </div>
+
+<section *ngIf="isProjectModalOpen" class="project-modal" (click)="closeProjectModal()">
+  <div class="project-modal-panel" (click)="$event.stopPropagation()">
+    <div class="project-modal-header">
+      <h3>{{ title }}</h3>
+      <button type="button" class="close-btn" (click)="closeProjectModal()">Fechar</button>
+    </div>
+
+    <div class="project-modal-body">
+      <img *ngIf="imageUrl" [src]="imageUrl" [alt]="title || 'Imagem do projeto'" />
+      <p *ngIf="about">{{ about }}</p>
+      <p *ngIf="technologies" class="tech">{{ technologies }}</p>
+    </div>
+
+    <div class="project-modal-footer">
+      <a *ngIf="pageLink" [href]="pageLink" target="_blank" rel="noopener noreferrer">Abrir projeto</a>
+      <a *ngIf="githubLink" [href]="githubLink" target="_blank" rel="noopener noreferrer"
+        >Abrir repositorio</a
+      >
+    </div>
+  </div>
+</section>
