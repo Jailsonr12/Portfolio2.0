@@ -275,8 +275,121 @@
               >
                 Descer
               </button>
-              <button type="button" (click)="editBlock(blockKey)">Editar bloco</button>
+              <button type="button" (click)="toggleInlineEditor(blockKey)">
+                {{ isInlineEditorOpen(blockKey) ? 'Fechar inline' : 'Editar inline' }}
+              </button>
+              <button type="button" (click)="editBlock(blockKey)">Abrir aba</button>
               <button type="button" class="danger" (click)="removeBlockFromLayout(blockKey)">Remover da ordem</button>
+            </div>
+
+            <div class="inline-block-editor" *ngIf="isInlineEditorOpen(blockKey)" [ngSwitch]="blockKey">
+              <div *ngSwitchCase="'hero'" class="inline-grid">
+                <label>
+                  Intro prefix
+                  <input [(ngModel)]="portfolio.hero.introPrefix" [name]="'inline_hero_intro_' + i" />
+                </label>
+                <label>
+                  Subtitulo 1
+                  <input [(ngModel)]="portfolio.hero.subtitleOne" [name]="'inline_hero_sub1_' + i" />
+                </label>
+                <label>
+                  Subtitulo 2
+                  <input [(ngModel)]="portfolio.hero.subtitleTwo" [name]="'inline_hero_sub2_' + i" />
+                </label>
+                <label>
+                  Stack principal
+                  <input [(ngModel)]="portfolio.hero.primaryStack" [name]="'inline_hero_stack_' + i" />
+                </label>
+              </div>
+
+              <div *ngSwitchCase="'about'" class="inline-grid">
+                <label>
+                  Badge
+                  <input [(ngModel)]="portfolio.aboutCard.badge" [name]="'inline_about_badge_' + i" />
+                </label>
+                <label>
+                  Titulo
+                  <input [(ngModel)]="portfolio.aboutCard.title" [name]="'inline_about_title_' + i" />
+                </label>
+                <label class="span-2">
+                  Resumo
+                  <textarea [(ngModel)]="portfolio.aboutCard.summary" [name]="'inline_about_summary_' + i" rows="3"></textarea>
+                </label>
+                <label>
+                  Headline LinkedIn
+                  <input [(ngModel)]="portfolio.linkedin.headline" [name]="'inline_about_headline_' + i" />
+                </label>
+              </div>
+
+              <div *ngSwitchCase="'projects'" class="inline-grid">
+                <label>
+                  Titulo secao
+                  <input [(ngModel)]="portfolio.projects.title" [name]="'inline_projects_title_' + i" />
+                </label>
+                <label>
+                  Subtitulo secao
+                  <input [(ngModel)]="portfolio.projects.subtitle" [name]="'inline_projects_sub_' + i" />
+                </label>
+                <label *ngIf="portfolio.projects.items[0]">
+                  Primeiro projeto
+                  <input [(ngModel)]="portfolio.projects.items[0].title" [name]="'inline_projects_first_' + i" />
+                </label>
+              </div>
+
+              <div *ngSwitchCase="'curriculo'" class="inline-grid">
+                <label>
+                  Titulo
+                  <input [(ngModel)]="portfolio.curriculum.title" [name]="'inline_curriculum_title_' + i" />
+                </label>
+                <label class="span-2">
+                  Descricao
+                  <textarea [(ngModel)]="portfolio.curriculum.description" [name]="'inline_curriculum_desc_' + i" rows="3"></textarea>
+                </label>
+                <label class="span-2">
+                  URL
+                  <input [(ngModel)]="portfolio.curriculum.url" [name]="'inline_curriculum_url_' + i" />
+                </label>
+              </div>
+
+              <div *ngSwitchCase="'activity'" class="inline-grid">
+                <label class="span-2">
+                  Atividade LinkedIn
+                  <textarea [(ngModel)]="portfolio.linkedin.activity" [name]="'inline_activity_' + i" rows="3"></textarea>
+                </label>
+              </div>
+
+              <div *ngSwitchCase="'experience'" class="inline-grid">
+                <label class="span-2">
+                  Experiencia LinkedIn
+                  <textarea [(ngModel)]="portfolio.linkedin.experience" [name]="'inline_experience_' + i" rows="3"></textarea>
+                </label>
+              </div>
+
+              <div *ngSwitchCase="'skills'" class="inline-grid">
+                <label class="span-2">
+                  Stack principal
+                  <input [(ngModel)]="portfolio.hero.primaryStack" [name]="'inline_skills_stack_' + i" />
+                </label>
+                <label class="span-2">
+                  Rotator 1 (sobre)
+                  <input [(ngModel)]="portfolio.hero.aboutRotator[0]" [name]="'inline_skills_rotator_' + i" />
+                </label>
+              </div>
+
+              <div *ngSwitchCase="'githubProfile'" class="inline-grid">
+                <label>
+                  GitHub URL
+                  <input [(ngModel)]="portfolio.socialLinks.github" [name]="'inline_gh_url_' + i" />
+                </label>
+                <label>
+                  Handle
+                  <input [(ngModel)]="portfolio.profile.handle" [name]="'inline_gh_handle_' + i" />
+                </label>
+                <label class="span-2">
+                  Bio perfil
+                  <textarea [(ngModel)]="portfolio.profile.bio" [name]="'inline_gh_bio_' + i" rows="3"></textarea>
+                </label>
+              </div>
             </div>
           </article>
         </div>

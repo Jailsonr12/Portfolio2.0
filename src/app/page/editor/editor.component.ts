@@ -28,6 +28,7 @@ export class EditorComponent implements OnInit {
   activeTab: EditorTab = 'geral';
   normalizedLinksCount = 0;
   draggedBlockIndex: number | null = null;
+  inlineEditingBlock: PortfolioBlockKey | null = null;
 
   readonly tabs: Array<{ id: EditorTab; label: string }> = [
     { id: 'geral', label: 'Geral' },
@@ -43,10 +44,12 @@ export class EditorComponent implements OnInit {
     'hero',
     'about',
     'projects',
-    'curriculo',
-    'activity',
-    'experience',
     'skills',
+    'experience',
+    'activity',
+    'certifications',
+    'curriculo',
+    'contact',
     'githubProfile',
   ];
 
@@ -67,8 +70,8 @@ export class EditorComponent implements OnInit {
     },
     {
       key: 'activity',
-      label: 'Atividade',
-      description: 'Dados vindos de atividade do LinkedIn.',
+      label: 'Casos',
+      description: 'Casos de estudo e decisoes tecnicas.',
       editorTab: 'sobre',
     },
     {
@@ -80,8 +83,20 @@ export class EditorComponent implements OnInit {
     {
       key: 'skills',
       label: 'Skills',
-      description: 'Bloco reservado para stack/skills.',
+      description: 'Categorias de stack e ferramentas.',
       editorTab: 'hero',
+    },
+    {
+      key: 'certifications',
+      label: 'Certificacoes',
+      description: 'Cursos e certificacoes relevantes.',
+      editorTab: 'sobre',
+    },
+    {
+      key: 'contact',
+      label: 'Contato',
+      description: 'Dados e canais de contato.',
+      editorTab: 'links',
     },
     {
       key: 'githubProfile',
@@ -162,6 +177,14 @@ export class EditorComponent implements OnInit {
     this.activeTab = this.getBlockEditorTab(key);
     this.message = `Editando bloco "${this.getBlockLabel(key)}".`;
     this.error = '';
+  }
+
+  toggleInlineEditor(key: PortfolioBlockKey): void {
+    this.inlineEditingBlock = this.inlineEditingBlock === key ? null : key;
+  }
+
+  isInlineEditorOpen(key: PortfolioBlockKey): boolean {
+    return this.inlineEditingBlock === key;
   }
 
   insertBlockInLayout(key: PortfolioBlockKey): void {
