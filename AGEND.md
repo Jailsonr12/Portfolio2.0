@@ -1,13 +1,16 @@
 # AGEND.md
 
 ## Objetivo
+
 Manter o HTML atual como base visual oficial e evoluir para um front 100% editavel (dados e estilos), sem quebrar a estrutura original.
 
 Rotas-alvo:
+
 - `/protifolio/home`: login/home.
 - `/protifolio/:username`: portfolio publico.
 
 ## Fonte de Verdade do HTML Atual (JSON)
+
 ```json
 {
   "version": "1.0.0",
@@ -21,12 +24,7 @@ Rotas-alvo:
           "template": "src/app/components/hello/hello.component.html",
           "structure": {
             "header": {
-              "blocks": [
-                "name (OI + svg mao + nome animado)",
-                "subtitulos (subtitleOne, subtitleTwo)",
-                "links icones (git, linkedin, curriculum)",
-                "texto rotativo iam"
-              ]
+              "blocks": ["name (OI + svg mao + nome animado)", "subtitulos (subtitleOne, subtitleTwo)", "links icones (git, linkedin, curriculum)", "texto rotativo iam"]
             }
           }
         },
@@ -54,20 +52,14 @@ Rotas-alvo:
   "components": {
     "app-projeto-direita": {
       "template": "src/app/components/projeto-direita/projeto-direita.component.html",
-      "structure": [
-        "card-title",
-        "image",
-        "about",
-        "technologies",
-        "links github/page",
-        "modal imagem"
-      ]
+      "structure": ["card-title", "image", "about", "technologies", "links github/page", "modal imagem"]
     }
   }
 }
 ```
 
 ## O que pode ser editado (sem mudar estrutura)
+
 - Texto: nome, bio, titulos, subtitulos, descricao de projeto.
 - Links: github, linkedin, site, curriculo, pagina do projeto.
 - Midia: avatar, banner, imagem de card.
@@ -75,10 +67,12 @@ Rotas-alvo:
 - Tema: cores e dark/light mode.
 
 ## O que nao pode ser alterado
+
 - Hierarquia base dos componentes (`app-hello`, `app-apresentacao`, `app-projeto-direita`).
 - Estrutura macro de secoes (header/introducao + lista de projetos).
 
 ## Modelo editavel (JSON de conteudo)
+
 ```json
 {
   "schemaVersion": 1,
@@ -125,15 +119,18 @@ Rotas-alvo:
 ```
 
 ## Regra de Owner Mode
+
 - Dono: `authUser.username === :username`.
 - Dono logado ve icones de edicao na navbar e pode salvar.
 - Visitante ve apenas conteudo publico + CTA para criar perfil.
 
 ## Persistencia
+
 - MVP: `localStorage` por username.
 - Evolucao: `PortfolioRepository` -> `ApiPortfolioRepository`.
 
 ## Proximas iteracoes (sem quebrar front)
+
 1. Criar pagina `/protifolio/:username` com navbar por papel.
 2. Conectar editor aos campos atuais do HTML (app-hello + projetos).
 3. Adicionar modal de customizacao e salvar no repositorio.
