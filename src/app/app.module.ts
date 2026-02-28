@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,7 @@ import { ApresentacaoComponent } from './components/apresentacao/apresentacao.co
 import { ProjetoDireitaComponent } from './components/projeto-direita/projeto-direita.component';
 import { HomeComponent } from './page/home/home.component';
 import { ModalImgComponent } from './components/modal-img/modal-img.component';
+import { EditorComponent } from './page/editor/editor.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +20,13 @@ import { ModalImgComponent } from './components/modal-img/modal-img.component';
     ApresentacaoComponent,
     ProjetoDireitaComponent,
     HomeComponent,
-    ModalImgComponent
+    ModalImgComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule
   ],

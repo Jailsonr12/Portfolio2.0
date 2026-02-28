@@ -1,0 +1,333 @@
+<main class="editor-page">
+  <section class="editor-shell">
+    <p class="eyebrow">Extensao do Projeto</p>
+    <h1>Editor Dinamico do Portfolio</h1>
+    <p class="lead">
+      Edite todos os dados de <strong>@{{ username }}</strong> no mesmo padrao visual e organize a ordem de exibicao
+      por arraste.
+    </p>
+
+    <p class="status error" *ngIf="error">{{ error }}</p>
+    <p class="status ok" *ngIf="message">{{ message }}</p>
+    <p class="status" *ngIf="loading">Carregando dados...</p>
+
+    <div class="tab-nav" *ngIf="portfolio && !loading">
+      <button
+        type="button"
+        *ngFor="let tab of tabs"
+        [class.active]="activeTab === tab.id"
+        (click)="selectTab(tab.id)"
+      >
+        {{ tab.label }}
+      </button>
+    </div>
+
+    <form class="editor-form" *ngIf="portfolio && !loading">
+      <section class="field-section" *ngIf="activeTab === 'geral'">
+        <h2>Geral</h2>
+        <label>
+          Username
+          <input [(ngModel)]="portfolio.username" name="geral_username" />
+        </label>
+        <label>
+          Source mode
+          <input [(ngModel)]="portfolio.sourceMode" name="geral_source_mode" />
+        </label>
+        <label>
+          Schema version
+          <input type="number" [(ngModel)]="portfolio.schemaVersion" name="geral_schema_version" />
+        </label>
+        <label>
+          Nome
+          <input [(ngModel)]="portfolio.profile.name" name="geral_profile_name" />
+        </label>
+        <label>
+          Bio
+          <textarea [(ngModel)]="portfolio.profile.bio" name="geral_profile_bio" rows="4"></textarea>
+        </label>
+      </section>
+
+      <section class="field-section" *ngIf="activeTab === 'hero'">
+        <h2>Hero</h2>
+        <label>
+          Intro prefix
+          <input [(ngModel)]="portfolio.hero.introPrefix" name="hero_intro_prefix" />
+        </label>
+        <label>
+          Subtitulo 1
+          <input [(ngModel)]="portfolio.hero.subtitleOne" name="hero_subtitle_one" />
+        </label>
+        <label>
+          Subtitulo 2
+          <input [(ngModel)]="portfolio.hero.subtitleTwo" name="hero_subtitle_two" />
+        </label>
+        <label>
+          Stack principal
+          <input [(ngModel)]="portfolio.hero.primaryStack" name="hero_primary_stack" />
+        </label>
+
+        <div class="inline-header">
+          <h3>Nomes de digitacao</h3>
+          <button type="button" (click)="addTypingName()">+ Adicionar</button>
+        </div>
+        <div class="array-list">
+          <div class="array-item" *ngFor="let item of portfolio.hero.typingNames; let i = index">
+            <input [(ngModel)]="portfolio.hero.typingNames[i]" [name]="'hero_typing_' + i" />
+            <button type="button" class="danger" (click)="removeTypingName(i)">Remover</button>
+          </div>
+        </div>
+
+        <div class="inline-header">
+          <h3>Frases rotativas</h3>
+          <button type="button" (click)="addAboutPhrase()">+ Adicionar</button>
+        </div>
+        <div class="array-list">
+          <div class="array-item" *ngFor="let item of portfolio.hero.aboutRotator; let i = index">
+            <input [(ngModel)]="portfolio.hero.aboutRotator[i]" [name]="'hero_about_rotator_' + i" />
+            <button type="button" class="danger" (click)="removeAboutPhrase(i)">Remover</button>
+          </div>
+        </div>
+
+        <div class="inline-header">
+          <h3>Contatos do hero</h3>
+          <button type="button" (click)="addHeroContact()">+ Adicionar</button>
+        </div>
+        <div class="array-list card-list">
+          <div class="array-card" *ngFor="let contact of portfolio.hero.contacts; let i = index">
+            <label>
+              Label
+              <input [(ngModel)]="portfolio.hero.contacts[i].label" [name]="'hero_contact_label_' + i" />
+            </label>
+            <label>
+              URL
+              <input [(ngModel)]="portfolio.hero.contacts[i].url" [name]="'hero_contact_url_' + i" />
+            </label>
+            <label>
+              Icone
+              <input [(ngModel)]="portfolio.hero.contacts[i].icon" [name]="'hero_contact_icon_' + i" />
+            </label>
+            <label>
+              Tipo do icone
+              <select [(ngModel)]="portfolio.hero.contacts[i].iconType" [name]="'hero_contact_type_' + i">
+                <option value="emoji">emoji</option>
+                <option value="image">image</option>
+              </select>
+            </label>
+            <button type="button" class="danger" (click)="removeHeroContact(i)">Remover contato</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="field-section" *ngIf="activeTab === 'sobre'">
+        <h2>Sobre / LinkedIn</h2>
+        <label>
+          Badge do sobre
+          <input [(ngModel)]="portfolio.aboutCard.badge" name="about_badge" />
+        </label>
+        <label>
+          Titulo do sobre
+          <input [(ngModel)]="portfolio.aboutCard.title" name="about_title" />
+        </label>
+        <label>
+          Resumo do sobre
+          <textarea [(ngModel)]="portfolio.aboutCard.summary" name="about_summary" rows="4"></textarea>
+        </label>
+        <label>
+          LinkedIn headline
+          <input [(ngModel)]="portfolio.linkedin.headline" name="linkedin_headline" />
+        </label>
+        <label>
+          LinkedIn about
+          <textarea [(ngModel)]="portfolio.linkedin.about" name="linkedin_about" rows="4"></textarea>
+        </label>
+        <label>
+          LinkedIn activity
+          <input [(ngModel)]="portfolio.linkedin.activity" name="linkedin_activity" />
+        </label>
+        <label>
+          LinkedIn experience
+          <input [(ngModel)]="portfolio.linkedin.experience" name="linkedin_experience" />
+        </label>
+      </section>
+
+      <section class="field-section" *ngIf="activeTab === 'links'">
+        <h2>Links e Curriculo</h2>
+        <p class="section-help">
+          Pode digitar URL completa ou usuario/handle (ex.: `jailsonr12`, `@jaisonroth`, `in/jailsonroth`).
+        </p>
+        <div class="inline-header no-top">
+          <h3>Inteligencia de links</h3>
+          <button type="button" (click)="autoFixLinks()">Auto corrigir links</button>
+        </div>
+        <label>
+          GitHub
+          <input [(ngModel)]="portfolio.socialLinks.github" name="link_github" />
+        </label>
+        <label>
+          LinkedIn
+          <input [(ngModel)]="portfolio.socialLinks.linkedin" name="link_linkedin" />
+        </label>
+        <label>
+          X
+          <input [(ngModel)]="portfolio.socialLinks.x" name="link_x" />
+        </label>
+        <label>
+          Website
+          <input [(ngModel)]="portfolio.socialLinks.website" name="link_website" />
+        </label>
+        <label>
+          Curriculo (social link)
+          <input [(ngModel)]="portfolio.socialLinks.curriculum" name="link_curriculum_social" />
+        </label>
+        <label>
+          Curriculo titulo
+          <input [(ngModel)]="portfolio.curriculum.title" name="curriculum_title" />
+        </label>
+        <label>
+          Curriculo descricao
+          <textarea [(ngModel)]="portfolio.curriculum.description" name="curriculum_description" rows="3"></textarea>
+        </label>
+        <label>
+          Curriculo URL
+          <input [(ngModel)]="portfolio.curriculum.url" name="curriculum_url" />
+        </label>
+      </section>
+
+      <section class="field-section" *ngIf="activeTab === 'projetos'">
+        <div class="inline-header">
+          <h2>Projetos</h2>
+          <button type="button" (click)="addProject()">+ Novo projeto</button>
+        </div>
+        <label>
+          Titulo da secao
+          <input [(ngModel)]="portfolio.projects.title" name="projects_section_title" />
+        </label>
+        <label>
+          Subtitulo da secao
+          <input [(ngModel)]="portfolio.projects.subtitle" name="projects_section_subtitle" />
+        </label>
+
+        <div class="array-list card-list">
+          <div class="array-card" *ngFor="let project of portfolio.projects.items; let i = index">
+            <label>
+              ID
+              <input [(ngModel)]="portfolio.projects.items[i].id" [name]="'project_id_' + i" />
+            </label>
+            <label>
+              Titulo
+              <input [(ngModel)]="portfolio.projects.items[i].title" [name]="'project_title_' + i" />
+            </label>
+            <label>
+              Imagem
+              <input [(ngModel)]="portfolio.projects.items[i].img" [name]="'project_img_' + i" />
+            </label>
+            <label>
+              Resumo
+              <textarea [(ngModel)]="portfolio.projects.items[i].sobre" [name]="'project_about_' + i" rows="3"></textarea>
+            </label>
+            <label>
+              Tecnologias
+              <input [(ngModel)]="portfolio.projects.items[i].tecnologia" [name]="'project_tech_' + i" />
+            </label>
+            <label>
+              GitHub link
+              <input [(ngModel)]="portfolio.projects.items[i].git" [name]="'project_git_' + i" />
+            </label>
+            <label>
+              Link publico
+              <input [(ngModel)]="portfolio.projects.items[i].link" [name]="'project_link_' + i" />
+            </label>
+            <button type="button" class="danger" (click)="removeProject(i)">Remover projeto</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="field-section" *ngIf="activeTab === 'layout'">
+        <h2>Layout e Visibilidade</h2>
+        <p class="section-help">
+          Arraste os blocos para ordenar a pagina. Use "Editar bloco" para abrir a area certa e alterar o conteudo.
+        </p>
+        <div class="layout-builder">
+          <article
+            class="layout-item"
+            *ngFor="let blockKey of portfolio.layoutOrder; let i = index"
+            draggable="true"
+            [class.dragging]="draggedBlockIndex === i"
+            (dragstart)="onBlockDragStart(i)"
+            (dragover)="onBlockDragOver($event)"
+            (drop)="onBlockDrop($event, i)"
+            (dragend)="onBlockDragEnd()"
+          >
+            <div class="layout-head">
+              <p class="layout-order">{{ i + 1 }}</p>
+              <div>
+                <p class="layout-title">{{ getBlockLabel(blockKey) }}</p>
+                <p class="layout-desc">{{ getBlockDescription(blockKey) }}</p>
+              </div>
+            </div>
+
+            <div class="layout-actions">
+              <button type="button" (click)="moveBlockByOffset(i, -1)" [disabled]="i === 0">Subir</button>
+              <button
+                type="button"
+                (click)="moveBlockByOffset(i, 1)"
+                [disabled]="i === portfolio.layoutOrder.length - 1"
+              >
+                Descer
+              </button>
+              <button type="button" (click)="editBlock(blockKey)">Editar bloco</button>
+              <button type="button" class="danger" (click)="removeBlockFromLayout(blockKey)">Remover da ordem</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="layout-insert" *ngIf="availableBlocksToInsert.length">
+          <p class="layout-insert-title">Inserir bloco na ordem</p>
+          <div class="layout-insert-actions">
+            <button type="button" *ngFor="let blockKey of availableBlocksToInsert" (click)="insertBlockInLayout(blockKey)">
+              + {{ getBlockLabel(blockKey) }}
+            </button>
+          </div>
+        </div>
+
+        <label>
+          Ordem dos blocos (separado por virgula)
+          <input [(ngModel)]="layoutOrderText" name="layout_order_text" />
+        </label>
+        <div class="array-list card-list">
+          <div class="array-card" *ngFor="let blockKey of orderedLayoutBlocks">
+            <p class="card-title">{{ blockKey }}</p>
+            <p class="card-caption">
+              {{ isBlockInLayout(blockKey) ? 'Esta na ordem de exibicao' : 'Fora da ordem de exibicao' }}
+            </p>
+            <label class="inline-check">
+              <input type="checkbox" [(ngModel)]="portfolio.blocks[blockKey].enabled" [name]="'block_enabled_' + blockKey" />
+              Ativo
+            </label>
+            <button type="button" (click)="editBlock(blockKey)">Editar bloco</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="field-section" *ngIf="activeTab === 'json'">
+        <h2>Todos os dados (JSON completo)</h2>
+        <p class="section-help">
+          Aqui voce pode editar absolutamente todo o portfolio: hero, sobre, projetos, links, blocks e layout.
+        </p>
+        <textarea [(ngModel)]="jsonDraft" name="portfolio_json" rows="18" class="json-area"></textarea>
+        <div class="json-actions">
+          <button type="button" (click)="refreshJsonDraft()">Atualizar JSON com formulario</button>
+          <button type="button" (click)="applyJsonDraft()">Aplicar JSON no formulario</button>
+        </div>
+      </section>
+    </form>
+
+    <div class="actions">
+      <a [routerLink]="['/protifolio', username]">Voltar para o portfolio</a>
+      <button type="button" (click)="resetFromApi()" [disabled]="loading || saving">Atualizar API</button>
+      <button type="button" class="primary" (click)="save()" [disabled]="loading || saving">
+        {{ saving ? 'Salvando...' : 'Salvar alteracoes' }}
+      </button>
+    </div>
+  </section>
+</main>

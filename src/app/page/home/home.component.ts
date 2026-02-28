@@ -64,10 +64,11 @@ export class HomeComponent implements OnInit {
       return '';
     }
 
-    return (
+    return this.limitText(
       this.portfolio.linkedin.headline?.trim() ||
-      this.portfolio.profile.professionalLabel ||
-      'Desenvolvedor Full Stack'
+        this.portfolio.profile.professionalLabel ||
+        'Desenvolvedor Full Stack',
+      90
     );
   }
 
@@ -76,10 +77,11 @@ export class HomeComponent implements OnInit {
       return '';
     }
 
-    return (
+    return this.limitText(
       this.portfolio.linkedin.about?.trim() ||
-      this.portfolio.profile.bio ||
-      this.portfolio.aboutCard.summary
+        this.portfolio.profile.bio ||
+        this.portfolio.aboutCard.summary,
+      280
     );
   }
 
@@ -88,14 +90,22 @@ export class HomeComponent implements OnInit {
       return [];
     }
 
-    const focus = this.portfolio.linkedin.activity?.trim() || 'Projetos e evolucao tecnica';
-    const experience =
+    const focus = this.limitText(
+      this.portfolio.linkedin.activity?.trim() || 'Projetos e evolucao tecnica',
+      72
+    );
+    const experience = this.limitText(
       this.portfolio.linkedin.experience?.trim() ||
-      [this.portfolio.profile.company, this.portfolio.profile.location]
-        .filter(Boolean)
-        .join(' • ') ||
-      'Experiencia em desenvolvimento web';
-    const stack = this.portfolio.hero.primaryStack || 'Angular • TypeScript • Node.js';
+        [this.portfolio.profile.company, this.portfolio.profile.location]
+          .filter(Boolean)
+          .join(' | ') ||
+        'Experiencia em desenvolvimento web',
+      72
+    );
+    const stack = this.limitText(
+      this.portfolio.hero.primaryStack || 'Angular | TypeScript | Node.js',
+      72
+    );
 
     return [
       { label: 'Stack', value: stack },
@@ -145,6 +155,16 @@ export class HomeComponent implements OnInit {
     }
 
     return 'jailsonr12';
+  }
+
+  get editorRoute(): string[] {
+    const username = this.portfolio?.username || this.detectUsername();
+    return ['/protifolio', username, 'editor'];
+  }
+
+  get showEditorShortcut(): boolean {
+    const path = window.location.pathname.toLowerCase();
+    return /^\/protifolio\/[^/]+$/.test(path) && !path.endsWith('/home');
   }
 
   private applyCurriculumLinks(url: string): void {
@@ -276,5 +296,13 @@ export class HomeComponent implements OnInit {
     }
 
     return `https://drive.google.com/uc?export=download&id=${fileMatch[1]}`;
+  }
+
+  private limitText(value: string, max: number): string {
+    const text = (value || '').replace(/\s+/g, ' ').trim();
+    if (text.length <= max) {
+      return text;
+    }
+    return `${text.slice(0, max - 3).trim()}...`;
   }
 }

@@ -1,4 +1,9 @@
 <main class="home-page">
+  <a *ngIf="showEditorShortcut" class="editor-fab" [routerLink]="editorRoute" aria-label="Abrir editor">
+    <span class="icon">✏</span>
+    <span>Editor</span>
+  </a>
+
   <p class="feedback error" *ngIf="loadError">{{ loadError }}</p>
   <p class="feedback" *ngIf="isLoading">Carregando portfolio...</p>
 
@@ -48,7 +53,13 @@
             </article>
           </div>
 
-          <a class="linkedin-focus-link" [href]="portfolio.socialLinks.linkedin" target="_blank" rel="noopener noreferrer">
+          <a
+            *ngIf="portfolio.socialLinks.linkedin"
+            class="linkedin-focus-link"
+            [href]="portfolio.socialLinks.linkedin"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Ver perfil no LinkedIn
           </a>
         </div>
@@ -101,9 +112,9 @@
 
     <section *ngIf="orderedHomeBlocks.includes('curriculo')" id="curriculo" class="curriculo-block">
       <div class="curriculo-card">
-        <p class="eyebrow">{{ portfolio.curriculum.title }}</p>
+        <p class="eyebrow">{{ portfolio.curriculum.title || 'Curriculo' }}</p>
         <h2>Resumo profissional e experiencias</h2>
-        <p>{{ portfolio.curriculum.description }}</p>
+        <p>{{ portfolio.curriculum.description || 'Acesse o curriculo completo pelo link abaixo.' }}</p>
 
         <button
           *ngIf="curriculumPreviewUrl"
