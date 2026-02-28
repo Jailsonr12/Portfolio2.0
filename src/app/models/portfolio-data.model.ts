@@ -69,6 +69,47 @@ export interface PortfolioCurriculumData {
   url: string;
 }
 
+export interface PortfolioSkillCategory {
+  name: string;
+  items: string[];
+}
+
+export interface PortfolioExperienceEntry {
+  company: string;
+  role: string;
+  period: string;
+  bullets: string[];
+  technologies: string[];
+}
+
+export interface PortfolioCaseStudy {
+  title: string;
+  summary: string;
+  decisions: string[];
+}
+
+export interface PortfolioCertification {
+  name: string;
+  issuer: string;
+  year: string;
+  link?: string;
+}
+
+export interface PortfolioContactData {
+  email: string;
+  github: string;
+  linkedin: string;
+  phone?: string;
+  formEnabled: boolean;
+}
+
+export interface PortfolioCustomCardField {
+  id: string;
+  label: string;
+  value: string;
+  type: 'text' | 'textarea' | 'url' | 'image';
+}
+
 export interface PortfolioDocument {
   schemaVersion: number;
   username: string;
@@ -93,4 +134,10 @@ export interface PortfolioDocument {
     subtitle: string;
     items: PortfolioProject[];
   };
+  skills: PortfolioSkillCategory[];
+  experience: PortfolioExperienceEntry[];
+  caseStudies: PortfolioCaseStudy[];
+  certifications: PortfolioCertification[];
+  contact: PortfolioContactData;
+  customCardFields?: Record<string, PortfolioCustomCardField[]>;
 }

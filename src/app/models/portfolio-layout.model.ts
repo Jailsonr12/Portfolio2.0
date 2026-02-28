@@ -6,7 +6,9 @@ export type PortfolioBlockKey =
   | 'activity'
   | 'experience'
   | 'skills'
-  | 'githubProfile';
+  | 'githubProfile'
+  | 'certifications'
+  | 'contact';
 
 export interface PortfolioSocialLinks {
   github: string;
@@ -26,4 +28,3 @@ export interface PortfolioLayoutConfig {
   blocks: Record<PortfolioBlockKey, PortfolioBlockConfig>;
   layoutOrder: PortfolioBlockKey[];
 }
-
