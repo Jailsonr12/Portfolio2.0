@@ -54,6 +54,38 @@
   line-height: 1;
 }
 
+.sticky-menu {
+  position: fixed;
+  top: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1350;
+  display: flex;
+  gap: 0.42rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: min(980px, calc(100% - 1.2rem));
+  padding: 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(7, 12, 22, 0.86);
+  backdrop-filter: blur(8px);
+}
+
+.sticky-menu button {
+  border: 1px solid rgba(143, 196, 255, 0.4);
+  border-radius: 999px;
+  background: transparent;
+  color: #e9f2ff;
+  padding: 0.34rem 0.72rem;
+  cursor: pointer;
+}
+
+.sticky-menu button.active {
+  border-color: rgba(140, 242, 184, 0.5);
+  background: rgba(140, 242, 184, 0.14);
+}
+
 .feedback {
   margin: 0.35rem auto 0;
   max-width: 1240px;
@@ -73,6 +105,19 @@
   align-items: center;
   justify-content: center;
   padding: 2rem 0 var(--section-block-gap);
+}
+
+.hero-edit-link {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.hero-custom-fields {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  max-width: min(420px, calc(100% - 2rem));
 }
 
 .projects-block {
@@ -108,6 +153,7 @@
 .curriculo-card,
 .featured-project-card,
 .duo-project-card {
+  position: relative;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--card-radius);
   background:
@@ -117,6 +163,35 @@
   padding: var(--card-padding);
   min-height: 100%;
   text-align: center;
+}
+
+.card-edit-link {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.35rem 0.72rem;
+  color: #e9f2ff;
+  border: 1px solid rgba(143, 196, 255, 0.5);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(88, 166, 255, 0.3), transparent 45%),
+    linear-gradient(155deg, #15223b 0%, #0f1729 100%);
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.projects-edit-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.6rem;
+}
+
+.projects-edit-row .card-edit-link {
+  position: static;
 }
 
 .about-card h2,
@@ -459,6 +534,174 @@
     linear-gradient(155deg, #15223b 0%, #0f1729 100%);
 }
 
+.quick-edit-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1250;
+  background: rgba(3, 6, 12, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.quick-edit-panel {
+  width: min(760px, 100%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(88, 166, 255, 0.2), transparent 45%),
+    linear-gradient(155deg, #121a2c 0%, #0a101d 100%);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.48);
+  overflow: hidden;
+}
+
+.quick-edit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 0.95rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.quick-edit-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.quick-edit-body {
+  padding: 0.8rem 0.95rem;
+}
+
+.quick-edit-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+
+.quick-edit-tools p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: rgba(226, 236, 252, 0.9);
+}
+
+.quick-edit-tools button,
+.quick-remove-field {
+  border: 1px solid rgba(143, 196, 255, 0.45);
+  border-radius: 999px;
+  background: rgba(12, 22, 39, 0.72);
+  color: #e9f2ff;
+  padding: 0.32rem 0.68rem;
+  cursor: pointer;
+}
+
+.quick-remove-field {
+  margin-top: 0.4rem;
+  border-color: rgba(255, 128, 128, 0.4);
+  background: rgba(120, 20, 28, 0.35);
+  color: #ffd6d6;
+}
+
+.quick-edit-grid {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.quick-edit-grid label {
+  display: grid;
+  gap: 0.32rem;
+  margin: 0;
+  font-size: 0.84rem;
+  color: rgba(226, 236, 252, 0.9);
+}
+
+.quick-edit-grid input,
+.quick-edit-grid textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(143, 196, 255, 0.35);
+  background: #0b1323;
+  color: #edf4ff;
+  padding: 0.52rem 0.62rem;
+}
+
+.quick-edit-grid textarea {
+  resize: vertical;
+}
+
+.quick-edit-label-input {
+  font-size: 0.78rem;
+  padding: 0.4rem 0.52rem;
+}
+
+.quick-edit-image-preview {
+  margin-top: 0.45rem;
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(8, 12, 22, 0.45);
+}
+
+.custom-fields {
+  margin-top: 0.7rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 0.65rem;
+  text-align: left;
+}
+
+.custom-fields p {
+  margin: 0.35rem 0 0;
+  color: rgba(235, 241, 255, 0.9);
+}
+
+.custom-field-image {
+  margin-top: 0.45rem;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: block;
+  object-fit: cover;
+  max-height: 220px;
+}
+
+.projects-custom-fields {
+  max-width: var(--section-max-width);
+  margin: 0.8rem auto 0;
+  padding: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--card-radius);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(88, 166, 255, 0.22), transparent 45%),
+    linear-gradient(155deg, #121a2c 0%, #0a101d 100%);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+}
+
+.quick-edit-grid .span-2 {
+  grid-column: span 2;
+}
+
+.quick-edit-actions {
+  padding: 0 0.95rem 0.95rem;
+}
+
+.quick-edit-actions button {
+  display: inline-flex;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  color: #e9f2ff;
+  border: 1px solid rgba(143, 196, 255, 0.5);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(88, 166, 255, 0.3), transparent 45%),
+    linear-gradient(155deg, #15223b 0%, #0f1729 100%);
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .editor-fab {
     top: 0.7rem;
@@ -467,9 +710,34 @@
     font-size: 0.84rem;
   }
 
+  .sticky-menu {
+    top: 0.55rem;
+    width: calc(100% - 1rem);
+    border-radius: 16px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+
+  .sticky-menu button {
+    white-space: nowrap;
+  }
+
   .hero-block {
     min-height: 80vh;
     padding: 1rem 0 var(--section-block-gap);
+  }
+
+  .hero-edit-link {
+    top: 0.7rem;
+    right: 0.65rem;
+  }
+
+  .hero-custom-fields {
+    left: 0.65rem;
+    right: 0.65rem;
+    bottom: 0.65rem;
+    max-width: none;
   }
 
   .projects-block {
@@ -492,6 +760,13 @@
     padding: 0 0.65rem var(--section-block-gap);
   }
 
+  .card-edit-link {
+    top: 0.55rem;
+    right: 0.55rem;
+    font-size: 0.74rem;
+    padding: 0.3rem 0.62rem;
+  }
+
   .duo-project-block {
     grid-template-columns: 1fr;
     gap: 0.7rem;
@@ -511,6 +786,18 @@
 
   .curriculo-modal-body iframe {
     height: 68vh;
+  }
+
+  .quick-edit-modal {
+    padding: 0.5rem;
+  }
+
+  .quick-edit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-edit-grid .span-2 {
+    grid-column: span 1;
   }
 
 }
