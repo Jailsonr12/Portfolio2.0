@@ -1,16 +1,22 @@
-<body>
-    <header>
-        <div class="title">
-            <h1>Projetos</h1>
-        </div>
-    </header>
-    <main>
-        <ul>
-            <li *ngFor="let projeto of projetos">
-                <app-projeto-direita [title]="projeto.title" [imageUrl]="projeto.img" [about]="projeto.sobre"
-                    [technologies]="projeto.tecnologia" [githubLink]="projeto.git" [pageLink]="projeto.link">
-                </app-projeto-direita>
-            </li>
-        </ul>
-    </main>
-</body>
+<section class="projects-shell">
+  <header class="title">
+    <h1>Projetos</h1>
+    <p>Selecao dos trabalhos em destaque</p>
+  </header>
+
+  <main class="projects-content">
+    <ul>
+      <li *ngFor="let projeto of projetos">
+        <app-projeto-direita
+          [title]="projeto.title"
+          [imageUrl]="projeto.img"
+          [about]="projeto.sobre"
+          [technologies]="projeto.tecnologia"
+          [githubLink]="projeto.git"
+          [pageLink]="projeto.link"
+        >
+        </app-projeto-direita>
+      </li>
+    </ul>
+  </main>
+</section>

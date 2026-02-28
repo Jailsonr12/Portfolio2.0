@@ -1,45 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
-* {
+:host {
+  display: block;
+  padding: 0.4rem 1rem 2rem;
+}
+
+.projects-shell {
+  margin: 0 auto;
+  max-width: 1120px;
+}
+
+.title {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.title h1 {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 0.04em;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #f4f6ff;
+}
+
+.title p {
+  margin: 0.2rem 0 0;
+  color: rgba(235, 241, 255, 0.72);
   text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
 }
 
-body {
-  background: linear-gradient(to bottom right, #363636, #050c24);
-  overflow-y: auto;
-  width: 100%;
-  padding-top: 3rem;
-}
-
-header .title {
-    font-family: "Bebas Neue", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    color: rgb(241, 239, 239);
-    position: relative;
-    overflow: hidden;
-    text-shadow: 2px 3px 1px rgba(255, 0, 0, 0.5);
-    margin: auto;
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-}
-main{
+.projects-content {
   display: flex;
   justify-content: center;
 }
 
 ul {
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
-  justify-content: center;
-  align-items: center;
-  }
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
 
 li {
-  margin: 10px;
+  display: flex;
 }

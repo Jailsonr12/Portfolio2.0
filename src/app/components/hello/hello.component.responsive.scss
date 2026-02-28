@@ -1,354 +1,93 @@
-@media screen and (min-width: 320px) and (max-width: 480px) {
-  //alinhamento centro
-  *{
-    overflow-y: hidden;
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
   }
 
-  header {
-    display: block;
+  .hero-main {
+    min-height: 60vh;
   }
 
-  .conteiner-start {
-    display: flex;
-    flex-direction: column;
+  .iam {
+    max-width: 100%;
+  }
+
+  .github-panel {
+    padding: 0.9rem;
+  }
+
+  .profile-head {
     align-items: center;
-    justify-content: center;
-
-  }
-
-  //hello
-  .name {
-    flex-direction: column;
-    align-items: center;
-    align-content: space-around;
-    justify-items: center;
-    text-align: center;
-  }
-
-  .name h1 {
-    font-size: 1.7rem;
-    overflow-y: hidden;
-  }
-
-  #mao {
-    width: 1.7rem;
-  }
-
-  //title
-
-  .app {
-    display: flex;
-  }
-
-  .app div h1 {
-    font-size: 2.2rem;
-    overflow-y: hidden;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-  }
-
-  .fullStack {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .imgs {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-
-
-  // Subtitle
-  .Iam h1 {
-    font-family: "Oswald", sans-serif;
-    font-size: 1rem;
-    overflow-y: hidden;
-    text-align: right;
-    color: #c9c9c9;
-  }
-
-  // Img
-  .imgs a {
-    width: 2rem;
-    height: 2rem
-  }
-
-  div .Iam h1 {
-    font-size: 1rem;
-    overflow-y: hidden;
-    text-align: center;
   }
 }
-@media screen and (min-width: 481px) and (max-width: 768px) {
-  *{
-    overflow-y: hidden;
+
+@media (max-width: 768px) {
+  .hero-shell {
+    padding: 0.8rem 0.65rem 0.35rem;
   }
 
-  //alinhamento centro
-
-  header {
-    display: block;
+  .github-card {
+    border-radius: 14px;
   }
 
-  .conteiner-start {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  .hero-main-card {
+    border-radius: 16px;
   }
 
-  //hello
-  .name {
-    padding-top: 0.5rem;
-    flex-direction: column;
-    align-items: center;
-    align-content: space-around;
-    justify-items: center;
-    text-align: center;
+  .hero-main {
+    min-height: 56vh;
   }
 
-  .name h1 {
-    font-size: 2rem;
-    overflow-y: hidden;
+  .stack-hero span {
+    font-size: clamp(2.6rem, 16vw, 4.8rem);
+    line-height: 0.9;
   }
 
-  #mao {
-    width: 2rem;
+  .stack-hero {
+    white-space: normal;
+    flex-wrap: wrap;
   }
 
-  //title
-  .app {
-    display: flex;
+  .iam {
+    font-size: 0.95rem;
   }
 
-  .app div h1 {
-    padding-top: 0.5rem;
-    font-size: 3rem;
-    overflow-y: hidden;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
+  .profile-status {
+    max-width: 100%;
+    text-align: left;
+    font-size: 0.8rem;
   }
 
-
-  .fullStack {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: flex-start;
+  .about-me {
+    max-width: 100%;
+    font-size: 0.95rem;
   }
 
-  .imgs {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .profile-meta {
+    text-align: left;
+    gap: 0.34rem;
   }
 
-  // Subtitle
-  .Iam h1 {
-    font-family: "Oswald", sans-serif;
-    font-size: 1rem;
-    overflow-y: hidden;
-    text-align: right;
-    color: #c9c9c9;
+  .status-grid {
+    grid-template-columns: 1fr 1fr;
   }
 
-  // Img
-  .imgs a {
-    width: 3rem;
-    height: 3rem
+  .social-row {
+    gap: 0.5rem;
   }
 
-  div .Iam h1 {
-    padding-top: 0.5rem;
-    font-size: 1.5rem;
-    overflow-y: hidden;
-    text-align: center;
-  }
-}
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  *{
-    overflow-y: hidden;
+  .social-row a {
+    min-height: 2.55rem;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.76rem;
   }
 
-  //alinhamento centro
-  header {
-    display: flex;
+  .github-panel {
+    padding: 0.8rem;
   }
 
-  .conteiner-start {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: auto;
-  }
-
-  //hello
-  .name {
-    flex-direction: column;
-    align-items: center;
-    align-content: space-around;
-    justify-items: center;
-    text-align: center;
-  }
-
-  .name h1 {
-    font-size: 2rem;
-    overflow-y: hidden;
-  }
-
-  #mao {
-    width: 1rem;
-  }
-
-  .name {
-    padding-top: 3rem;
-  }
-
-  //title
-
-  .app {
-    display: flex;
-  }
-
-  .app div h1 {
-    font-size: 2.5rem;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-  }
-
-  .fullStack {
-    display: flex;
-    justify-content: space-unset;
-    align-items: center;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .imgs {
-    margin-left: 0.5rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  // Subtitle
-  .Iam h1 {
-    font-family: "Oswald", sans-serif;
-    font-size: 1rem;
-    text-align: right;
-    color: #c9c9c9;
-  }
-
-  // Img
-
-  .imgs a {
-    width: 2.5rem;
-    height: 2.5rem;
-    overflow-x: hidden;
-  }
-
-  div .Iam h1 {
-    font-size: 2.5rem;
-    text-align: center;
-  }
-}
-@media screen and (min-width: 1025px) and (max-width: 1200px) {
-  
-  //alinhamento centro
-  header {
-    display: block;
-  }
-
-  .conteiner-start {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-  }
-
-  //hello
-  .name {
-    text-align: center;
-  }
-
-  .name h1 {
-    font-size: 2rem;
-    overflow-y: hidden;
-  }
-
-  #mao {
-    width: 2rem;
-  }
-
-  //title
-  .app div h1 {
-    writing-mode: horizontal-tb;
-    font-size: 6rem;
-    overflow-y: hidden;
-    
-  }
-
-  .imgs a {
-    width: 4rem;
-    height: 4rem
-  }
-
-  .imgs a {
-    display: inline-block;
-    margin-right: .6rem;
-    transition: transform 1.8s ease;
-  }
-
-
-  // Subtitle
-  .Iam h1 {
-    font-family: "Oswald", sans-serif;
-    font-size: 1.5rem;
-    overflow-y: hidden;
-    text-align: right;
-    color: #c9c9c9;
-  }
-
-  Img imgs a {
-    width: 3rem;
-    height: 3rem
-  }
-
-  div .Iam h1 {
-    padding: 0.5rem;
-    font-size: 2rem;
-    overflow-y: hidden;
-    text-align: center;
-  }
-}
-@media screen and (min-width: 1201px) and (max-width: 1630px) {
-  *{
-    overflow-y: hidden;
-  }
-
-  .name h1 {
-    font-size: 2.5rem;
-  }
-
-  #mao {
-    width: 2rem;
-  }
-
-  //title
-  .app div h1 {
-    font-size: 8rem;
-  }
-
-  // Subtitle
-  .Iam h1 {
-    font-size: 2rem;
+  .github-panel img {
+    width: 66px;
+    height: 66px;
   }
 }

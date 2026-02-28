@@ -1,0 +1,59 @@
+:host {
+  --home-bg: #070b14;
+  --home-bg-soft: #0f1727;
+  --home-primary: #58a6ff;
+  --home-accent: #8cf2b8;
+  --home-text: #f4f7ff;
+  --home-muted: #96a6c5;
+
+  display: block;
+}
+
+.home-page {
+  min-height: 100vh;
+  position: relative;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(88, 166, 255, 0.2), transparent 35%),
+    radial-gradient(circle at 80% 0%, rgba(140, 242, 184, 0.12), transparent 30%),
+    linear-gradient(180deg, var(--home-bg-soft) 0%, var(--home-bg) 100%);
+  color: var(--home-text);
+}
+
+.hero-block {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0 2.6rem;
+}
+
+.projects-block {
+  position: relative;
+  z-index: 2;
+  margin: -3rem auto 0;
+  max-width: 100%;
+  padding: 1rem 0 2.5rem;
+  border-top-left-radius: 26px;
+  border-top-right-radius: 26px;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 12, 22, 0.9) 0%,
+    rgba(7, 11, 20, 0.84) 18%,
+    rgba(7, 11, 20, 0) 100%
+  );
+}
+
+@media (max-width: 768px) {
+  .hero-block {
+    min-height: 80vh;
+    padding: 1rem 0 2rem;
+  }
+
+  .projects-block {
+    margin-top: -2rem;
+    padding-bottom: 1.5rem;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+}
