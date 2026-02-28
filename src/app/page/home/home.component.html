@@ -36,40 +36,21 @@
 
     <section *ngIf="orderedHomeBlocks.includes('about')" id="sobre" class="about-block">
       <article class="about-card">
-        <div class="about-header">
+        <div class="about-header compact">
           <p class="eyebrow">{{ portfolio.aboutCard.badge }}</p>
-          <h2>{{ portfolio.aboutCard.title }}</h2>
-          <p>{{ portfolio.aboutCard.summary }}</p>
-        </div>
+          <h2>{{ aboutHeadline }}</h2>
+          <p class="about-summary">{{ aboutSummary }}</p>
 
-        <div class="about-grid">
-          <div class="about-column">
-            <h3>Pilares</h3>
-            <div class="pillar-list">
-              <article class="pillar-item" *ngFor="let pillar of portfolio.aboutCard.pillars">
-                <h4>{{ pillar.title }}</h4>
-                <p>{{ pillar.description }}</p>
-              </article>
-            </div>
+          <div class="about-badges">
+            <article class="about-badge" *ngFor="let badge of aboutBadges">
+              <p class="badge-label">{{ badge.label }}</p>
+              <p class="badge-value">{{ badge.value }}</p>
+            </article>
           </div>
 
-          <div class="about-column">
-            <h3>Highlights</h3>
-            <div class="highlight-list">
-              <article class="highlight-item" *ngFor="let item of portfolio.aboutCard.highlights">
-                <p class="highlight-label">{{ item.label }}</p>
-                <p class="highlight-value">{{ item.value }}</p>
-              </article>
-            </div>
-
-            <h3>Trajetoria</h3>
-            <div class="timeline-list">
-              <article class="timeline-item" *ngFor="let point of portfolio.aboutCard.timeline">
-                <p class="timeline-period">{{ point.period }}</p>
-                <p>{{ point.text }}</p>
-              </article>
-            </div>
-          </div>
+          <a class="linkedin-focus-link" [href]="portfolio.socialLinks.linkedin" target="_blank" rel="noopener noreferrer">
+            Ver perfil no LinkedIn
+          </a>
         </div>
       </article>
     </section>
@@ -153,23 +134,6 @@
       </div>
     </section>
 
-    <section class="linkedin-block" *ngIf="canShowLinkedinBlock">
-      <div class="linkedin-card">
-        <p class="eyebrow">LinkedIn</p>
-        <h2>Perfil profissional</h2>
-
-        <p *ngIf="portfolio.linkedin.headline"><strong>Headline:</strong> {{ portfolio.linkedin.headline }}</p>
-        <p *ngIf="portfolio.linkedin.about"><strong>Sobre:</strong> {{ portfolio.linkedin.about }}</p>
-        <p *ngIf="portfolio.linkedin.activity"><strong>Atividade:</strong> {{ portfolio.linkedin.activity }}</p>
-        <p *ngIf="portfolio.linkedin.experience">
-          <strong>Experiencia:</strong> {{ portfolio.linkedin.experience }}
-        </p>
-
-        <a [href]="portfolio.socialLinks.linkedin" target="_blank" rel="noopener noreferrer">
-          Ver no LinkedIn
-        </a>
-      </div>
-    </section>
   </ng-container>
 
   <section *ngIf="isCurriculumModalOpen" class="curriculo-modal" (click)="closeCurriculumModal()">

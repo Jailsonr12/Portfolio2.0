@@ -175,40 +175,52 @@ export class PortfolioDataService {
       },
       aboutCard: {
         badge: 'Sobre mim',
-        title: 'Construo experiencias web que conectam negocio e codigo',
+        title: 'Transformo ideias em produtos web claros, rapidos e escalaveis',
         summary:
-          'Projeto de portfolio pensado para devs editarem conteudo completo sem quebrar layout.',
+          'Sou desenvolvedor Full Stack com foco em front-end moderno, arquitetura evolutiva e experiencia do usuario. Gosto de construir interfaces bonitas e funcionais, com codigo organizado para crescer sem retrabalho.',
         pillars: [
           {
-            title: 'Produto primeiro',
-            description: 'Cada decisao tecnica existe para melhorar a experiencia final.',
+            title: 'Visao de produto',
+            description:
+              'Cada tela e pensada para resolver um problema real e entregar valor para quem usa.',
           },
           {
-            title: 'Arquitetura evolutiva',
-            description: 'Base preparada para crescer sem retrabalho.',
+            title: 'Codigo sustentavel',
+            description:
+              'Componentizacao, padronizacao e boas praticas para manter o projeto simples de evoluir.',
           },
           {
-            title: 'Consistencia visual',
-            description: 'Componentes padronizados e responsivos.',
+            title: 'Performance e qualidade',
+            description:
+              'Prioridade para responsividade, acessibilidade e fluidez em desktop e mobile.',
           },
         ],
         highlights: [
-          { label: 'Foco', value: 'Frontend e UX' },
-          { label: 'Stack', value: 'Angular + Node' },
-          { label: 'Objetivo', value: 'Portfolio escalavel' },
+          { label: 'Especialidade', value: 'Angular + TypeScript' },
+          { label: 'Atuacao', value: 'Full Stack e UI' },
+          { label: 'Diferencial', value: 'Layout clean e escalavel' },
         ],
         timeline: [
           {
-            period: 'Agora',
-            text: 'Construindo a base editavel para perfis publicos.',
+            period: 'Hoje',
+            text: 'Criando um portfolio publico editavel para desenvolvedores compartilharem projetos com identidade propria.',
+          },
+          {
+            period: 'Experiencia recente',
+            text: 'Atuacao em desenvolvimento, QA e DevOps com foco em qualidade de entrega e melhoria continua.',
+          },
+          {
+            period: 'Proximo passo',
+            text: 'Evoluir o produto com recursos de personalizacao avancada, publicacao e escala.',
           },
         ],
       },
       linkedin: {
-        headline: '',
-        about: '',
-        activity: '',
-        experience: '',
+        headline: 'Desenvolvedor Full Stack | Angular | TypeScript',
+        about:
+          'Profissional focado em criar interfaces modernas, organizadas e com boa experiencia para quem utiliza.',
+        activity: 'Compartilhando evolucao tecnica, projetos e aprendizados em desenvolvimento web.',
+        experience: 'Atuacao em desenvolvimento, QA e DevOps com foco em qualidade de entrega.',
       },
       curriculum: {
         title: 'Curriculo',
@@ -272,6 +284,31 @@ export class PortfolioDataService {
 
   private normalizeDocument(input: Partial<PortfolioDocument>, username: string): PortfolioDocument {
     const base = this.defaultDocument(username);
+    const legacyAboutTitle = 'Construo experiencias web que conectam negocio e codigo';
+    const legacyAboutSummary =
+      'Projeto de portfolio pensado para devs editarem conteudo completo sem quebrar layout.';
+
+    const mergedAbout = {
+      ...base.aboutCard,
+      ...(input.aboutCard || {}),
+      pillars: input.aboutCard?.pillars?.length ? input.aboutCard.pillars : base.aboutCard.pillars,
+      highlights: input.aboutCard?.highlights?.length
+        ? input.aboutCard.highlights
+        : base.aboutCard.highlights,
+      timeline: input.aboutCard?.timeline?.length ? input.aboutCard.timeline : base.aboutCard.timeline,
+    };
+
+    const mergedProfile = { ...base.profile, ...(input.profile || {}) };
+    const mergedLinkedin = { ...base.linkedin, ...(input.linkedin || {}) };
+    if (!mergedLinkedin.about?.trim()) {
+      mergedLinkedin.about = mergedProfile.bio || base.linkedin.about;
+    }
+
+    const shouldUpgradeLegacyAbout =
+      !input.aboutCard ||
+      input.aboutCard.title === legacyAboutTitle ||
+      input.aboutCard.summary === legacyAboutSummary;
+
     return {
       ...base,
       ...input,
@@ -285,17 +322,9 @@ export class PortfolioDataService {
         aboutRotator: input.hero?.aboutRotator?.length ? input.hero.aboutRotator : base.hero.aboutRotator,
         contacts: input.hero?.contacts?.length ? input.hero.contacts : base.hero.contacts,
       },
-      profile: { ...base.profile, ...(input.profile || {}) },
-      aboutCard: {
-        ...base.aboutCard,
-        ...(input.aboutCard || {}),
-        pillars: input.aboutCard?.pillars?.length ? input.aboutCard.pillars : base.aboutCard.pillars,
-        highlights: input.aboutCard?.highlights?.length
-          ? input.aboutCard.highlights
-          : base.aboutCard.highlights,
-        timeline: input.aboutCard?.timeline?.length ? input.aboutCard.timeline : base.aboutCard.timeline,
-      },
-      linkedin: { ...base.linkedin, ...(input.linkedin || {}) },
+      profile: mergedProfile,
+      aboutCard: shouldUpgradeLegacyAbout ? base.aboutCard : mergedAbout,
+      linkedin: mergedLinkedin,
       curriculum: { ...base.curriculum, ...(input.curriculum || {}) },
       projects: {
         ...base.projects,

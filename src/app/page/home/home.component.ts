@@ -15,6 +15,11 @@ interface ShowcaseProject {
   imageUrl: string;
 }
 
+interface AboutBadgeItem {
+  label: string;
+  value: string;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -54,13 +59,49 @@ export class HomeComponent implements OnInit {
     return this.portfolio.layoutOrder.filter((block) => this.portfolio?.blocks[block]?.enabled);
   }
 
-  get canShowLinkedinBlock(): boolean {
-    return Boolean(
-      this.portfolio?.linkedin.headline ||
-        this.portfolio?.linkedin.about ||
-        this.portfolio?.linkedin.activity ||
-        this.portfolio?.linkedin.experience
+  get aboutHeadline(): string {
+    if (!this.portfolio) {
+      return '';
+    }
+
+    return (
+      this.portfolio.linkedin.headline?.trim() ||
+      this.portfolio.profile.professionalLabel ||
+      'Desenvolvedor Full Stack'
     );
+  }
+
+  get aboutSummary(): string {
+    if (!this.portfolio) {
+      return '';
+    }
+
+    return (
+      this.portfolio.linkedin.about?.trim() ||
+      this.portfolio.profile.bio ||
+      this.portfolio.aboutCard.summary
+    );
+  }
+
+  get aboutBadges(): AboutBadgeItem[] {
+    if (!this.portfolio) {
+      return [];
+    }
+
+    const focus = this.portfolio.linkedin.activity?.trim() || 'Projetos e evolucao tecnica';
+    const experience =
+      this.portfolio.linkedin.experience?.trim() ||
+      [this.portfolio.profile.company, this.portfolio.profile.location]
+        .filter(Boolean)
+        .join(' • ') ||
+      'Experiencia em desenvolvimento web';
+    const stack = this.portfolio.hero.primaryStack || 'Angular • TypeScript • Node.js';
+
+    return [
+      { label: 'Stack', value: stack },
+      { label: 'Foco', value: focus },
+      { label: 'Experiencia', value: experience },
+    ];
   }
 
   openCurriculumModal(): void {

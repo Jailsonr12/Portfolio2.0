@@ -25,6 +25,8 @@
   min-height: 3.1rem;
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .card-title h3 {
@@ -64,13 +66,16 @@
   display: grid;
   gap: 0.55rem;
   min-height: 7.2rem;
+  text-align: center;
 }
 
 .card-sobre {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.45rem;
   min-height: 2.8rem;
+  flex-wrap: wrap;
 }
 
 .card-sobre p {
@@ -104,6 +109,8 @@
   gap: 0.5rem;
   min-height: 3.2rem;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .card-footer a {
