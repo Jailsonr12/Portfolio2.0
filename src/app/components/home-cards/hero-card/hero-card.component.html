@@ -1,0 +1,41 @@
+<ng-container *ngIf="portfolio">
+  <button type="button" class="card-edit-link hero-edit-link" (click)="edit.emit()">Editar</button>
+  <app-hello
+    [title]="portfolio.profile.name"
+    [introPrefix]="portfolio.hero.introPrefix"
+    [typingNames]="portfolio.hero.typingNames"
+    [heroContacts]="heroContacts"
+    [subtitleOne]="portfolio.hero.subtitleOne"
+    [subtitleTwo]="portfolio.hero.subtitleTwo"
+    [primaryStack]="portfolio.hero.primaryStack"
+    [aboutRotator]="portfolio.hero.aboutRotator"
+    [git]="portfolio.socialLinks.github"
+    [linkedin]="portfolio.socialLinks.linkedin"
+    [curriculum]="heroCurriculumUrl"
+    [profileName]="portfolio.profile.name"
+    [profileBio]="portfolio.profile.bio"
+    [profileCompany]="portfolio.profile.company"
+    [profileCompanyUrl]="portfolio.profile.companyUrl"
+    [profileLocation]="portfolio.profile.location"
+    [profileTimezone]="portfolio.profile.timezone"
+    [profileWebsite]="portfolio.profile.website || portfolio.socialLinks.website"
+    [profileAvatarUrl]="portfolio.profile.avatarUrl"
+    [profileFollowers]="portfolio.profile.followers"
+    [profileFollowing]="portfolio.profile.following"
+    [profileProfessionalLabel]="portfolio.profile.professionalLabel"
+    [githubHandle]="portfolio.profile.handle"
+    [profileX]="portfolio.profile.x"
+    [profileLinkedinUser]="portfolio.profile.linkedinUser"
+    [profileLinkedinPath]="portfolio.profile.linkedinPath"
+    [showHeroLinkedin]="showHeroLinkedin"
+    [showHeroCurriculum]="showHeroCurriculum"
+    [showProfileGithub]="githubProfileEnabled && showProfileGithub"
+    [showProfileX]="showProfileX"
+    [showProfileLinkedin]="showProfileLinkedin"
+    [showProfileWebsite]="showProfileWebsite"
+  ></app-hello>
+
+  <div class="hero-custom-fields">
+    <app-custom-fields [fields]="customFields"></app-custom-fields>
+  </div>
+</ng-container>

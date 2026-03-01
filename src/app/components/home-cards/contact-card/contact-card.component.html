@@ -1,0 +1,28 @@
+<article class="about-card contact-card content-card">
+  <button type="button" class="card-edit-link" (click)="edit.emit()">Editar</button>
+  <p class="eyebrow">Contato</p>
+  <h2>Fale comigo</h2>
+  <div class="info-list">
+    <div class="info-row" *ngIf="showEmail">
+      <span class="info-label">Email</span>
+      <a class="info-value link" [href]="'mailto:' + contact.email">{{ contact.email }}</a>
+    </div>
+    <div class="info-row" *ngIf="showLinkedin">
+      <span class="info-label">LinkedIn</span>
+      <a class="info-value link" [href]="contact.linkedin" target="_blank" rel="noopener noreferrer">{{
+        contact.linkedin
+      }}</a>
+    </div>
+    <div class="info-row" *ngIf="showGithub">
+      <span class="info-label">GitHub</span>
+      <a class="info-value link" [href]="contact.github" target="_blank" rel="noopener noreferrer">{{
+        contact.github
+      }}</a>
+    </div>
+    <div class="info-row" *ngIf="showPhone && contact.phone">
+      <span class="info-label">Telefone</span>
+      <span class="info-value">{{ contact.phone }}</span>
+    </div>
+  </div>
+  <app-custom-fields [fields]="customFields"></app-custom-fields>
+</article>

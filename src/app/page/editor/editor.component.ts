@@ -44,11 +44,6 @@ export class EditorComponent implements OnInit {
     'hero',
     'about',
     'projects',
-    'skills',
-    'experience',
-    'activity',
-    'certifications',
-    'curriculo',
     'contact',
     'githubProfile',
   ];
@@ -61,36 +56,6 @@ export class EditorComponent implements OnInit {
       label: 'Projetos',
       description: 'Lista de projetos e destaques.',
       editorTab: 'projetos',
-    },
-    {
-      key: 'curriculo',
-      label: 'Curriculo',
-      description: 'Card do curriculo e links.',
-      editorTab: 'links',
-    },
-    {
-      key: 'activity',
-      label: 'Casos',
-      description: 'Casos de estudo e decisoes tecnicas.',
-      editorTab: 'sobre',
-    },
-    {
-      key: 'experience',
-      label: 'Experiencia',
-      description: 'Resumo de experiencia profissional.',
-      editorTab: 'sobre',
-    },
-    {
-      key: 'skills',
-      label: 'Skills',
-      description: 'Categorias de stack e ferramentas.',
-      editorTab: 'hero',
-    },
-    {
-      key: 'certifications',
-      label: 'Certificacoes',
-      description: 'Cursos e certificacoes relevantes.',
-      editorTab: 'sobre',
     },
     {
       key: 'contact',
@@ -248,6 +213,26 @@ export class EditorComponent implements OnInit {
 
   isBlockInLayout(key: PortfolioBlockKey): boolean {
     return this.portfolio?.layoutOrder.includes(key) || false;
+  }
+
+  getBlockLayoutIndex(key: PortfolioBlockKey): number {
+    if (!this.portfolio) {
+      return -1;
+    }
+    return this.portfolio.layoutOrder.indexOf(key);
+  }
+
+  canMoveBlockKeyUp(key: PortfolioBlockKey): boolean {
+    const index = this.getBlockLayoutIndex(key);
+    return index > 0;
+  }
+
+  moveBlockKeyUp(key: PortfolioBlockKey): void {
+    const index = this.getBlockLayoutIndex(key);
+    if (index <= 0) {
+      return;
+    }
+    this.moveBlock(index, index - 1);
   }
 
   addTypingName(): void {

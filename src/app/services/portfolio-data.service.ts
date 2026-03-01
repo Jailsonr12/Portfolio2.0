@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { PortfolioDocument } from '../models/portfolio-data.model';
+import { PortfolioDocument, PortfolioViewPreferences } from '../models/portfolio-data.model';
+import { PortfolioBlockKey } from '../models/portfolio-layout.model';
 import { GitHubProfileService } from './github-profile.service';
 import { PortfolioRepositoryService } from './portfolio-repository.service';
 
@@ -8,6 +9,14 @@ import { PortfolioRepositoryService } from './portfolio-repository.service';
   providedIn: 'root',
 })
 export class PortfolioDataService {
+  private readonly blockKeys: PortfolioBlockKey[] = [
+    'hero',
+    'about',
+    'projects',
+    'contact',
+    'githubProfile',
+  ];
+
   constructor(
     private readonly gitHubProfileService: GitHubProfileService,
     private readonly repository: PortfolioRepositoryService
@@ -19,8 +28,13 @@ export class PortfolioDataService {
       return this.normalizeDocument(existing, username);
     }
 
-    const created = await this.buildDefaultDocument(username);
+    const created = this.defaultDocument(username);
     this.repository.save(created);
+
+    void this.hydrateFromGitHub(created)
+      .then((hydrated) => this.repository.save(hydrated))
+      .catch(() => undefined);
+
     return created;
   }
 
@@ -39,11 +53,6 @@ export class PortfolioDataService {
     const hydrated = await this.hydrateFromGitHub(this.normalizeDocument(document, document.username));
     this.repository.save(hydrated);
     return hydrated;
-  }
-
-  private async buildDefaultDocument(username: string): Promise<PortfolioDocument> {
-    const base = this.defaultDocument(username);
-    return this.hydrateFromGitHub(base);
   }
 
   private async hydrateFromGitHub(document: PortfolioDocument): Promise<PortfolioDocument> {
@@ -115,24 +124,18 @@ export class PortfolioDataService {
         hero: { enabled: true },
         about: { enabled: true },
         projects: { enabled: true },
-        skills: { enabled: true },
-        experience: { enabled: true },
-        activity: { enabled: true },
-        curriculo: { enabled: true },
-        githubProfile: { enabled: true },
-        certifications: { enabled: true },
-        contact: { enabled: true },
+        curriculo: { enabled: false },
+        skills: { enabled: false },
+        experience: { enabled: false },
+        activity: { enabled: false },
+        githubProfile: { enabled: false },
+        certifications: { enabled: false },
+        contact: { enabled: false },
       },
       layoutOrder: [
         'hero',
         'about',
-        'skills',
         'projects',
-        'experience',
-        'activity',
-        'certifications',
-        'curriculo',
-        'contact',
       ],
       hero: {
         introPrefix: 'Oi, me chamo',
@@ -149,21 +152,21 @@ export class PortfolioDataService {
           'Desenvolvedor focado em criar experiencias web bonitas, rapidas e com arquitetura preparada para escalar.',
         contacts: [
           {
+            label: 'Email',
+            url: 'mailto:seuemail@dominio.com',
+            icon: '📧',
+            iconType: 'emoji',
+          },
+          {
             label: 'LinkedIn',
-            url: 'https://www.linkedin.com/in/jailsonroth/',
+            url: 'https://www.linkedin.com/',
             icon: '💼',
             iconType: 'emoji',
           },
           {
-            label: 'Curriculo',
-            url: '',
-            icon: '📄',
-            iconType: 'emoji',
-          },
-          {
-            label: 'Site',
-            url: 'https://www.jrweb.com.br/',
-            icon: '🌐',
+            label: 'GitHub',
+            url: `https://github.com/${normalized}`,
+            icon: '🐙',
             iconType: 'emoji',
           },
         ],
@@ -218,7 +221,7 @@ export class PortfolioDataService {
             text: 'Criando um portfolio publico editavel para desenvolvedores compartilharem projetos com identidade propria.',
           },
           {
-            period: 'Experiencia recente',
+            period: 'Trajetoria recente',
             text: 'Atuacao em desenvolvimento, QA e DevOps com foco em qualidade de entrega e melhoria continua.',
           },
           {
@@ -333,6 +336,7 @@ export class PortfolioDataService {
         phone: '',
         formEnabled: false,
       },
+      viewPreferences: this.defaultViewPreferences(),
     };
   }
 
@@ -354,6 +358,13 @@ export class PortfolioDataService {
 
     const mergedProfile = { ...base.profile, ...(input.profile || {}) };
     const mergedLinkedin = { ...base.linkedin, ...(input.linkedin || {}) };
+    const mergedViewPreferences = this.mergeViewPreferences(base.viewPreferences, input.viewPreferences);
+    const mergedBlocks = { ...base.blocks, ...(input.blocks || {}) };
+    if (!this.blockKeys.some((key) => mergedBlocks[key]?.enabled)) {
+      mergedBlocks.hero = { enabled: true };
+    }
+    const sanitizedLayoutOrder = this.sanitizeLayoutOrder(input.layoutOrder, mergedBlocks);
+
     if (!mergedLinkedin.about?.trim()) {
       mergedLinkedin.about = mergedProfile.bio || base.linkedin.about;
     }
@@ -367,8 +378,8 @@ export class PortfolioDataService {
       ...base,
       ...input,
       socialLinks: { ...base.socialLinks, ...(input.socialLinks || {}) },
-      blocks: { ...base.blocks, ...(input.blocks || {}) },
-      layoutOrder: input.layoutOrder?.length ? input.layoutOrder : base.layoutOrder,
+      blocks: mergedBlocks,
+      layoutOrder: sanitizedLayoutOrder,
       hero: {
         ...base.hero,
         ...(input.hero || {}),
@@ -391,11 +402,108 @@ export class PortfolioDataService {
       certifications: input.certifications?.length ? input.certifications : base.certifications,
       contact: { ...base.contact, ...(input.contact || {}) },
       customCardFields: input.customCardFields || base.customCardFields,
+      viewPreferences: mergedViewPreferences,
       username: (input.username || username || base.username).toLowerCase(),
       sourceMode: input.sourceMode || base.sourceMode,
       schemaVersion: input.schemaVersion || base.schemaVersion,
       updatedAt: input.updatedAt || base.updatedAt,
     };
+  }
+
+  private defaultViewPreferences(): PortfolioViewPreferences {
+    return {
+      animations: {
+        enabled: true,
+        sectionDurationMs: 450,
+        cardDurationMs: 550,
+        cardStaggerMs: 90,
+        cardHoverLiftPx: 3,
+      },
+      hero: {
+        showHeroLinkedin: true,
+        showHeroCurriculum: true,
+        showProfileGithub: true,
+        showProfileX: true,
+        showProfileLinkedin: true,
+        showProfileWebsite: true,
+      },
+      about: {
+        showTitle: true,
+        showSummary: true,
+        showHighlights: true,
+        titleAlign: 'center',
+        textAlign: 'center',
+      },
+      skills: {
+        showTitle: true,
+        showCategories: true,
+        titleAlign: 'center',
+        textAlign: 'center',
+      },
+      projects: {
+        showTitle: true,
+        showSubtitle: true,
+        showDescription: true,
+        showTechnology: true,
+        showImages: true,
+        maxVisibleItems: 50,
+      },
+      contact: {
+        showEmail: true,
+        showLinkedin: true,
+        showGithub: true,
+        showPhone: true,
+      },
+      githubProfile: {
+        showLinkedinLink: true,
+        showLinkedinExtras: true,
+        showLinkedinIcon: true,
+      },
+    };
+  }
+
+  private mergeViewPreferences(
+    base: PortfolioViewPreferences | undefined,
+    incoming: Partial<PortfolioViewPreferences> | undefined
+  ): PortfolioViewPreferences {
+    const fallback = this.defaultViewPreferences();
+    const source = base || fallback;
+    const input = incoming || {};
+
+    return {
+      animations: { ...source.animations, ...(input.animations || {}) },
+      hero: { ...source.hero, ...(input.hero || {}) },
+      about: { ...source.about, ...(input.about || {}) },
+      skills: { ...source.skills, ...(input.skills || {}) },
+      projects: { ...source.projects, ...(input.projects || {}) },
+      contact: { ...source.contact, ...(input.contact || {}) },
+      githubProfile: { ...source.githubProfile, ...(input.githubProfile || {}) },
+    };
+  }
+
+  private sanitizeLayoutOrder(
+    incomingOrder: PortfolioBlockKey[] | undefined,
+    blocks: Record<PortfolioBlockKey, { enabled: boolean }>
+  ): PortfolioBlockKey[] {
+    const order = (incomingOrder || []).filter((item): item is PortfolioBlockKey =>
+      this.isPortfolioBlockKey(item)
+    );
+    const unique = order.filter((item, index) => order.indexOf(item) === index);
+    const completed = [
+      ...unique,
+      ...this.blockKeys.filter((item) => !unique.includes(item)),
+    ];
+
+    if (!completed.some((item) => blocks[item]?.enabled)) {
+      blocks.hero = { enabled: true };
+      return ['hero', ...completed.filter((item) => item !== 'hero')];
+    }
+
+    return completed.length ? completed : [...this.blockKeys];
+  }
+
+  private isPortfolioBlockKey(value: unknown): value is PortfolioBlockKey {
+    return this.blockKeys.includes(value as PortfolioBlockKey);
   }
 
   private extractGithubUsername(url: string): string {

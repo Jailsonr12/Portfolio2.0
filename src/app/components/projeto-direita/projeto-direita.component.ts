@@ -12,6 +12,9 @@ export class ProjetoDireitaComponent {
   @Input() technologies: string | undefined;
   @Input() githubLink: string | undefined;
   @Input() pageLink: string | undefined;
+  @Input() showDescription = true;
+  @Input() showTechnology = true;
+  @Input() showImage = true;
   
   isProjectModalOpen = false;
 

@@ -7,4 +7,22 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    background:
+        radial-gradient(circle at 20% 10%, rgba(88, 166, 255, 0.18), transparent 35%),
+        radial-gradient(circle at 80% 0%, rgba(140, 242, 184, 0.1), transparent 30%),
+        linear-gradient(180deg, #0f1727 0%, #070b14 100%);
+    color: #f4f7ff;
+    font-family: "Belanosima", sans-serif;
+}
+
+app-root {
+    display: block;
+    min-height: 100%;
+}
 

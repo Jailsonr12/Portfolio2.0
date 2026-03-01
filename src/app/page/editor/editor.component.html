@@ -92,19 +92,32 @@
           <h3>Contatos do hero</h3>
           <button type="button" (click)="addHeroContact()">+ Adicionar</button>
         </div>
+        <p class="section-help">Adicione botoes com icone para exibir no Hero (ex.: Email, LinkedIn, GitHub).</p>
         <div class="array-list card-list">
           <div class="array-card" *ngFor="let contact of portfolio.hero.contacts; let i = index">
             <label>
               Label
-              <input [(ngModel)]="portfolio.hero.contacts[i].label" [name]="'hero_contact_label_' + i" />
+              <input
+                [(ngModel)]="portfolio.hero.contacts[i].label"
+                [name]="'hero_contact_label_' + i"
+                placeholder="Ex.: Email, LinkedIn, GitHub"
+              />
             </label>
             <label>
               URL
-              <input [(ngModel)]="portfolio.hero.contacts[i].url" [name]="'hero_contact_url_' + i" />
+              <input
+                [(ngModel)]="portfolio.hero.contacts[i].url"
+                [name]="'hero_contact_url_' + i"
+                placeholder="https://... ou mailto:seuemail@dominio.com"
+              />
             </label>
             <label>
               Icone
-              <input [(ngModel)]="portfolio.hero.contacts[i].icon" [name]="'hero_contact_icon_' + i" />
+              <input
+                [(ngModel)]="portfolio.hero.contacts[i].icon"
+                [name]="'hero_contact_icon_' + i"
+                placeholder="Emoji (📧) ou URL de imagem"
+              />
             </label>
             <label>
               Tipo do icone
@@ -156,7 +169,7 @@
           Pode digitar URL completa ou usuario/handle (ex.: `jailsonr12`, `@jaisonroth`, `in/jailsonroth`).
         </p>
         <div class="inline-header no-top">
-          <h3>Inteligencia de links</h3>
+          <h3>Ferramenta de links</h3>
           <button type="button" (click)="autoFixLinks()">Auto corrigir links</button>
         </div>
         <label>
@@ -409,15 +422,38 @@
         </label>
         <div class="array-list card-list">
           <div class="array-card" *ngFor="let blockKey of orderedLayoutBlocks">
-            <p class="card-title">{{ blockKey }}</p>
+            <p class="card-title">{{ getBlockLabel(blockKey) }}</p>
             <p class="card-caption">
-              {{ isBlockInLayout(blockKey) ? 'Esta na ordem de exibicao' : 'Fora da ordem de exibicao' }}
+              {{ getBlockDescription(blockKey) || (isBlockInLayout(blockKey) ? 'Esta na ordem de exibicao' : 'Fora da ordem de exibicao') }}
             </p>
             <label class="inline-check">
               <input type="checkbox" [(ngModel)]="portfolio.blocks[blockKey].enabled" [name]="'block_enabled_' + blockKey" />
               Ativo
             </label>
-            <button type="button" (click)="editBlock(blockKey)">Editar bloco</button>
+            <div class="card-actions">
+              <button type="button" (click)="editBlock(blockKey)" [title]="getBlockDescription(blockKey)">
+                Editar {{ getBlockLabel(blockKey) }}
+              </button>
+              <button
+                type="button"
+                *ngIf="isBlockInLayout(blockKey)"
+                (click)="moveBlockKeyUp(blockKey)"
+                [disabled]="!canMoveBlockKeyUp(blockKey)"
+              >
+                Subir card
+              </button>
+              <button
+                type="button"
+                class="danger"
+                *ngIf="isBlockInLayout(blockKey)"
+                (click)="removeBlockFromLayout(blockKey)"
+              >
+                Remover card
+              </button>
+              <button type="button" *ngIf="!isBlockInLayout(blockKey)" (click)="insertBlockInLayout(blockKey)">
+                Adicionar na ordem
+              </button>
+            </div>
           </div>
         </div>
       </section>

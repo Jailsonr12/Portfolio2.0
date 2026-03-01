@@ -1,0 +1,17 @@
+<article
+  class="about-card content-card"
+  [style.text-align]="textAlign"
+  [style.align-items]="textAlign === 'center' ? 'center' : 'stretch'"
+>
+  <button type="button" class="card-edit-link" (click)="edit.emit()">Editar</button>
+  <p class="eyebrow">{{ badge }}</p>
+  <h2 *ngIf="showTitle" [style.text-align]="titleAlign">{{ headline }}</h2>
+  <p *ngIf="showSummary" class="about-summary">{{ summary }}</p>
+  <div class="about-badges" *ngIf="showBadges">
+    <article class="about-badge" *ngFor="let item of badges">
+      <p class="badge-label">{{ item.label }}</p>
+      <p class="badge-value">{{ item.value }}</p>
+    </article>
+  </div>
+  <app-custom-fields [fields]="customFields"></app-custom-fields>
+</article>

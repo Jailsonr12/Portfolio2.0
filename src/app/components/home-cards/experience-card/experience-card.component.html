@@ -1,0 +1,12 @@
+<article class="about-card experience-card content-card">
+  <button type="button" class="card-edit-link" (click)="edit.emit()">Editar</button>
+  <p class="eyebrow">Trajetoria</p>
+  <h2>{{ entry.company }} - {{ entry.role }}</h2>
+  <p>{{ entry.period }}</p>
+  <div class="about-badges">
+    <article class="about-badge" *ngFor="let bullet of entry.bullets">
+      <p class="badge-value">{{ bullet }}</p>
+    </article>
+  </div>
+  <app-custom-fields [fields]="customFields"></app-custom-fields>
+</article>

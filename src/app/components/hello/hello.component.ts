@@ -3,6 +3,13 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { catchError, of } from 'rxjs';
 import { GitHubProfileService } from '../../services/github-profile.service';
 
+interface HeroContactLink {
+  label: string;
+  url: string;
+  icon: string;
+  iconType: 'emoji' | 'image';
+}
+
 @Component({
   selector: 'app-hello',
   templateUrl: './hello.component.html',
@@ -22,6 +29,7 @@ export class HelloComponent implements OnInit, OnDestroy {
   @Input() subtitleTwo?: string;
   @Input() primaryStack?: string;
   @Input() typingNames?: string[];
+  @Input() heroContacts: HeroContactLink[] = [];
   @Input() aboutRotator?: string[];
   @Input() git?: string;
   @Input() linkedin?: string;
@@ -59,7 +67,6 @@ export class HelloComponent implements OnInit, OnDestroy {
   constructor(private readonly gitHubProfileService: GitHubProfileService) {}
 
   nameTitles: Array<string> = ['Jailson'];
-
   aboutMe: Array<string> = ['Muito prazer, este e meu portfolio e um pouco sobre mim'];
 
   ngOnInit(): void {
@@ -112,7 +119,6 @@ export class HelloComponent implements OnInit, OnDestroy {
     if (this.iamIntervalId) {
       clearInterval(this.iamIntervalId);
     }
-
     if (this.nameTypeTimeoutId) {
       clearTimeout(this.nameTypeTimeoutId);
     }
@@ -123,7 +129,6 @@ export class HelloComponent implements OnInit, OnDestroy {
     if (!this.git) {
       return fallback;
     }
-
     const match = this.git.match(/github\.com\/([^/?#]+)/i);
     return match?.[1] || fallback;
   }
@@ -139,7 +144,6 @@ export class HelloComponent implements OnInit, OnDestroy {
     if (!this.profileX) {
       return '';
     }
-
     const handle = this.profileX.replace('@', '').trim();
     return handle ? `https://x.com/${handle}` : '';
   }
@@ -149,7 +153,6 @@ export class HelloComponent implements OnInit, OnDestroy {
     if (path) {
       return `https://www.linkedin.com/${path.replace(/^\/+/, '')}`;
     }
-
     const user = (this.profileLinkedinUser || '').trim();
     return user ? `https://www.linkedin.com/in/${user.replace(/^@/, '')}` : '';
   }
@@ -158,7 +161,6 @@ export class HelloComponent implements OnInit, OnDestroy {
     if (!this.git) {
       return 'github.com';
     }
-
     return this.git.replace(/^https?:\/\//, '').replace(/\/$/, '');
   }
 
@@ -171,7 +173,6 @@ export class HelloComponent implements OnInit, OnDestroy {
     if (path) {
       return `linkedin.com/${path.replace(/^\/+/, '')}`;
     }
-
     const user = (this.profileLinkedinUser || '').trim().replace(/^@/, '');
     return user ? `linkedin.com/in/${user}` : 'linkedin.com';
   }
@@ -180,8 +181,34 @@ export class HelloComponent implements OnInit, OnDestroy {
     if (!this.profileWebsite) {
       return 'site';
     }
-
     return this.profileWebsite.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  }
+
+  get displayHeroContacts(): HeroContactLink[] {
+    const custom = (this.heroContacts || [])
+      .map<HeroContactLink>((contact) => ({
+        label: (contact.label || '').trim() || 'Contato',
+        url: (contact.url || '').trim(),
+        icon: (contact.icon || '').trim() || '\u{1F517}',
+        iconType: contact.iconType === 'image' ? 'image' : 'emoji',
+      }))
+      .filter((contact) => Boolean(contact.url));
+
+    if (custom.length) {
+      return custom;
+    }
+
+    const fallback: HeroContactLink[] = [];
+    if (this.showHeroLinkedin && this.linkedin) {
+      fallback.push({ label: 'LinkedIn', url: this.linkedin, icon: '\u{1F4BC}', iconType: 'emoji' });
+    }
+    if (this.git) {
+      fallback.push({ label: 'GitHub', url: this.git, icon: '\u{1F419}', iconType: 'emoji' });
+    }
+    if (this.showHeroCurriculum && this.curriculum) {
+      fallback.push({ label: 'Curriculo', url: this.curriculum, icon: '\u{1F4C4}', iconType: 'emoji' });
+    }
+    return fallback;
   }
 
   private loadGitHubProfile(): void {

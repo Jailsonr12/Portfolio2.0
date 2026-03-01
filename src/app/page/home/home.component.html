@@ -1,8 +1,66 @@
-<main class="home-page" #homeRoot>
-  <a *ngIf="showEditorShortcut" class="editor-fab" [routerLink]="editorRoute" aria-label="Abrir editor">
-    <span class="icon">✏</span>
-    <span>Editor</span>
-  </a>
+<main
+  class="home-page"
+  [class.animations-off]="!animationViewPreferences.enabled"
+  [style.--user-section-duration]="animationViewPreferences.sectionDurationMs + 'ms'"
+  [style.--user-card-duration]="animationViewPreferences.cardDurationMs + 'ms'"
+  [style.--user-card-stagger]="animationViewPreferences.cardStaggerMs + 'ms'"
+  [style.--user-card-hover-lift]="animationViewPreferences.cardHoverLiftPx + 'px'"
+  #homeRoot
+>
+  <aside
+    *ngIf="showEditorShortcut && portfolio"
+    class="customizer-panel"
+    [class.closed]="!isCustomizerPanelOpen"
+  >
+    <button type="button" class="customizer-toggle" (click)="toggleCustomizerPanel()">
+      {{ customizerToggleLabel }}
+    </button>
+
+    <div class="customizer-body" *ngIf="isCustomizerPanelOpen">
+      <p class="customizer-title">Painel de personalizacao</p>
+      <p class="customizer-subtitle">Edite blocos, adicione secoes e altere a ordem da pagina.</p>
+
+      <button type="button" class="customizer-main-action" (click)="openModuleCatalogModal()">
+        + Adicionar novo bloco
+      </button>
+
+      <div class="customizer-grid">
+        <button type="button" *ngFor="let item of moduleCatalog" (click)="openEditorFromPanel(item)">
+          <span>{{ getModuleTitle(item) }}</span>
+          <small>
+            {{ item.section === 'githubProfile' ? 'Tela perfil' : (isModuleEnabled(item) ? 'Editar' : 'Adicionar') }}
+          </small>
+        </button>
+      </div>
+
+      <div class="customizer-order">
+        <p>Ordem das secoes</p>
+        <div class="customizer-order-list">
+          <div class="customizer-order-item" *ngFor="let item of orderedModules">
+            <span>{{ getModuleTitle(item) }}</span>
+            <div class="customizer-order-actions">
+              <button
+                type="button"
+                (click)="moveModule(item, 'up')"
+                [disabled]="!canMoveModule(item, 'up')"
+                aria-label="Mover para cima"
+              >
+                Subir
+              </button>
+              <button
+                type="button"
+                (click)="moveModule(item, 'down')"
+                [disabled]="!canMoveModule(item, 'down')"
+                aria-label="Mover para baixo"
+              >
+                Descer
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
 
   <nav class="sticky-menu" *ngIf="showStickyMenu && homeMenuItems.length">
     <button
@@ -18,44 +76,27 @@
   <p class="feedback error" *ngIf="loadError">{{ loadError }}</p>
   <p class="feedback" *ngIf="isLoading">Carregando portfolio...</p>
 
-  <ng-container *ngIf="portfolio && !isLoading">
+  <ng-container *ngIf="portfolio">
     <ng-container *ngFor="let block of orderedHomeBlocks">
       <section
         *ngIf="block === 'hero'"
         id="hero"
         class="hero-block"
         data-nav-id="hero"
-        data-nav-label="Inicio"
+        [attr.data-nav-label]="getNavLabel('hero')"
       >
-        <button type="button" class="card-edit-link hero-edit-link" (click)="openHomeEditModal('hero')">Editar</button>
-        <app-hello
-          [title]="portfolio.profile.name"
-          [introPrefix]="portfolio.hero.introPrefix"
-          [typingNames]="portfolio.hero.typingNames"
-          [subtitleOne]="portfolio.hero.subtitleOne"
-          [subtitleTwo]="portfolio.hero.subtitleTwo"
-          [primaryStack]="portfolio.hero.primaryStack"
-          [aboutRotator]="portfolio.hero.aboutRotator"
-          [git]="portfolio.socialLinks.github"
-          [linkedin]="portfolio.socialLinks.linkedin"
-          [curriculum]="portfolio.curriculum.url || portfolio.socialLinks.curriculum"
-          [profileName]="portfolio.profile.name"
-          [profileBio]="portfolio.profile.bio"
-          [profileCompany]="portfolio.profile.company"
-          [profileCompanyUrl]="portfolio.profile.companyUrl"
-          [profileLocation]="portfolio.profile.location"
-          [profileTimezone]="portfolio.profile.timezone"
-          [profileWebsite]="portfolio.profile.website || portfolio.socialLinks.website"
-          [profileAvatarUrl]="portfolio.profile.avatarUrl"
-          [profileFollowers]="portfolio.profile.followers"
-          [profileFollowing]="portfolio.profile.following"
-          [profileProfessionalLabel]="portfolio.profile.professionalLabel"
-          [githubHandle]="portfolio.profile.handle"
-          [profileX]="portfolio.profile.x"
-          [profileLinkedinUser]="portfolio.profile.linkedinUser"
-          [profileLinkedinPath]="portfolio.profile.linkedinPath"
-          [showProfileGithub]="portfolio.blocks.githubProfile.enabled"
-        ></app-hello>
+        <app-hero-card
+          [portfolio]="portfolio"
+          [githubProfileEnabled]="githubProfileEnabled"
+          [showHeroLinkedin]="heroViewPreferences.showHeroLinkedin"
+          [showHeroCurriculum]="heroViewPreferences.showHeroCurriculum"
+          [showProfileGithub]="heroViewPreferences.showProfileGithub"
+          [showProfileX]="heroViewPreferences.showProfileX"
+          [showProfileLinkedin]="heroViewPreferences.showProfileLinkedin"
+          [showProfileWebsite]="heroViewPreferences.showProfileWebsite"
+          [customFields]="getCustomFieldsFor('hero')"
+          (edit)="openHomeEditModal('hero')"
+        ></app-hero-card>
       </section>
 
       <section
@@ -63,46 +104,43 @@
         id="sobre"
         class="about-block"
         data-nav-id="sobre"
-        data-nav-label="Sobre"
+        [attr.data-nav-label]="getNavLabel('about')"
       >
-        <article class="about-card">
-          <button type="button" class="card-edit-link" (click)="openHomeEditModal('about')">Editar</button>
-          <p class="eyebrow">{{ portfolio.aboutCard.badge }}</p>
-          <h2>{{ aboutHeadline }}</h2>
-          <p class="about-summary">{{ aboutSummary }}</p>
-          <div class="about-badges">
-            <article class="about-badge" *ngFor="let badge of aboutBadges">
-              <p class="badge-label">{{ badge.label }}</p>
-              <p class="badge-value">{{ badge.value }}</p>
-            </article>
-          </div>
-          <div class="custom-fields" *ngIf="getCustomFieldsFor('about').length">
-            <p *ngFor="let field of getCustomFieldsFor('about')"><strong>{{ field.label }}:</strong> {{ field.value }}</p>
-          </div>
-        </article>
+        <div class="section-shell">
+          <app-about-card
+            [badge]="portfolio.aboutCard.badge"
+            [headline]="aboutHeadline"
+            [summary]="aboutSummary"
+            [badges]="aboutBadges"
+            [showTitle]="aboutViewPreferences.showTitle"
+            [showSummary]="aboutViewPreferences.showSummary"
+            [showBadges]="aboutViewPreferences.showHighlights"
+            [titleAlign]="aboutViewPreferences.titleAlign"
+            [textAlign]="aboutViewPreferences.textAlign"
+            [customFields]="getCustomFieldsFor('about')"
+            (edit)="openHomeEditModal('about')"
+          ></app-about-card>
+        </div>
       </section>
 
       <section
         *ngIf="block === 'skills'"
         id="skills"
-        class="about-block"
+        class="skills-block"
         data-nav-id="skills"
-        data-nav-label="Skills"
+        [attr.data-nav-label]="getNavLabel('skills')"
       >
-        <article class="about-card">
-          <button type="button" class="card-edit-link" (click)="openHomeEditModal('skills')">Editar</button>
-          <p class="eyebrow">Stack / Skills</p>
-          <h2>Categorias tecnicas</h2>
-          <div class="about-badges">
-            <article class="about-badge" *ngFor="let category of portfolio.skills">
-              <p class="badge-label">{{ category.name }}</p>
-              <p class="badge-value">{{ category.items.join(', ') }}</p>
-            </article>
-          </div>
-          <div class="custom-fields" *ngIf="getCustomFieldsFor('skills').length">
-            <p *ngFor="let field of getCustomFieldsFor('skills')"><strong>{{ field.label }}:</strong> {{ field.value }}</p>
-          </div>
-        </article>
+        <div class="section-shell">
+          <app-skills-card
+            [categories]="safeSkills"
+            [showTitle]="skillsViewPreferences.showTitle"
+            [showCategories]="skillsViewPreferences.showCategories"
+            [titleAlign]="skillsViewPreferences.titleAlign"
+            [textAlign]="skillsViewPreferences.textAlign"
+            [customFields]="getCustomFieldsFor('skills')"
+            (edit)="openHomeEditModal('skills')"
+          ></app-skills-card>
+        </div>
       </section>
 
       <section
@@ -110,179 +148,118 @@
         id="projects"
         class="projects-block"
         data-nav-id="projects"
-        data-nav-label="Projetos"
+        [attr.data-nav-label]="getNavLabel('projects')"
       >
-        <div class="projects-edit-row">
-          <button type="button" class="card-edit-link" (click)="openHomeEditModal('projects')">Editar projetos</button>
-        </div>
-        <app-apresentacao
+        <app-projects-card
           [title]="portfolio.projects.title"
           [subtitle]="portfolio.projects.subtitle"
-          [projects]="portfolio.projects.items"
-        ></app-apresentacao>
-        <div class="custom-fields projects-custom-fields" *ngIf="getCustomFieldsFor('projects').length">
-          <p *ngFor="let field of getCustomFieldsFor('projects')"><strong>{{ field.label }}:</strong> {{ field.value }}</p>
-        </div>
-
-        <article class="featured-project-card" *ngIf="featuredProject">
-          <button type="button" class="card-edit-link" (click)="openHomeEditModal('featured')">Editar destaque</button>
-          <img class="project-cover" [src]="featuredProject.imageUrl" [alt]="featuredProject.title" loading="lazy" />
-          <h2>{{ featuredProject.title }}</h2>
-          <p>{{ featuredProject.description }}</p>
-          <p class="tech">Tecnologia: {{ featuredProject.technology }}</p>
-          <div class="custom-fields" *ngIf="getCustomFieldsFor('featured').length">
-            <p *ngFor="let field of getCustomFieldsFor('featured')"><strong>{{ field.label }}:</strong> {{ field.value }}</p>
-          </div>
-        </article>
-
-        <div class="duo-project-block" *ngIf="duoProjects.length">
-          <article class="duo-project-card" *ngFor="let project of duoProjects; let i = index">
-            <button type="button" class="card-edit-link" (click)="openHomeEditModal('duo', i)">Editar</button>
-            <img class="project-cover" [src]="project.imageUrl" [alt]="project.title" loading="lazy" />
-            <h3>{{ project.title }}</h3>
-            <p>{{ project.description }}</p>
-            <p class="tech">Tecnologia: {{ project.technology }}</p>
-            <div class="custom-fields" *ngIf="getCustomFieldsFor('duo', i).length">
-              <p *ngFor="let field of getCustomFieldsFor('duo', i)"><strong>{{ field.label }}:</strong> {{ field.value }}</p>
-            </div>
-          </article>
-        </div>
+          [items]="portfolio.projects.items"
+          [showTitle]="projectsViewPreferences.showTitle"
+          [showSubtitle]="projectsViewPreferences.showSubtitle"
+          [showDescription]="projectsViewPreferences.showDescription"
+          [showTechnology]="projectsViewPreferences.showTechnology"
+          [showImages]="projectsViewPreferences.showImages"
+          [maxVisibleItems]="projectsViewPreferences.maxVisibleItems"
+          [featuredProject]="featuredProject"
+          [duoProjects]="duoProjects"
+          [customFields]="getCustomFieldsFor('projects')"
+          [featuredCustomFields]="getCustomFieldsFor('featured')"
+          [duoCustomFields]="[getCustomFieldsFor('duo', 0), getCustomFieldsFor('duo', 1)]"
+          (edit)="openHomeEditModal('projects')"
+          (editFeatured)="openFeaturedProjectEditor()"
+          (editDuo)="openSecondaryProjectEditor($event)"
+        ></app-projects-card>
       </section>
 
       <section
         *ngIf="block === 'experience'"
         id="experiencia"
-        class="about-block"
+        class="experience-block"
         data-nav-id="experiencia"
-        data-nav-label="Experiencia"
+        [attr.data-nav-label]="getNavLabel('experience')"
       >
-        <article class="about-card">
-          <button type="button" class="card-edit-link" (click)="openHomeEditModal('experience')">Editar</button>
-          <p class="eyebrow">Experiencia</p>
-          <h2>{{ portfolio.experience[0].company }} - {{ portfolio.experience[0].role }}</h2>
-          <p>{{ portfolio.experience[0].period }}</p>
-          <div class="about-badges">
-            <article class="about-badge" *ngFor="let bullet of portfolio.experience[0]?.bullets">
-              <p class="badge-value">{{ bullet }}</p>
-            </article>
-          </div>
-          <div class="custom-fields" *ngIf="getCustomFieldsFor('experience').length">
-            <p *ngFor="let field of getCustomFieldsFor('experience')"><strong>{{ field.label }}:</strong> {{ field.value }}</p>
-          </div>
-        </article>
+        <div class="section-shell">
+          <app-experience-card
+            [entry]="firstExperienceEntry"
+            [customFields]="getCustomFieldsFor('experience')"
+            (edit)="openHomeEditModal('experience')"
+          ></app-experience-card>
+        </div>
       </section>
 
       <section
         *ngIf="block === 'activity'"
         id="casos"
-        class="about-block"
+        class="activity-block"
         data-nav-id="casos"
-        data-nav-label="Casos"
+        [attr.data-nav-label]="getNavLabel('activity')"
       >
-        <article class="about-card">
-          <button type="button" class="card-edit-link" (click)="openHomeEditModal('activity')">Editar</button>
-          <p class="eyebrow">Casos de estudo</p>
-          <h2>{{ portfolio.caseStudies[0].title }}</h2>
-          <p>{{ portfolio.caseStudies[0].summary }}</p>
-          <div class="about-badges">
-            <article class="about-badge" *ngFor="let decision of portfolio.caseStudies[0]?.decisions">
-              <p class="badge-value">{{ decision }}</p>
-            </article>
-          </div>
-          <div class="custom-fields" *ngIf="getCustomFieldsFor('activity').length">
-            <p *ngFor="let field of getCustomFieldsFor('activity')"><strong>{{ field.label }}:</strong> {{ field.value }}</p>
-          </div>
-        </article>
+        <div class="section-shell">
+          <app-case-studies-card
+            [caseStudy]="firstCaseStudy"
+            [customFields]="getCustomFieldsFor('activity')"
+            (edit)="openHomeEditModal('activity')"
+          ></app-case-studies-card>
+        </div>
       </section>
 
       <section
         *ngIf="block === 'certifications'"
         id="certificacoes"
-        class="about-block"
+        class="certifications-block"
         data-nav-id="certificacoes"
-        data-nav-label="Certificacoes"
+        [attr.data-nav-label]="getNavLabel('certifications')"
       >
-        <article class="about-card">
-          <button type="button" class="card-edit-link" (click)="openHomeEditModal('certifications')">Editar</button>
-          <p class="eyebrow">Certificacoes</p>
-          <div class="about-badges">
-            <article class="about-badge" *ngFor="let cert of portfolio.certifications">
-              <p class="badge-label">{{ cert.issuer }} - {{ cert.year }}</p>
-              <p class="badge-value">{{ cert.name }}</p>
-            </article>
-          </div>
-          <div class="custom-fields" *ngIf="getCustomFieldsFor('certifications').length">
-            <p *ngFor="let field of getCustomFieldsFor('certifications')"><strong>{{ field.label }}:</strong> {{ field.value }}</p>
-          </div>
-        </article>
-      </section>
-
-      <section
-        *ngIf="block === 'curriculo'"
-        id="curriculo"
-        class="curriculo-block"
-        data-nav-id="curriculo"
-        data-nav-label="Curriculo"
-      >
-        <div class="curriculo-card">
-          <button type="button" class="card-edit-link" (click)="openHomeEditModal('curriculo')">Editar</button>
-          <p class="eyebrow">{{ portfolio.curriculum.title || 'Curriculo' }}</p>
-          <h2>Resumo profissional e experiencias</h2>
-          <p>{{ portfolio.curriculum.description || 'Acesse o curriculo completo pelo link abaixo.' }}</p>
-          <div class="curriculo-actions">
-            <a
-              class="curriculo-link"
-              [href]="portfolio.curriculum.url || portfolio.socialLinks.curriculum || 'https://drive.google.com/file/d/1Tk5cJhaPI956wzaAYvSSaP9MH67Ax0dF/view?usp=drive_link'"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Abrir curriculo
-            </a>
-          </div>
-          <div class="custom-fields" *ngIf="getCustomFieldsFor('curriculo').length">
-            <p *ngFor="let field of getCustomFieldsFor('curriculo')"><strong>{{ field.label }}:</strong> {{ field.value }}</p>
-          </div>
+        <div class="section-shell">
+          <app-certifications-card
+            [certifications]="safeCertifications"
+            [customFields]="getCustomFieldsFor('certifications')"
+            (edit)="openHomeEditModal('certifications')"
+          ></app-certifications-card>
         </div>
       </section>
 
       <section
         *ngIf="block === 'contact'"
         id="contato"
-        class="about-block"
+        class="contact-block"
         data-nav-id="contato"
-        data-nav-label="Contato"
+        [attr.data-nav-label]="getNavLabel('contact')"
       >
-        <article class="about-card">
-          <button type="button" class="card-edit-link" (click)="openHomeEditModal('contact')">Editar</button>
-          <p class="eyebrow">Contato</p>
-          <h2>Fale comigo</h2>
-          <p>Email: {{ portfolio.contact.email }}</p>
-          <p>LinkedIn: {{ portfolio.contact.linkedin }}</p>
-          <p>GitHub: {{ portfolio.contact.github }}</p>
-          <p *ngIf="portfolio.contact.phone">Telefone: {{ portfolio.contact.phone }}</p>
-          <div class="custom-fields" *ngIf="getCustomFieldsFor('contact').length">
-            <p *ngFor="let field of getCustomFieldsFor('contact')"><strong>{{ field.label }}:</strong> {{ field.value }}</p>
-          </div>
-        </article>
+        <div class="section-shell">
+          <app-contact-card
+            [contact]="portfolio.contact"
+            [showEmail]="contactViewPreferences.showEmail"
+            [showLinkedin]="contactViewPreferences.showLinkedin"
+            [showGithub]="contactViewPreferences.showGithub"
+            [showPhone]="contactViewPreferences.showPhone"
+            [customFields]="getCustomFieldsFor('contact')"
+            (edit)="openHomeEditModal('contact')"
+          ></app-contact-card>
+        </div>
       </section>
 
       <section
         *ngIf="block === 'githubProfile'"
         id="github-profile"
-        class="about-block"
+        class="profile-block"
         data-nav-id="github-profile"
-        data-nav-label="GitHub"
+        [attr.data-nav-label]="getNavLabel('githubProfile')"
       >
-        <article class="about-card">
-          <button type="button" class="card-edit-link" (click)="openHomeEditModal('githubProfile')">Editar</button>
-          <p class="eyebrow">GitHub Profile</p>
-          <h2>{{ portfolio.profile.handle }}</h2>
-          <p>Followers: {{ portfolio.profile.followers }} | Following: {{ portfolio.profile.following }}</p>
-          <p>{{ portfolio.profile.company }} - {{ portfolio.profile.location }}</p>
-          <div class="custom-fields" *ngIf="getCustomFieldsFor('githubProfile').length">
-            <p *ngFor="let field of getCustomFieldsFor('githubProfile')"><strong>{{ field.label }}:</strong> {{ field.value }}</p>
-          </div>
-        </article>
+        <div class="section-shell">
+          <app-github-profile-card
+            [profile]="portfolio.profile"
+            [linkedinUrl]="linkedInProfileUrl"
+            [linkedinHeadline]="portfolio.linkedin.headline"
+            [linkedinActivity]="portfolio.linkedin.activity"
+            [linkedinExperience]="portfolio.linkedin.experience"
+            [showLinkedinLink]="githubProfileViewPreferences.showLinkedinLink"
+            [showLinkedinExtras]="githubProfileViewPreferences.showLinkedinExtras"
+            [showLinkedinIcon]="githubProfileViewPreferences.showLinkedinIcon"
+            [customFields]="getCustomFieldsFor('githubProfile')"
+            (edit)="openProfileEditorScreen()"
+          ></app-github-profile-card>
+        </div>
       </section>
     </ng-container>
   </ng-container>
@@ -304,6 +281,38 @@
     </div>
   </section>
 
+  <section *ngIf="isModuleCatalogOpen" class="quick-edit-modal" (click)="closeModuleCatalogModal()">
+    <div class="quick-edit-panel module-catalog-panel" (click)="$event.stopPropagation()">
+      <div class="quick-edit-header">
+        <h3>Modelos de blocos</h3>
+        <button type="button" class="close-btn" (click)="closeModuleCatalogModal()">Fechar</button>
+      </div>
+
+      <div class="quick-edit-body module-catalog-body" *ngIf="portfolio">
+        <p class="module-catalog-intro">
+          Escolha um modelo de bloco para adicionar e personalizar.
+        </p>
+        <div class="module-catalog-grid">
+          <article class="module-catalog-card" *ngFor="let item of moduleCatalog">
+            <p class="module-catalog-status">
+              {{ isModuleEnabled(item) ? 'Ativo' : 'Desativado' }}
+            </p>
+            <h4>{{ getModuleModelName(item) }}</h4>
+            <p class="module-catalog-title">{{ getModuleTitle(item) }}</p>
+            <p>{{ item.summary }}</p>
+            <button type="button" (click)="openModuleFromCatalog(item)">
+              {{
+                item.section === 'githubProfile'
+                  ? 'Abrir tela de perfil'
+                  : (isModuleEnabled(item) ? 'Editar bloco' : 'Adicionar modelo')
+              }}
+            </button>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section *ngIf="isHomeEditModalOpen" class="quick-edit-modal" (click)="closeHomeEditModal()">
     <div class="quick-edit-panel" (click)="$event.stopPropagation()">
       <div class="quick-edit-header">
@@ -317,6 +326,35 @@
           <button type="button" *ngFor="let item of quickAddTypes" (click)="addCustomField(item.type)">
             + {{ item.label }}
           </button>
+
+          <ng-container *ngIf="homeEditSection === 'about'">
+            <p class="tool-group-label">Destaques do {{ portfolio.aboutCard.badge || 'Sobre' }}:</p>
+            <button type="button" (click)="addAboutHighlightField()">+ Destaque</button>
+            <button type="button" (click)="removeAboutHighlightField()" [disabled]="aboutHighlightCount <= 1">
+              - Destaque
+            </button>
+          </ng-container>
+
+          <ng-container *ngIf="homeEditSection === 'skills'">
+            <p class="tool-group-label">Categorias de Tecnologias:</p>
+            <button type="button" (click)="addSkillCategoryField()">+ Categoria</button>
+            <button type="button" (click)="removeSkillCategoryField()" [disabled]="skillCategoryCount <= 1">
+              - Categoria
+            </button>
+          </ng-container>
+
+          <ng-container *ngIf="homeEditSection === 'projects'">
+            <p class="tool-group-label">Projetos em destaque:</p>
+            <button type="button" (click)="openFeaturedProjectEditor()">
+              {{ hasProjectAt(0) ? 'Editar principal' : 'Adicionar principal' }}
+            </button>
+            <button type="button" (click)="openSecondaryProjectEditor(0)">
+              {{ hasProjectAt(1) ? 'Editar secundario 1' : 'Adicionar secundario 1' }}
+            </button>
+            <button type="button" (click)="openSecondaryProjectEditor(1)">
+              {{ hasProjectAt(2) ? 'Editar secundario 2' : 'Adicionar secundario 2' }}
+            </button>
+          </ng-container>
         </div>
 
         <div class="quick-edit-grid">
@@ -327,12 +365,45 @@
               class="quick-edit-label-input"
               [(ngModel)]="field.label"
               type="text"
-              placeholder="Nome do campo"
+              [placeholder]="getFieldPlaceholder(field, true)"
             />
 
-            <textarea *ngIf="field.type === 'textarea'" [(ngModel)]="field.value" rows="4"></textarea>
+            <textarea
+              *ngIf="field.type === 'textarea'"
+              [(ngModel)]="field.value"
+              rows="4"
+              [placeholder]="getFieldPlaceholder(field)"
+            ></textarea>
 
-            <input *ngIf="field.type !== 'textarea'" [(ngModel)]="field.value" [type]="field.type === 'image' ? 'text' : field.type" />
+            <select *ngIf="field.type === 'select'" [(ngModel)]="field.value">
+              <option *ngFor="let option of field.options || []" [ngValue]="option.value">
+                {{ option.label }}
+              </option>
+            </select>
+
+            <label class="quick-edit-toggle" *ngIf="field.type === 'toggle'">
+              <input
+                type="checkbox"
+                [ngModel]="field.value === '1'"
+                (ngModelChange)="field.value = $event ? '1' : '0'"
+              />
+              <span>{{ field.value === '1' ? 'Ligado' : 'Desligado' }}</span>
+            </label>
+
+            <input
+              *ngIf="field.type === 'number'"
+              type="number"
+              [attr.min]="field.key === 'animCardStaggerMs' || field.key === 'animCardHoverLiftPx' ? 0 : 1"
+              [(ngModel)]="field.value"
+              [placeholder]="getFieldPlaceholder(field)"
+            />
+
+            <input
+              *ngIf="field.type !== 'textarea' && field.type !== 'select' && field.type !== 'toggle' && field.type !== 'number'"
+              [(ngModel)]="field.value"
+              [type]="field.type === 'image' ? 'text' : field.type"
+              [placeholder]="getFieldPlaceholder(field)"
+            />
 
             <img
               *ngIf="field.type === 'image' && field.value"
@@ -360,3 +431,5 @@
     </div>
   </section>
 </main>
+
+

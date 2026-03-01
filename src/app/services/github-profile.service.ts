@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, timeout } from 'rxjs';
 
 export interface GitHubProfile {
   login: string;
@@ -36,12 +36,12 @@ export class GitHubProfileService {
   getProfile(username: string): Observable<GitHubProfile> {
     return this.http.get<GitHubProfile>(
       `https://api.github.com/users/${encodeURIComponent(username)}`
-    );
+    ).pipe(timeout(5000));
   }
 
   getRepos(username: string): Observable<GitHubRepo[]> {
     return this.http.get<GitHubRepo[]>(
       `https://api.github.com/users/${encodeURIComponent(username)}/repos?sort=updated&per_page=12`
-    );
+    ).pipe(timeout(5000));
   }
 }

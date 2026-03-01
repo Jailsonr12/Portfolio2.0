@@ -1,0 +1,49 @@
+<article class="about-card content-card">
+  <button type="button" class="card-edit-link" (click)="edit.emit()">Editar</button>
+  <p class="eyebrow">GitHub Profile</p>
+  <h2>@{{ profile.handle }}</h2>
+  <div class="info-list">
+    <div class="info-row">
+      <span class="info-label">Seguidores</span>
+      <span class="info-value">{{ profile.followers }} seguidores</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Seguindo</span>
+      <span class="info-value">{{ profile.following }} perfis</span>
+    </div>
+    <div class="info-row" *ngIf="profile.company || profile.location">
+      <span class="info-label">Empresa / Local</span>
+      <span class="info-value">
+        {{ profile.company || 'Nao informado' }}
+        <ng-container *ngIf="profile.company && profile.location"> - </ng-container>
+        {{ profile.location || '' }}
+      </span>
+    </div>
+    <div class="info-row" *ngIf="profile.website">
+      <span class="info-label">Website</span>
+      <a class="info-value link" [href]="profile.website" target="_blank" rel="noopener noreferrer">{{
+        profile.website
+      }}</a>
+    </div>
+    <div class="info-row" *ngIf="showLinkedinLink && linkedinUrl">
+      <span class="info-label">LinkedIn</span>
+      <a class="info-value link" [href]="linkedinUrl" target="_blank" rel="noopener noreferrer">
+        <span *ngIf="showLinkedinIcon">in </span>
+        {{ linkedinUrl }}
+      </a>
+    </div>
+    <div class="info-row" *ngIf="showLinkedinExtras && linkedinUrl && linkedinHeadline">
+      <span class="info-label">Headline</span>
+      <span class="info-value">{{ linkedinHeadline }}</span>
+    </div>
+    <div class="info-row" *ngIf="showLinkedinExtras && linkedinUrl && linkedinActivity">
+      <span class="info-label">Atividade</span>
+      <span class="info-value">{{ linkedinActivity }}</span>
+    </div>
+    <div class="info-row" *ngIf="showLinkedinExtras && linkedinUrl && linkedinExperience">
+      <span class="info-label">Trajetoria</span>
+      <span class="info-value">{{ linkedinExperience }}</span>
+    </div>
+  </div>
+  <app-custom-fields [fields]="customFields"></app-custom-fields>
+</article>

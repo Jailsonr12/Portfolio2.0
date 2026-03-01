@@ -1,0 +1,12 @@
+<article class="about-card case-studies-card content-card">
+  <button type="button" class="card-edit-link" (click)="edit.emit()">Editar</button>
+  <p class="eyebrow">Resultados</p>
+  <h2>{{ caseStudy.title }}</h2>
+  <p>{{ caseStudy.summary }}</p>
+  <div class="about-badges">
+    <article class="about-badge" *ngFor="let decision of caseStudy.decisions">
+      <p class="badge-value">{{ decision }}</p>
+    </article>
+  </div>
+  <app-custom-fields [fields]="customFields"></app-custom-fields>
+</article>

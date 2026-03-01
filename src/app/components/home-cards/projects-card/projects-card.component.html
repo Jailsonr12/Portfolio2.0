@@ -1,0 +1,40 @@
+<app-apresentacao
+  [title]="title"
+  [subtitle]="subtitle"
+  [projects]="items"
+  [showTitle]="showTitle"
+  [showSubtitle]="showSubtitle"
+  [showDescription]="showDescription"
+  [showTechnology]="showTechnology"
+  [showImages]="showImages"
+  [maxVisibleItems]="maxVisibleItems"
+></app-apresentacao>
+<section class="projects-showcase-shell" *ngIf="customFields.length || featuredProject || duoProjects.length">
+  <app-custom-fields [fields]="customFields"></app-custom-fields>
+
+  <article class="featured-project-card" *ngIf="featuredProject">
+    <button type="button" class="card-edit-link" (click)="editFeatured.emit()">Editar destaque</button>
+    <img
+      *ngIf="showImages"
+      class="project-cover"
+      [src]="featuredProject.imageUrl"
+      [alt]="featuredProject.title"
+      loading="lazy"
+    />
+    <h2>{{ featuredProject.title }}</h2>
+    <p *ngIf="showDescription">{{ featuredProject.description }}</p>
+    <p *ngIf="showTechnology" class="tech">Tecnologia: {{ featuredProject.technology }}</p>
+    <app-custom-fields [fields]="featuredCustomFields"></app-custom-fields>
+  </article>
+
+  <div class="duo-project-block" *ngIf="duoProjects.length">
+    <article class="duo-project-card" *ngFor="let project of duoProjects; let i = index">
+      <button type="button" class="card-edit-link" (click)="editDuo.emit(i)">Editar</button>
+      <img *ngIf="showImages" class="project-cover" [src]="project.imageUrl" [alt]="project.title" loading="lazy" />
+      <h3>{{ project.title }}</h3>
+      <p *ngIf="showDescription">{{ project.description }}</p>
+      <p *ngIf="showTechnology" class="tech">Tecnologia: {{ project.technology }}</p>
+      <app-custom-fields [fields]="duoCustomFields[i] || []"></app-custom-fields>
+    </article>
+  </div>
+</section>

@@ -1,13 +1,13 @@
 <section class="projects-shell" [class.in-view]="inView">
   <header class="title">
-    <h1>{{ title }}</h1>
-    <p>{{ subtitle }}</p>
+    <h1 *ngIf="showTitle">{{ title }}</h1>
+    <p *ngIf="showSubtitle">{{ subtitle }}</p>
   </header>
 
   <main class="projects-content">
-    <p class="empty-state" *ngIf="!projects.length">Adicione projetos no editor para exibir aqui.</p>
+    <p class="empty-state" *ngIf="!visibleProjects.length">Adicione projetos no editor para exibir aqui.</p>
     <ul>
-      <li *ngFor="let projeto of projects; let i = index" [style.--i]="i">
+      <li *ngFor="let projeto of visibleProjects; let i = index" [style.--i]="i">
         <app-projeto-direita
           [title]="projeto.title"
           [imageUrl]="projeto.img"
@@ -15,6 +15,9 @@
           [technologies]="projeto.tecnologia"
           [githubLink]="projeto.git"
           [pageLink]="projeto.link"
+          [showDescription]="showDescription"
+          [showTechnology]="showTechnology"
+          [showImage]="showImages"
         >
         </app-projeto-direita>
       </li>

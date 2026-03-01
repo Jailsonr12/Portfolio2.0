@@ -1,0 +1,16 @@
+<article
+  class="about-card skills-card content-card"
+  [style.text-align]="textAlign"
+  [style.align-items]="textAlign === 'center' ? 'center' : 'stretch'"
+>
+  <button type="button" class="card-edit-link" (click)="edit.emit()">Editar</button>
+  <p class="eyebrow">Tecnologias</p>
+  <h2 *ngIf="showTitle" [style.text-align]="titleAlign">Categorias tecnicas</h2>
+  <div class="about-badges" *ngIf="showCategories">
+    <article class="about-badge" *ngFor="let category of categories">
+      <p class="badge-label">{{ category.name }}</p>
+      <p class="badge-value">{{ category.items.join(', ') }}</p>
+    </article>
+  </div>
+  <app-custom-fields [fields]="customFields"></app-custom-fields>
+</article>

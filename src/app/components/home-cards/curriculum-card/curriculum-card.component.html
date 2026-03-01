@@ -1,0 +1,20 @@
+<div class="curriculo-card content-card">
+  <button type="button" class="card-edit-link" (click)="edit.emit()">Editar</button>
+  <p class="eyebrow">{{ curriculum.title || 'Curriculo' }}</p>
+  <h2>Resumo profissional e experiencias</h2>
+  <p>{{ curriculum.description || 'Acesse o curriculo completo pelo link abaixo.' }}</p>
+  <a class="curriculo-preview" [href]="curriculum.url || fallbackUrl" target="_blank" rel="noopener noreferrer">
+    <img
+      [src]="previewImageUrl || fallbackPreviewImage"
+      alt="Preview do curriculo"
+      loading="lazy"
+      (error)="onPreviewError($event)"
+    />
+  </a>
+  <div class="curriculo-actions">
+    <a class="curriculo-link" [href]="curriculum.url || fallbackUrl" target="_blank" rel="noopener noreferrer">
+      Abrir curriculo
+    </a>
+  </div>
+  <app-custom-fields [fields]="customFields"></app-custom-fields>
+</div>

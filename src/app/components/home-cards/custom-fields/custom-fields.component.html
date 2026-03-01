@@ -1,0 +1,27 @@
+<div class="custom-fields" *ngIf="fields?.length">
+  <p class="custom-fields-title">Campos extras</p>
+  <div class="custom-fields-stack">
+    <ng-container *ngFor="let field of fields">
+      <figure *ngIf="field.type === 'image'" class="custom-field-media">
+        <figcaption class="custom-field-label">{{ field.label }}</figcaption>
+        <img class="custom-field-image" [src]="field.value" [alt]="field.label" loading="lazy" />
+      </figure>
+
+      <div *ngIf="field.type !== 'image'" class="custom-field-item">
+        <p class="custom-field-label">{{ field.label }}</p>
+        <a
+          *ngIf="field.type === 'url'; else plainValue"
+          class="custom-field-value custom-field-link"
+          [href]="field.value"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{ field.value }}
+        </a>
+        <ng-template #plainValue>
+          <p class="custom-field-value">{{ field.value }}</p>
+        </ng-template>
+      </div>
+    </ng-container>
+  </div>
+</div>

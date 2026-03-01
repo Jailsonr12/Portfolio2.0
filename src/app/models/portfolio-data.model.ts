@@ -110,6 +110,56 @@ export interface PortfolioCustomCardField {
   type: 'text' | 'textarea' | 'url' | 'image';
 }
 
+export interface PortfolioViewPreferences {
+  animations: {
+    enabled: boolean;
+    sectionDurationMs: number;
+    cardDurationMs: number;
+    cardStaggerMs: number;
+    cardHoverLiftPx: number;
+  };
+  hero: {
+    showHeroLinkedin: boolean;
+    showHeroCurriculum: boolean;
+    showProfileGithub: boolean;
+    showProfileX: boolean;
+    showProfileLinkedin: boolean;
+    showProfileWebsite: boolean;
+  };
+  about: {
+    showTitle: boolean;
+    showSummary: boolean;
+    showHighlights: boolean;
+    titleAlign: 'left' | 'center' | 'right';
+    textAlign: 'left' | 'center' | 'right';
+  };
+  skills: {
+    showTitle: boolean;
+    showCategories: boolean;
+    titleAlign: 'left' | 'center' | 'right';
+    textAlign: 'left' | 'center' | 'right';
+  };
+  projects: {
+    showTitle: boolean;
+    showSubtitle: boolean;
+    showDescription: boolean;
+    showTechnology: boolean;
+    showImages: boolean;
+    maxVisibleItems: number;
+  };
+  contact: {
+    showEmail: boolean;
+    showLinkedin: boolean;
+    showGithub: boolean;
+    showPhone: boolean;
+  };
+  githubProfile: {
+    showLinkedinLink: boolean;
+    showLinkedinExtras: boolean;
+    showLinkedinIcon: boolean;
+  };
+}
+
 export interface PortfolioDocument {
   schemaVersion: number;
   username: string;
@@ -140,4 +190,5 @@ export interface PortfolioDocument {
   certifications: PortfolioCertification[];
   contact: PortfolioContactData;
   customCardFields?: Record<string, PortfolioCustomCardField[]>;
+  viewPreferences?: PortfolioViewPreferences;
 }

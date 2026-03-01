@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Input,
-  OnDestroy,
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PortfolioProject } from '../../models/portfolio-data.model';
 
 @Component({
@@ -12,33 +6,22 @@ import { PortfolioProject } from '../../models/portfolio-data.model';
   templateUrl: './apresentacao.component.html',
   styleUrls: ['./apresentacao.component.scss'],
 })
-export class ApresentacaoComponent implements AfterViewInit, OnDestroy {
+export class ApresentacaoComponent {
   @Input() title = 'Projetos';
   @Input() subtitle = 'Selecao dos trabalhos em destaque';
   @Input() projects: PortfolioProject[] = [];
+  @Input() showTitle = true;
+  @Input() showSubtitle = true;
+  @Input() showDescription = true;
+  @Input() showTechnology = true;
+  @Input() showImages = true;
+  @Input() maxVisibleItems = 50;
 
-  inView = false;
+  inView = true;
 
-  private observer?: IntersectionObserver;
-
-  constructor(private readonly elementRef: ElementRef<HTMLElement>) {}
-
-  ngAfterViewInit(): void {
-    this.observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry?.isIntersecting) {
-          this.inView = true;
-          this.observer?.disconnect();
-        }
-      },
-      { threshold: 0.25 }
-    );
-
-    this.observer.observe(this.elementRef.nativeElement);
-  }
-
-  ngOnDestroy(): void {
-    this.observer?.disconnect();
+  get visibleProjects(): PortfolioProject[] {
+    const max = Number.isFinite(Number(this.maxVisibleItems)) ? Number(this.maxVisibleItems) : 50;
+    const safeMax = Math.max(1, max);
+    return this.projects.slice(0, safeMax);
   }
 }

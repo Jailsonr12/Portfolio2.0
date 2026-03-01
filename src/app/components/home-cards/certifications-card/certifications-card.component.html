@@ -1,0 +1,12 @@
+<article class="about-card certifications-card content-card">
+  <button type="button" class="card-edit-link" (click)="edit.emit()">Editar</button>
+  <p class="eyebrow">Certificacoes</p>
+  <h2>Formacoes e cursos</h2>
+  <div class="about-badges">
+    <article class="about-badge" *ngFor="let cert of certifications">
+      <p class="badge-label">{{ cert.issuer }} - {{ cert.year }}</p>
+      <p class="badge-value">{{ cert.name }}</p>
+    </article>
+  </div>
+  <app-custom-fields [fields]="customFields"></app-custom-fields>
+</article>

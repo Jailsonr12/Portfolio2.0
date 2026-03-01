@@ -5,17 +5,17 @@
       <h3>{{ title }}</h3>
     </header>
 
-    <button *ngIf="imageUrl" type="button" class="image-btn" (click)="openProjectModal()">
+    <button *ngIf="showImage && imageUrl" type="button" class="image-btn" (click)="openProjectModal()">
       <img [src]="imageUrl" [alt]="title || 'Imagem do projeto'" loading="lazy" />
     </button>
 
     <div class="card-content">
-      <div class="card-sobre" *ngIf="about">
+      <div class="card-sobre" *ngIf="showDescription && about">
         <p>Sobre</p>
         <h3>{{ about }}</h3>
       </div>
 
-      <div class="card-sobre" *ngIf="technologies">
+      <div class="card-sobre" *ngIf="showTechnology && technologies">
         <p>Tecnologia</p>
         <h3>{{ technologies }}</h3>
       </div>
@@ -36,9 +36,9 @@
     </div>
 
     <div class="project-modal-body">
-      <img *ngIf="imageUrl" [src]="imageUrl" [alt]="title || 'Imagem do projeto'" />
-      <p *ngIf="about">{{ about }}</p>
-      <p *ngIf="technologies" class="tech">{{ technologies }}</p>
+      <img *ngIf="showImage && imageUrl" [src]="imageUrl" [alt]="title || 'Imagem do projeto'" />
+      <p *ngIf="showDescription && about">{{ about }}</p>
+      <p *ngIf="showTechnology && technologies" class="tech">{{ technologies }}</p>
     </div>
 
     <div class="project-modal-footer">
