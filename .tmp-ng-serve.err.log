@@ -1,0 +1,13 @@
+node:internal/readline/interface:564
+      throw new ERR_USE_AFTER_CLOSE('readline');
+      ^
+
+Error [ERR_USE_AFTER_CLOSE]: readline was closed
+    at Interface.pause (node:internal/readline/interface:564:13)
+    at PromptUI.close (C:\Users\Jailson\Documents\GitHub\Portfolio2.0\node_modules\inquirer\lib\ui\baseUI.js:56:13)
+    at PromptUI.onForceClose (C:\Users\Jailson\Documents\GitHub\Portfolio2.0\node_modules\inquirer\lib\ui\baseUI.js:34:10)
+    at process.emit (node:events:520:35) {
+  code: 'ERR_USE_AFTER_CLOSE'
+}
+
+Node.js v24.12.0
