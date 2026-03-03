@@ -9,6 +9,7 @@ import { ApresentacaoComponent } from './components/apresentacao/apresentacao.co
 import { ProjetoDireitaComponent } from './components/projeto-direita/projeto-direita.component';
 import { HomeComponent } from './page/home/home.component';
 import { ModalImgComponent } from './components/modal-img/modal-img.component';
+import { PoliticaComponent } from './components/politica/politica.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ModalImgComponent } from './components/modal-img/modal-img.component';
     ApresentacaoComponent,
     ProjetoDireitaComponent,
     HomeComponent,
-    ModalImgComponent
+    ModalImgComponent,
+    PoliticaComponent
   ],
   imports: [
     BrowserModule,
