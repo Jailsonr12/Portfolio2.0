@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1.5rem;
+  background: rgba(20, 18, 24, 0.75);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.marca {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.8rem;
+  color: #ffb3b3;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.marca span { color: #8cf2b8; }
+
+.links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.links a {
+  color: #e6e6e6;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.35rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.links a:hover,
+.links a:focus-visible {
+  color: #8cf2b8;
+  border-bottom-color: #8cf2b8;
+}
+
+.links a.destaque {
+  border: 1px solid #8cf2b8;
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  color: #8cf2b8;
+}
+
+.links a.destaque:hover,
+.links a.destaque:focus-visible {
+  background: #8cf2b8;
+  color: #141218;
+}
+
+.hamburguer {
+  display: none;
+  background: none;
+  border: 0;
+  padding: 0.4rem;
+  cursor: pointer;
+}
+
+.hamburguer span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #e6e6e6;
+  margin: 5px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .hamburguer { display: block; }
+
+  .links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(20, 18, 24, 0.96);
+    display: none;
+    padding: 0.5rem 0 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .links.aberto { display: flex; }
+
+  .links li { text-align: center; }
+
+  .links a {
+    display: inline-block;
+    padding: 0.7rem 1rem;
+    border-bottom: 0;
+  }
+
+  .links a.destaque { margin-top: 0.5rem; }
+}

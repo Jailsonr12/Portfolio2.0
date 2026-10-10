@@ -352,3 +352,15 @@
     font-size: 2rem;
   }
 }
+@media screen and (max-width: 768px) {
+  .acoes {
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .botao {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+  }
+}

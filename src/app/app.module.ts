@@ -10,6 +10,9 @@ import { ProjetoDireitaComponent } from './components/projeto-direita/projeto-di
 import { HomeComponent } from './page/home/home.component';
 import { ModalImgComponent } from './components/modal-img/modal-img.component';
 import { PoliticaComponent } from './components/politica/politica.component';
+import { ExperienciaComponent } from './components/experiencia/experiencia.component';
+import { NavComponent } from './components/nav/nav.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { PoliticaComponent } from './components/politica/politica.component';
     ProjetoDireitaComponent,
     HomeComponent,
     ModalImgComponent,
-    PoliticaComponent
+    PoliticaComponent,
+    ExperienciaComponent,
+    NavComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,13 @@
+<nav class="nav" aria-label="Navegação principal">
+    <a class="marca" href="#inicio" (click)="fechar()">JR<span>.</span></a>
+    <button class="hamburguer" type="button" (click)="alternar()" [attr.aria-expanded]="aberto" aria-controls="menu"
+        aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+    </button>
+    <ul id="menu" class="links" [class.aberto]="aberto">
+        <li><a href="#inicio" (click)="fechar()">Início</a></li>
+        <li><a href="#experiencia" (click)="fechar()">Experiência</a></li>
+        <li><a href="#projetos" (click)="fechar()">Projetos</a></li>
+        <li><a class="destaque" [href]="curriculo" target="_blank" rel="noopener" (click)="fechar()">Currículo</a></li>
+    </ul>
+</nav>

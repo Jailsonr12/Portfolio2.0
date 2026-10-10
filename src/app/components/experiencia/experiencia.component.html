@@ -1,0 +1,56 @@
+<section class="experiencia" id="experiencia">
+    <header>
+        <h2 class="titulo">Sobre mim</h2>
+        <p class="sobre">{{ sobre }}</p>
+    </header>
+
+    <div class="competencias">
+        <div class="grupo" *ngFor="let g of competencias">
+            <h3>{{ g.nome }}</h3>
+            <ul>
+                <li *ngFor="let item of g.itens">{{ item }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 class="titulo">Exemplos do que faço</h2>
+    <div class="exemplos">
+        <article class="exemplo" *ngFor="let e of exemplos">
+            <span class="mostra">{{ e.mostra }}</span>
+            <h3>{{ e.titulo }}</h3>
+            <p>{{ e.texto }}</p>
+        </article>
+    </div>
+
+    <h2 class="titulo">Experiência</h2>
+    <ol class="linha-do-tempo">
+        <li class="cargo" *ngFor="let c of cargos">
+            <div class="marcador" aria-hidden="true"></div>
+            <div class="conteudo">
+                <h3>{{ c.cargo }}</h3>
+                <p class="empresa">{{ c.empresa }} <span class="periodo">· {{ c.periodo }}</span></p>
+                <ul>
+                    <li *ngFor="let item of c.itens">{{ item }}</li>
+                </ul>
+            </div>
+        </li>
+    </ol>
+
+    <div class="extras">
+        <article>
+            <h3>Formação</h3>
+            <ul>
+                <li *ngFor="let f of formacao">{{ f }}</li>
+            </ul>
+        </article>
+        <article>
+            <h3>Cursos e certificações</h3>
+            <ul class="cursos">
+                <li *ngFor="let c of cursos">
+                    <span>{{ c.nome }}</span>
+                    <span class="status" [class.andamento]="c.status === 'em andamento'">{{ c.status }}</span>
+                </li>
+            </ul>
+        </article>
+    </div>
+</section>
