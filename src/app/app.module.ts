@@ -13,6 +13,7 @@ import { PoliticaComponent } from './components/politica/politica.component';
 import { ExperienciaComponent } from './components/experiencia/experiencia.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { RevelarDirective } from './directives/revelar.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FooterComponent } from './components/footer/footer.component';
     PoliticaComponent,
     ExperienciaComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    RevelarDirective
   ],
   imports: [
     BrowserModule,

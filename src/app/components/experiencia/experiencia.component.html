@@ -5,7 +5,7 @@
     </header>
 
     <div class="competencias">
-        <div class="grupo" *ngFor="let g of competencias">
+        <div class="grupo" *ngFor="let g of competencias; let i = index" appRevelar [atraso]="i * 90">
             <h3>{{ g.nome }}</h3>
             <ul>
                 <li *ngFor="let item of g.itens">{{ item }}</li>
@@ -15,7 +15,7 @@
 
     <h2 class="titulo">Exemplos do que faço</h2>
     <div class="exemplos">
-        <article class="exemplo" *ngFor="let e of exemplos">
+        <article class="exemplo" *ngFor="let e of exemplos; let i = index" appRevelar [atraso]="(i % 3) * 90">
             <span class="mostra">{{ e.mostra }}</span>
             <h3>{{ e.titulo }}</h3>
             <p>{{ e.texto }}</p>
@@ -24,7 +24,7 @@
 
     <h2 class="titulo">Experiência</h2>
     <ol class="linha-do-tempo">
-        <li class="cargo" *ngFor="let c of cargos">
+        <li class="cargo" *ngFor="let c of cargos" appRevelar>
             <div class="marcador" aria-hidden="true"></div>
             <div class="conteudo">
                 <h3>{{ c.cargo }}</h3>

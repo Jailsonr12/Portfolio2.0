@@ -6,7 +6,7 @@
     </header>
     <main>
         <ul>
-            <li *ngFor="let projeto of projetos">
+            <li *ngFor="let projeto of projetos; let i = index" appRevelar [atraso]="(i % 3) * 90">
                 <app-projeto-direita [title]="projeto.title" [imageUrl]="projeto.img" [about]="projeto.sobre"
                     [technologies]="projeto.tecnologia" [githubLink]="projeto.git" [pageLink]="projeto.link">
                 </app-projeto-direita>

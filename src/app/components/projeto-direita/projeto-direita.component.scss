@@ -15,14 +15,19 @@
     box-shadow: 5px 4px 10px #000000;
     border-radius: 10px;
     overflow: hidden;
-    transition: transform 0.3s, border-color 0.3s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     padding: 10px 20px 10px 20px;
     font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
     border-color: rgba(140, 242, 184, 0.6);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(140, 242, 184, 0.15);
+}
+
+.card:hover img {
+    transform: scale(1.03);
 }
 
 .card img {
@@ -33,6 +38,7 @@
     border-radius: 10px 10px 0 0;
     cursor: zoom-in;
     box-shadow: 2px 1px 3px #000000;
+    transition: transform 0.4s ease;
 }
 
 .card-content p {
@@ -102,6 +108,7 @@
 }
 
 .card-footer a {
+    transition: background-color 0.2s ease, color 0.2s ease;
     text-decoration: none;
     color: #f8f8f8;
     font-size: 0.8rem;

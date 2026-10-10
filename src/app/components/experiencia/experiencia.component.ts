@@ -34,7 +34,7 @@ export class ExperienciaComponent {
 
   competencias: Grupo[] = [
     { nome: 'Backend', itens: ['Java 8 a 25', 'Spring Boot 3', 'Spring Modulith', 'JPA / Hibernate', 'APIs REST', 'WebSocket', 'RabbitMQ', 'PostgreSQL', 'MySQL', 'Flyway', 'Maven', 'Swagger'] },
-    { nome: 'Qualidade e DevOps', itens: ['Git / Git Flow', 'GitHub Actions', 'Azure DevOps', 'SonarQube', 'Docker', 'Selenium', 'Cypress', 'Postman', 'Testes de carga'] },
+    { nome: 'Qualidade e DevOps', itens: ['Git / Git Flow', 'GitHub Actions', 'Azure DevOps', 'SonarQube', 'Docker', 'Selenium', 'Postman', 'Testes de carga'] },
     { nome: 'Frontend', itens: ['Angular', 'TypeScript', 'React', 'JavaScript', 'HTML', 'CSS', 'Bootstrap'] },
   ];
 

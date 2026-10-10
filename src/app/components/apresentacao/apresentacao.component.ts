@@ -38,14 +38,6 @@ export class ApresentacaoComponent implements OnInit {
         link: undefined
       },
       {
-        title: "Testes E2E com Cypress",
-        img: "./assets/testes_cypress.png",
-        sobre: "Testes ponta a ponta de uma agenda de contatos: inclusão, alteração e remoção.",
-        tecnologia: "JavaScript, Cypress, Node.js",
-        git: "https://github.com/Jailsonr12/testes_utilizando_cypress",
-        link: undefined
-      },
-      {
         title: "efood — Projeto final EBAC",
         img: "./assets/efood.png",
         sobre: "Delivery de restaurantes com carrinho e checkout. Projeto final do curso Fullstack da EBAC.",

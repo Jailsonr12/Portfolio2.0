@@ -75,11 +75,12 @@
 .imgs a {
   display: inline-block;
   margin-right: .6rem;
-  transition: transform 1.8s ease;
+  transition: transform 0.25s ease;
 }
 
-.imgs a:hover svg {
-  transform: translateX(0.2rem);
+.imgs a:hover,
+.imgs a:focus-visible {
+  transform: translateY(-3px);
 }
 
 /* Botões de ação */
