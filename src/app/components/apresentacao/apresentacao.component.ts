@@ -70,14 +70,6 @@ export class ApresentacaoComponent implements OnInit {
         link: "https://no-limite-multas-project.vercel.app"
       },
       {
-        title: "Lista de tarefas em Vue",
-        img: "./assets/todo_vue.png",
-        sobre: "Cadastro, conclusão e filtro de tarefas.",
-        tecnologia: "Vue.js, JavaScript, Bootstrap",
-        git: "https://github.com/Jailsonr12/todo-vue",
-        link: "https://todo-vue-psi-azure.vercel.app"
-      },
-      {
         title: "Lista de Telefones",
         img: "./assets/lista_telefone.png",
         sobre: "Agenda de contatos com cadastro e remoção, manipulando o DOM com jQuery.",
