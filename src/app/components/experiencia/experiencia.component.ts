@@ -56,18 +56,13 @@ export class ExperienciaComponent {
       texto: 'Ninguém sabia quantos dispositivos o produto aguentava. Defini o que medir, desenhei a subida em degraus e simulei 1.000 dispositivos. Achei um bug no próprio simulador no meio do teste e refiz os degraus antes de publicar. O limite virou documentação oficial.',
     },
     {
-      titulo: 'Base de conhecimento do time',
-      mostra: 'Tirar o time da dependência de uma pessoa',
-      texto: 'Montei uma base compartilhada que o time consulta por assistente de IA, sem código-fonte na máquina por segurança, e integrei skills de documentação e revisão ao fluxo de desenvolvimento.',
-    },
-    {
       titulo: 'Jajá News IA',
       mostra: 'Aprender fazendo',
       texto: 'Projeto pessoal em Java 25 e Spring Boot, com PostgreSQL e Ollama rodando em Docker. Pesquisa notícias com IA, registra evidências com fonte e gera vídeos curtos. É onde testo arquitetura antes de levar para o trabalho.',
     },
     {
       titulo: 'HoverTraduz',
-      mostra: 'Resolver um problema meu e entregar como produto',
+      mostra: 'Problema meu que virou produto',
       texto: 'Extensão Chrome que traduz texto ao passar o mouse e converte moedas sem alterar a página, com cache local e política de privacidade publicada aqui no site.',
     },
   ];

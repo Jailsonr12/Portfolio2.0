@@ -15,7 +15,8 @@
 
     <h2 class="titulo">Exemplos do que faço</h2>
     <div class="exemplos">
-        <article class="exemplo" *ngFor="let e of exemplos; let i = index" appRevelar [atraso]="(i % 3) * 90">
+        <article class="exemplo" *ngFor="let e of exemplos; let i = index" appRevelar [atraso]="(i % 2) * 120">
+            <span class="numero" aria-hidden="true">{{ i + 1 | number:'2.0-0' }}</span>
             <span class="mostra">{{ e.mostra }}</span>
             <h3>{{ e.titulo }}</h3>
             <p>{{ e.texto }}</p>
