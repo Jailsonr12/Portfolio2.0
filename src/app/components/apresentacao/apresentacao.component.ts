@@ -44,6 +44,7 @@ export class ApresentacaoComponent {
         'A IA entrevista a pessoa, lê o edital e monta o plano buscando fonte oficial primeiro.',
         'O simulado vira revisão a partir dos erros. Evolução sem ranking, ofensiva ou vidas.',
         'Banco sem porta exposta, migração separada do backend e proxy de saída com lista fechada de sites.',
+        'Em breve em jajaestuda.com.br.',
       ],
       tecnologias: ['Java 25', 'Spring Boot', 'PostgreSQL', 'TypeScript', 'Docker Compose', 'Ollama', 'nginx'],
     },
@@ -56,9 +57,10 @@ export class ApresentacaoComponent {
       destaques: [
         'Resolve uma dor minha: ler e comparar preços em sites em outros idiomas.',
         'Cache de tradução em IndexedDB por 7 dias e cotação guardada por 30 minutos, para não repetir chamadas.',
-        'Política de privacidade publicada aqui no site.',
+        'Publicada na Chrome Web Store, com política de privacidade aqui no site.',
       ],
       tecnologias: ['JavaScript', 'Manifest V3', 'IndexedDB', 'APIs de tradução e câmbio'],
+      link: 'https://chromewebstore.google.com/detail/hovertraduz-tradutor-inte/dappbocijfhabmngepdkdmfodfblledg',
     },
     {
       title: 'Hotel API',
@@ -107,8 +109,8 @@ export class ApresentacaoComponent {
       ano: '2022',
       resumo: 'Ouvidoria online para a prefeitura de Blumenau. Projeto final do +Devs2Blu 2022, feito em equipe.',
       destaques: [
-        'Layout no Figma, modelagem do banco, API em C#/.NET e front em Angular.',
-        'Apresentado em vídeo para a banca do programa.',
+        'Fiz praticamente todo o front em Angular, incluindo os modais, e organizei o trabalho do time.',
+        'Layout no Figma, modelagem do banco e API em C#/.NET feitos em equipe. Apresentado em vídeo para a banca.',
       ],
       tecnologias: ['C#', '.NET', 'Angular', 'TypeScript', 'MySQL'],
       git: 'https://github.com/more-devs-2-blu/code-go?tab=readme-ov-file',
@@ -117,7 +119,7 @@ export class ApresentacaoComponent {
     {
       title: 'No Limite Multas',
       img: './assets/no_limite_multas.png',
-      tipo: 'Cliente',
+      tipo: 'Freelance',
       ano: '2024',
       resumo: 'Site institucional de uma empresa de recursos de multas, com chamada direta para o WhatsApp.',
       destaques: [
