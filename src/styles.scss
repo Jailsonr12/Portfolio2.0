@@ -13,8 +13,18 @@ html {
 
 /* Fundo único da página: as seções ficam transparentes sobre ele */
 body {
-    background: #1c1819;
+    background: #221717;
     color: #e6e6e6;
+}
+
+/* O brilho da capa fica fixo atrás de toda a página (pseudo-elemento porque o iOS ignora background-attachment: fixed) */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 35%, #555454df, #211c1cdc, #221717);
+    pointer-events: none;
 }
 
 section[id] {
