@@ -248,6 +248,13 @@ header {
   height: 2px;
   background: linear-gradient(to right, #ffb3b3, #8cf2b8);
   opacity: 0.6;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.4s ease-out;
+}
+
+.trajetoria.visivel::before {
+  transform: scaleX(1);
 }
 
 .marco {
@@ -271,8 +278,17 @@ header {
   height: 14px;
   margin: 0 auto 0.8rem;
   border-radius: 50%;
+  background: #4a4a4a;
+  box-shadow: none;
+  transform: scale(0.5);
+  transition: background 0.45s ease, box-shadow 0.45s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition-delay: inherit;
+}
+
+.marco.visivel .ponto {
   background: #8cf2b8;
   box-shadow: 0 0 0 4px rgba(140, 242, 184, 0.2), 0 0 12px rgba(140, 242, 184, 0.5);
+  transform: scale(1);
 }
 
 .marco h3 {
@@ -301,6 +317,12 @@ header {
     width: 2px;
     height: auto;
     background: linear-gradient(to bottom, #ffb3b3, #8cf2b8);
+    transform: scaleY(0);
+    transform-origin: center top;
+  }
+
+  .trajetoria.visivel::before {
+    transform: scaleY(1);
   }
 
   .marco {
@@ -320,4 +342,9 @@ header {
     top: 0.25rem;
     margin: 0;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trajetoria::before { transform: none; transition: none; }
+  .marco .ponto { transform: none; transition: none; background: #8cf2b8; }
 }

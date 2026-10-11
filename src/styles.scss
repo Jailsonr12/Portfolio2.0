@@ -21,10 +21,17 @@ body {
 body::before {
     content: "";
     position: fixed;
-    inset: 0;
+    inset: -12%;
     z-index: -1;
-    background: radial-gradient(circle at 50% 35%, #555454df, #211c1cdc, #221717);
+    background: radial-gradient(circle at 50% 40%, #555454df, #211c1cdc, #221717);
     pointer-events: none;
+    animation: respirar 14s ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes respirar {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(2%, -3%) scale(1.06); }
 }
 
 section[id] {
@@ -53,4 +60,5 @@ button:focus-visible,
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .revelar { opacity: 1; transform: none; transition: none; }
+    body::before { animation: none; }
 }

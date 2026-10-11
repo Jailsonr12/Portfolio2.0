@@ -1,25 +1,25 @@
-<div class="card-container">
-    <article class="card">
-        <div class="card-title" *ngIf="title">
-            <h3>{{ title }}</h3>
-        </div>
-        <img *ngIf="imageUrl" (click)="openModal(imageUrl)" (keydown.enter)="openModal(imageUrl)" tabindex="0"
-            role="button" [src]="imageUrl" [alt]="'Imagem do projeto ' + title">
-        <div class="card-content">
-            <div class="card-sobre" *ngIf="about">
-                <p>Sobre</p>
-                <h3>{{ about }}</h3>
-            </div>
-            <div class="card-sobre" *ngIf="technologies">
-                <p>Tecnologia</p>
-                <h3>{{ technologies }}</h3>
-            </div>
-        </div>
-        <div class="card-footer">
-            <a *ngIf="githubLink" [href]="githubLink" target="_blank" rel="noopener">GitHub</a>
-            <a *ngIf="pageLink" [href]="pageLink" target="_blank" rel="noopener">Ver projeto</a>
-            <span class="privado" *ngIf="!githubLink && !pageLink">Repositório privado</span>
-        </div>
-    </article>
-</div>
+<article class="card">
+    <div class="capa">
+        <img *ngIf="projeto.img" (click)="openModal(projeto.img)" (keydown.enter)="openModal(projeto.img)" tabindex="0"
+            role="button" [src]="projeto.img" [alt]="'Imagem do projeto ' + projeto.title">
+        <span class="tipo">{{ projeto.tipo }} · {{ projeto.ano }}</span>
+    </div>
+
+    <div class="corpo">
+        <h3>{{ projeto.title }}</h3>
+        <p class="resumo">{{ projeto.resumo }}</p>
+        <ul class="destaques" *ngIf="projeto.destaques.length">
+            <li *ngFor="let d of projeto.destaques">{{ d }}</li>
+        </ul>
+        <ul class="chips" aria-label="Tecnologias">
+            <li *ngFor="let t of projeto.tecnologias">{{ t }}</li>
+        </ul>
+    </div>
+
+    <div class="card-footer">
+        <a *ngIf="projeto.git" [href]="projeto.git" target="_blank" rel="noopener">GitHub</a>
+        <a *ngIf="projeto.link" [href]="projeto.link" target="_blank" rel="noopener">Ver projeto</a>
+        <span class="privado" *ngIf="!projeto.git && !projeto.link">Repositório privado</span>
+    </div>
+</article>
 <app-modal-img *ngIf="showFullscreen" [fullimag]="true" [fullscreenImageUrl]="fullscreenImageUrl" (closeModal)="closeModal()"></app-modal-img>
