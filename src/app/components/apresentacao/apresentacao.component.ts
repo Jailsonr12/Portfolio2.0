@@ -22,6 +22,30 @@ export class ApresentacaoComponent implements OnInit {
   constructor() {
     this.projetos = [
       {
+        title: "Jajá News IA",
+        img: "./assets/jaja_news_ia.png",
+        sobre: "Pesquisa notícias com IA local, registra alegações com fonte e gera vídeos curtos verticais com narração, legendas e imagens. Pipeline com retomada, auditoria de cada chamada e quality gates.",
+        tecnologia: "Java 25, Spring Boot, PostgreSQL, Docker, Ollama, Whisper, FFmpeg",
+        git: undefined,
+        link: undefined
+      },
+      {
+        title: "Jajá Estuda",
+        img: "./assets/jaja_estuda.png",
+        sobre: "Escola particular com IA para quem tem dislexia ou TDAH: lê o edital, monta o plano, escreve o material com fonte e gera simulados. Backend Java, frontend TypeScript, tudo em Docker Compose.",
+        tecnologia: "Java 25, Spring Boot, PostgreSQL, TypeScript, Docker Compose, Ollama, nginx",
+        git: undefined,
+        link: undefined
+      },
+      {
+        title: "HoverTraduz",
+        img: "./assets/hovertraduz.png",
+        sobre: "Extensão Chrome que traduz texto ao passar o mouse e converte preços em outras moedas, sem alterar a página. Cache em IndexedDB para evitar chamadas repetidas.",
+        tecnologia: "JavaScript, Chrome Extension (Manifest V3), IndexedDB, APIs de tradução e câmbio",
+        git: undefined,
+        link: undefined
+      },
+      {
         title: "Hotel API — Desafio Técnico Senior",
         img: "./assets/hotel_api_senior.png",
         sobre: "API REST de hóspedes e check-ins de hotel, com cálculo de diárias e garagem. Documentada com Swagger.",
@@ -60,22 +84,6 @@ export class ApresentacaoComponent implements OnInit {
         tecnologia: "HTML, CSS, JavaScript",
         git: undefined,
         link: "https://no-limite-multas-project.vercel.app"
-      },
-      {
-        title: "Lista de Telefones",
-        img: "./assets/lista_telefone.png",
-        sobre: "Agenda de contatos com cadastro e remoção, manipulando o DOM com jQuery.",
-        tecnologia: "HTML, CSS, JavaScript, jQuery",
-        git: "https://github.com/Jailsonr12/lista_de_telefone",
-        link: "https://lista-de-telefone-liard.vercel.app"
-      },
-      {
-        title: "Calculadora de Médias",
-        img: "./assets/calculadora_medias.png",
-        sobre: "Cadastro de atividades e notas com cálculo automático da média e do resultado.",
-        tecnologia: "HTML, CSS, JavaScript",
-        git: "https://github.com/Jailsonr12/projeto_calculadora_medias",
-        link: "https://projeto-calculadora-medias-gamma-six.vercel.app"
       },
       {
         title: "Site do Totoro",

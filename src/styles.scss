@@ -11,6 +11,12 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Fundo único da página: as seções ficam transparentes sobre ele */
+body {
+    background: #1c1819;
+    color: #e6e6e6;
+}
+
 section[id] {
     scroll-margin-top: 3.5rem;
 }

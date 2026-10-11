@@ -119,6 +119,15 @@
     text-transform: capitalize;
 }
 
+.card-footer .privado {
+    color: #c9c9c9;
+    font-size: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    padding: 0.3rem 0.5rem;
+    text-transform: none;
+}
+
 .card-footer a:hover,
 .card-footer a:focus-visible {
     background-color: #8cf2b8;

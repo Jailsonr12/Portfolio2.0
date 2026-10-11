@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 .experiencia {
-  background: linear-gradient(to bottom, #221717, #1c1a1f);
+  background: transparent;
   color: #e6e6e6;
   padding: 3rem 1.5rem 3.5rem;
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -219,4 +219,105 @@ header {
   .titulo { font-size: 2rem; }
   .linha-do-tempo { padding-left: 1rem; }
   .marcador { left: calc(-1rem - 7px); }
+}
+
+/* Trajetória: linha do tempo horizontal no desktop, vertical no celular */
+.trajetoria-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: -0.5rem auto 1.5rem;
+}
+
+.trajetoria {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+  position: relative;
+  padding: 0;
+}
+
+.trajetoria::before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 2.65rem;
+  height: 2px;
+  background: linear-gradient(to right, #ffb3b3, #8cf2b8);
+  opacity: 0.6;
+}
+
+.marco {
+  text-align: center;
+  padding: 0 0.4rem;
+}
+
+.marco .ano {
+  display: block;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  color: #ffb3b3;
+  line-height: 1;
+  margin-bottom: 0.55rem;
+}
+
+.marco .ponto {
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin: 0 auto 0.8rem;
+  border-radius: 50%;
+  background: #8cf2b8;
+  box-shadow: 0 0 0 4px rgba(140, 242, 184, 0.2), 0 0 12px rgba(140, 242, 184, 0.5);
+}
+
+.marco h3 {
+  font-size: 0.95rem;
+  color: #fff;
+  margin-bottom: 0.35rem;
+}
+
+.marco p {
+  font-size: 0.85rem;
+  color: #c9c9c9;
+}
+
+@media (max-width: 820px) {
+  .trajetoria {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+    padding-left: 2.2rem;
+  }
+
+  .trajetoria::before {
+    left: 0.45rem;
+    right: auto;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    height: auto;
+    background: linear-gradient(to bottom, #ffb3b3, #8cf2b8);
+  }
+
+  .marco {
+    text-align: left;
+    position: relative;
+    padding: 0;
+  }
+
+  .marco .ano {
+    display: inline-block;
+    margin: 0 0 0.3rem;
+  }
+
+  .marco .ponto {
+    position: absolute;
+    left: -2.15rem;
+    top: 0.25rem;
+    margin: 0;
+  }
 }

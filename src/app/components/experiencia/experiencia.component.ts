@@ -23,6 +23,12 @@ interface Curso {
   status: 'concluído' | 'em andamento';
 }
 
+interface Marco {
+  ano: string;
+  titulo: string;
+  texto: string;
+}
+
 @Component({
   selector: 'app-experiencia',
   templateUrl: './experiencia.component.html',
@@ -33,7 +39,7 @@ export class ExperienciaComponent {
   sobre = 'Desenvolvedor de software com foco em backend Java e integrações entre sistemas. Na Senior Sistemas lidero a squad de integrações de controle de acesso e sou referência técnica em protocolos de comunicação e drivers de fabricante. Vim da área de qualidade, o que me deixou o hábito de medir antes de opinar e de ir até a camada onde o problema nasce.';
 
   competencias: Grupo[] = [
-    { nome: 'Backend', itens: ['Java 8 a 25', 'Spring Boot 3', 'Spring Modulith', 'JPA / Hibernate', 'APIs REST', 'WebSocket', 'RabbitMQ', 'PostgreSQL', 'MySQL', 'Flyway', 'Maven', 'Swagger'] },
+    { nome: 'Backend', itens: ['Java 8 a 25', 'Spring Boot 3', 'JPA / Hibernate', 'APIs REST', 'WebSocket', 'RabbitMQ', 'PostgreSQL', 'MySQL', 'Maven', 'Swagger'] },
     { nome: 'Qualidade e DevOps', itens: ['Git / Git Flow', 'GitHub Actions', 'Azure DevOps', 'SonarQube', 'Docker', 'Selenium', 'Postman', 'Testes de carga'] },
     { nome: 'Frontend', itens: ['Angular', 'TypeScript', 'React', 'JavaScript', 'HTML', 'CSS', 'Bootstrap'] },
   ];
@@ -57,18 +63,21 @@ export class ExperienciaComponent {
     {
       titulo: 'Jajá News IA',
       mostra: 'Aprender fazendo',
-      texto: 'Projeto pessoal em Java 25 e Spring Boot, monólito modular com Spring Modulith, PostgreSQL, Flyway e Ollama em Docker. Pesquisa notícias com IA, registra evidências com fonte e gera vídeos curtos. É onde testo arquitetura antes de levar para o trabalho.',
+      texto: 'Projeto pessoal em Java 25 e Spring Boot, com PostgreSQL e Ollama rodando em Docker. Pesquisa notícias com IA, registra evidências com fonte e gera vídeos curtos. É onde testo arquitetura antes de levar para o trabalho.',
     },
     {
       titulo: 'HoverTraduz',
       mostra: 'Resolver um problema meu e entregar como produto',
       texto: 'Extensão Chrome que traduz texto ao passar o mouse e converte moedas sem alterar a página, com cache local e política de privacidade publicada aqui no site.',
     },
-    {
-      titulo: 'Da mecânica para o software',
-      mostra: 'Trajetória',
-      texto: 'Sou técnico em Mecânica Industrial e trabalhei como montador e inspetor de qualidade antes de programar. Em 2022 entrei no +Devs2Blu, comecei como estagiário Java e, em 2026, virei squad leader. A inspeção me ensinou a procurar o defeito antes que ele chegue no cliente.',
-    },
+  ];
+
+  trajetoria: Marco[] = [
+    { ano: '2018', titulo: 'Técnico em Mecânica Industrial', texto: 'Formado no CEDUP Hermann Hering. Aprendi a medir, conferir e desconfiar da peça antes de aprovar.' },
+    { ano: '2020', titulo: 'Chão de fábrica', texto: 'Montador e inspetor de qualidade na Hennings Mangueiras. O defeito tinha que ser achado antes de chegar no cliente.' },
+    { ano: '2022', titulo: 'Virada para o software', texto: 'Entrei no +Devs2Blu, comecei o estágio Java na Berkan e a graduação em Engenharia de Software.' },
+    { ano: '2024', titulo: 'Qualidade de software', texto: 'QA na CloudPark e depois na Senior Sistemas: automação, homologação de dispositivos e o simulador que virou ferramenta do time.' },
+    { ano: '2026', titulo: 'Squad leader e engenheiro', texto: 'Desenvolvedor backend Java, líder da squad de integrações e formado em Engenharia de Software.' },
   ];
 
   cargos: Cargo[] = [
@@ -78,7 +87,7 @@ export class ExperienciaComponent {
       periodo: 'fev/2026 – atual · Blumenau, SC',
       itens: [
         'Sistemas corporativos em Java 8, 17 e 25: legado, aplicações modernas e novas funcionalidades.',
-        'Spring Boot, APIs REST, JPA, Flyway, SQL, SonarQube e pipelines CI/CD.',
+        'Spring Boot, APIs REST, JPA, SQL, SonarQube e pipelines CI/CD.',
         'Integrações com dispositivos de controle de acesso via SDK e WebSocket.',
         'Incidentes em ambiente de cliente, suporte técnico a fabricantes e liderança da squad.',
         'Simulador de dispositivos e teste de carga que viraram ferramenta e documentação oficial do produto.',

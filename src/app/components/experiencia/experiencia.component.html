@@ -22,6 +22,17 @@
         </article>
     </div>
 
+    <h2 class="titulo">Trajetória</h2>
+    <p class="sobre trajetoria-intro">Da mecânica para o software. A inspeção me ensinou a procurar o defeito antes que ele chegue no cliente.</p>
+    <ol class="trajetoria">
+        <li class="marco" *ngFor="let m of trajetoria; let i = index" appRevelar [atraso]="i * 120">
+            <span class="ano">{{ m.ano }}</span>
+            <span class="ponto" aria-hidden="true"></span>
+            <h3>{{ m.titulo }}</h3>
+            <p>{{ m.texto }}</p>
+        </li>
+    </ol>
+
     <h2 class="titulo">Experiência</h2>
     <ol class="linha-do-tempo">
         <li class="cargo" *ngFor="let c of cargos" appRevelar>

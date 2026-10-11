@@ -15,9 +15,10 @@
                 <h3>{{ technologies }}</h3>
             </div>
         </div>
-        <div class="card-footer" *ngIf="githubLink || pageLink">
+        <div class="card-footer">
             <a *ngIf="githubLink" [href]="githubLink" target="_blank" rel="noopener">GitHub</a>
             <a *ngIf="pageLink" [href]="pageLink" target="_blank" rel="noopener">Ver projeto</a>
+            <span class="privado" *ngIf="!githubLink && !pageLink">Repositório privado</span>
         </div>
     </article>
 </div>
