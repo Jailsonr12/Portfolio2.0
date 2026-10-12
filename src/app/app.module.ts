@@ -14,6 +14,7 @@ import { ExperienciaComponent } from './components/experiencia/experiencia.compo
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RevelarDirective } from './directives/revelar.directive';
+import { JajaNewsComponent } from './components/jaja-news/jaja-news.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RevelarDirective } from './directives/revelar.directive';
     ExperienciaComponent,
     NavComponent,
     FooterComponent,
-    RevelarDirective
+    RevelarDirective,
+    JajaNewsComponent
   ],
   imports: [
     BrowserModule,

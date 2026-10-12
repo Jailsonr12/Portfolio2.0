@@ -19,6 +19,7 @@
     <div class="card-footer">
         <a *ngIf="projeto.git" [href]="projeto.git" target="_blank" rel="noopener">GitHub</a>
         <a *ngIf="projeto.link" [href]="projeto.link" target="_blank" rel="noopener">Ver projeto</a>
+        <a *ngIf="projeto.rota" [routerLink]="projeto.rota">Ver a prova</a>
         <span class="privado" *ngIf="!projeto.git && !projeto.link">Repositório privado</span>
     </div>
 </article>

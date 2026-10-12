@@ -11,6 +11,7 @@ export interface Projeto {
   tecnologias: string[];
   git?: string;
   link?: string;
+  rota?: string;     // página interna com a prova do projeto
 }
 
 @Component({
@@ -33,6 +34,7 @@ export class ApresentacaoComponent {
         'Narração, legendas por palavra, imagens e vídeo final gerados localmente, sem serviço pago.',
       ],
       tecnologias: ['Java 25', 'Spring Boot', 'PostgreSQL', 'Docker', 'Ollama', 'Whisper', 'FFmpeg'],
+      rota: '/jaja-news',
     },
     {
       title: 'Jajá Estuda',
