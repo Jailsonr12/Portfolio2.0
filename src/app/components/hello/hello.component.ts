@@ -36,7 +36,7 @@ export class HelloComponent implements OnInit {
 
   aboutMe: Array<string> = [
     'Desenvolvedor de integrações na Senior Sistemas e líder de squad',
-    'Referência técnica em Ronda X, protocolos de comunicação e drivers de fabricante',
+    'Integro sistemas com dispositivos de controle de acesso: protocolos e drivers de fabricante',
     'Java, Spring Boot, APIs REST, WebSocket, SQL, Docker e CI/CD',
     'Acho a causa raiz em problemas que cruzam banco, SDK e dispositivo',
     'Crio simuladores e ferramentas de teste para o time',
