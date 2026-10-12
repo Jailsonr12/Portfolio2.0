@@ -1,0 +1,36 @@
+.rodape {
+  background: rgba(0, 0, 0, 0.25);
+  color: #c9c9c9;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.nome {
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.nome span { color: #9a9a9a; font-weight: 400; }
+
+.links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.links a {
+  color: #8cf2b8;
+  text-decoration: none;
+}
+
+.links a:hover,
+.links a:focus-visible { text-decoration: underline; }
+
+.nota { font-size: 0.85rem; color: #7f7f7f; }

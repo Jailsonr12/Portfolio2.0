@@ -1,0 +1,87 @@
+<section class="jn">
+  <a class="voltar" routerLink="/" fragment="projetos">← Voltar aos projetos</a>
+
+  <header appRevelar>
+    <span class="selo">Pessoal · 2025 – 2026 · Repositório privado</span>
+    <h1>Jajá News IA</h1>
+    <p class="lead">Pesquisa notícias com IA rodando na minha máquina e transforma em vídeos curtos, com fonte em cada afirmação.
+      O que está nesta página é saída real do sistema, gerada em agosto de 2026.</p>
+    <ul class="chips" aria-label="Tecnologias">
+      <li *ngFor="let t of tecnologias">{{ t }}</li>
+    </ul>
+  </header>
+
+  <div class="topo">
+    <figure class="video" appRevelar>
+      <video [src]="video" [poster]="poster" controls playsinline preload="metadata"
+        aria-label="Vídeo gerado pelo Jajá News IA sobre a dívida pública"></video>
+      <figcaption>Vídeo gerado pela máquina, sem edição manual. Pauta: dívida pública.</figcaption>
+    </figure>
+
+    <div class="lado">
+      <ul class="numeros" aria-label="Números deste job">
+        <li *ngFor="let n of numeros; let i = index" appRevelar [atraso]="i * 80">
+          <strong>{{ n.valor }}</strong><span>{{ n.rotulo }}</span>
+        </li>
+      </ul>
+
+      <h2>Como funciona</h2>
+      <ol class="etapas">
+        <li *ngFor="let e of etapas; let i = index" appRevelar [atraso]="i * 90">
+          <strong>{{ e.nome }}</strong>
+          <p>{{ e.texto }}</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <h2 class="secao">O que ficou registrado</h2>
+
+  <div class="provas">
+    <article class="prova" appRevelar>
+      <h3>Investigação</h3>
+      <p class="sub">Cada alegação ganha tipo, estado e confiança. Só a confirmada entrou no roteiro.</p>
+      <ul class="alegacoes">
+        <li *ngFor="let a of alegacoes" [class.usada]="a.usada">
+          <p>{{ a.texto }}</p>
+          <small>{{ a.tipo }} · {{ a.estado }} · confiança {{ a.confianca }} · {{ a.fontes }} fonte{{ a.fontes > 1 ? 's' : '' }}
+            <b *ngIf="a.usada">· usada no vídeo</b></small>
+        </li>
+      </ul>
+      <p class="sub">Fontes lidas:</p>
+      <ul class="fontes">
+        <li *ngFor="let f of fontes"><a [href]="f.url" target="_blank" rel="noopener">{{ f.nome }}</a> · {{ f.data }}</li>
+      </ul>
+    </article>
+
+    <article class="prova" appRevelar [atraso]="120">
+      <h3>Quality gate editorial</h3>
+      <p class="sub">Nota 100 de 100. Mínimo para aprovar: 85.</p>
+      <ul class="notas">
+        <li *ngFor="let n of notas">
+          <span>{{ n.criterio }}</span>
+          <div class="barra"><i [style.width.%]="(n.nota / n.max) * 100"></i></div>
+          <b>{{ n.nota }}/{{ n.max }}</b>
+        </li>
+      </ul>
+      <p class="sub">Motivo registrado pelo avaliador: "Não há alegações factuais sem evidência, fontes ou links no material fornecido."</p>
+      <p class="sub">Quality gate técnico: duração esperada 42,828 s, real 42,833 s. Aprovado.</p>
+    </article>
+
+    <article class="prova" appRevelar [atraso]="240">
+      <h3>Auditoria da chamada à IA</h3>
+      <p class="sub">Cada chamada ao modelo fica gravada. Esta é a que escreveu o roteiro.</p>
+      <dl class="auditoria">
+        <ng-container *ngFor="let a of auditoria">
+          <dt>{{ a[0] }}</dt>
+          <dd>{{ a[1] }}</dd>
+        </ng-container>
+      </dl>
+    </article>
+  </div>
+
+  <h2 class="secao">O que isso mostra sobre mim</h2>
+  <ul class="mostra" appRevelar>
+    <li *ngFor="let m of mostra">{{ m }}</li>
+  </ul>
+</section>

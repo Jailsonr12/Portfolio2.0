@@ -7,8 +7,8 @@
   text-transform: uppercase;
 }
 
-body {
-  background: linear-gradient(to bottom right, #363636, #050c24);
+.projetos {
+  background: transparent;
   overflow-y: auto;
   width: 100%;
   padding-top: 3rem;
@@ -33,13 +33,17 @@ main{
 }
 
 ul {
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 380px));
+  gap: 1.5rem;
   justify-content: center;
-  align-items: center;
-  }
+  align-items: stretch;
+  list-style-type: none;
+  width: 100%;
+  max-width: 1240px;
+  padding: 0 1rem 3rem;
+}
 
 li {
-  margin: 10px;
+  margin: 0;
 }

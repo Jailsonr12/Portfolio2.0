@@ -7,4 +7,58 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 
+/* Fundo único da página: as seções ficam transparentes sobre ele */
+body {
+    background: #221717;
+    color: #e6e6e6;
+}
+
+/* O brilho da capa fica fixo atrás de toda a página (pseudo-elemento porque o iOS ignora background-attachment: fixed) */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -12%;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 40%, #555454df, #211c1cdc, #221717);
+    pointer-events: none;
+    animation: respirar 14s ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes respirar {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(2%, -3%) scale(1.06); }
+}
+
+section[id] {
+    scroll-margin-top: 3.5rem;
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid #8cf2b8;
+    outline-offset: 2px;
+}
+
+/* Animação de entrada (diretiva appRevelar) */
+.revelar {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.revelar.visivel {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .revelar { opacity: 1; transform: none; transition: none; }
+    body::before { animation: none; }
+}

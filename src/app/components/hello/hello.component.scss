@@ -8,14 +8,10 @@
   text-transform: uppercase;
 }
 
-body {
-  font-family: "Courier New", Courier, monospace;
-}
-
 /* Alinhamento central */
-body {
+.hero {
   font-family: "Belanosima", sans-serif;
-  background: radial-gradient(circle at 50% 35%, #555454df, #211c1cdc, #221717);
+  background: transparent;
   height: 100vh;
   width: 100%;
   display: flex;
@@ -71,12 +67,89 @@ body {
   height: 6rem
 }
 
+.imgs a svg {
+  width: 100%;
+  height: 100%;
+}
+
 .imgs a {
   display: inline-block;
   margin-right: .6rem;
-  transition: transform 1.8s ease;
+  transition: transform 0.25s ease;
 }
 
-.imgs a:hover svg {
-  transform: translateX(0.2rem);
+.imgs a:hover,
+.imgs a:focus-visible {
+  transform: translateY(-3px);
+}
+
+/* Botões de ação */
+.acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.botao {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #8cf2b8;
+  border: 2px solid #8cf2b8;
+  border-radius: 999px;
+  padding: 0.5rem 1.4rem;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.botao.primario {
+  background: #8cf2b8;
+  color: #141218;
+}
+
+.botao:hover,
+.botao:focus-visible {
+  background: #ffb3b3;
+  border-color: #ffb3b3;
+  color: #141218;
+  transform: translateY(-2px);
+}
+
+/* Entrada da capa: cada bloco sobe um pouco depois do anterior */
+.conteiner-start > * {
+  animation: entrar 0.7s ease both;
+}
+
+.conteiner-start > .name { animation-delay: 0.05s; }
+.conteiner-start > .app { animation-delay: 0.2s; }
+.conteiner-start > .Iam { animation-delay: 0.35s; }
+.conteiner-start > .acoes { animation-delay: 0.5s; }
+
+@keyframes entrar {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Brilho que passa pelo título de tempos em tempos */
+.app div h1.dev,
+.app div h1.full {
+  background: linear-gradient(110deg, #ffffff 0%, #ffffff 42%, #8cf2b8 50%, #ffffff 58%, #ffffff 100%);
+  background-size: 260% 100%;
+  background-position: 110% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: brilho 7s ease-in-out infinite;
+}
+
+@keyframes brilho {
+  0%, 60% { background-position: 110% 0; }
+  100% { background-position: -30% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .conteiner-start > * { animation: none; }
+  .app div h1.dev,
+  .app div h1.full { animation: none; color: #fff; background: none; }
 }

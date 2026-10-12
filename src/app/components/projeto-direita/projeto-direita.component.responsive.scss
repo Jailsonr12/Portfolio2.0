@@ -1,20 +1,13 @@
-@media screen and (min-width: 320px) and (max-width: 480px) {
-    .card {
-        position: relative;
-        width: 300px; 
-        height: 400px; 
-    }
-    .card img {
-        height: 175px;
+@media screen and (max-width: 480px) {
+    .capa img {
+        height: 160px;
     }
 
-    .card-sobre h3 {
-        font-size: 0.7rem;
+    .corpo h3 {
+        font-size: 1.05rem;
     }
-    .card-sobre p {
-        font-size: 0.7rem;
-    }
-    .card-footer a {
-        font-size: 0.7rem;
+
+    .resumo {
+        font-size: 0.84rem;
     }
 }

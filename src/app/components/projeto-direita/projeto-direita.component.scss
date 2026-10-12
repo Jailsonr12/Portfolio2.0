@@ -1,114 +1,159 @@
-.card-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: default;
+:host {
+    display: block;
+    height: 100%;
 }
 
 .card {
-    position: relative;
-    width: 400px; 
-    height: 500px; 
-    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     box-shadow: 5px 4px 10px #000000;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s;
-    padding: 10px 20px 10px 20px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #e6e6e6;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+    border-color: rgba(140, 242, 184, 0.6);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(140, 242, 184, 0.15);
 }
 
-.card img {
+.card:hover img {
+    transform: scale(1.04);
+}
+
+/* Capa com o selo de tipo e ano */
+.capa {
+    position: relative;
+    overflow: hidden;
+}
+
+.capa img {
+    display: block;
     width: 100%;
-    height: 300px;
+    height: 190px;
     object-fit: cover;
     object-position: top;
-    border-radius: 10px 10px 0 0;
-    cursor: zoom-in !important;
-    box-shadow: 2px 1px 3px #000000;
+    cursor: zoom-in;
+    transition: transform 0.4s ease;
 }
 
-.card-content p {
-    font-size: 14px;
-    color: #555;
-}
-
-.card-title {
-    text-align: center;
-    background-color: rgb(62, 84, 185); 
-    border-radius: 10px 10px 0 0;
-    padding: 10px;
-    box-shadow: 2px 1px 3px #000000;
-    margin-bottom: 10px;
-    color: white;
-}
-
-.card-title h3 {
-    font-size: 18px;
-    margin: 0;
-    text-transform: capitalize;
-}
-
-.card-sobre {
-    max-width: 360px;
-    margin-top: 0.2rem;
-    border-radius: 25px;
-    display: flex;
-    align-items: center;
-    color: white;
-}
-
-.card-sobre p {
-    background-color: #3f51b5;
-    box-shadow: 2px 1px 3px #000000;
-    padding: 10px;
-    font-size: 0.9rem;
-    border-radius: 25px;
-    color: white;
-    margin: 0;
-    text-transform: capitalize;
-}
-
-.card-sobre h3 {
-    padding: 5px 10px;
-    font-size: 0.8rem;
-    border-radius: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    color: white;
-    box-shadow: 2px 1px 3px #000000;
-    margin-left: 0.2rem;
-    text-transform: capitalize;
-}
-
-.card-footer {
+.tipo {
     position: absolute;
-    bottom: 0;
+    left: 12px;
+    bottom: 12px;
+    font-size: 0.72rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #141218;
+    background: #8cf2b8;
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Corpo */
+.corpo {
+    padding: 0.9rem 1.1rem 0.4rem;
+    flex: 1;
+}
+
+.corpo h3 {
+    font-size: 1.15rem;
+    margin: 0 0 0.4rem;
+    color: #fff;
+    text-transform: none;
+}
+
+.resumo {
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: #d6d6d6;
+    margin: 0 0 0.6rem;
+    text-transform: none;
+}
+
+.destaques {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.7rem;
+}
+
+.destaques li {
+    position: relative;
+    padding-left: 1rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #bdbdbd;
+    margin-bottom: 0.3rem;
+    text-transform: none;
+}
+
+.destaques li::before {
+    content: "";
+    position: absolute;
     left: 0;
-    right: 0;
+    top: 0.5em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #8cf2b8;
+}
+
+.chips {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.chips li {
+    font-size: 0.72rem;
+    color: #fff;
+    background: #5b5a8c;
+    border-radius: 999px;
+    padding: 0.15rem 0.55rem;
+    text-transform: none;
+}
+
+/* Rodapé */
+.card-footer {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.7rem 1.1rem 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin-top: auto;
 }
 
 .card-footer a {
+    transition: background-color 0.2s ease, color 0.2s ease;
     text-decoration: none;
-    color: #f8f8f8;
+    color: #141218;
     font-size: 0.8rem;
-    background-color: #3f51b5;
-    border-radius: 10px 10px 10px 10px;
-    padding: 0.3rem;
-    box-shadow: 2px 1px 3px #000000;
-    text-transform: capitalize;
+    font-weight: 600;
+    background-color: #8cf2b8;
+    border-radius: 8px;
+    padding: 0.35rem 0.8rem;
+    text-transform: none;
 }
 
-.card-footer a:hover {
-    text-decoration: underline;
-    color: #000; 
+.card-footer a:hover,
+.card-footer a:focus-visible {
+    background-color: #ffb3b3;
+}
+
+.card-footer .privado {
+    color: #c9c9c9;
+    font-size: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    padding: 0.35rem 0.6rem;
+    text-transform: none;
 }

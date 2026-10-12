@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Projeto } from '../apresentacao/apresentacao.component';
 
 @Component({
   selector: 'app-projeto-direita',
@@ -6,22 +7,17 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./projeto-direita.component.scss', './projeto-direita.component.responsive.scss']
 })
 export class ProjetoDireitaComponent {
-  @Input() title: string | undefined;
-  @Input() imageUrl: string | undefined;
-  @Input() about: string | undefined;
-  @Input() technologies: string | undefined;
-  @Input() githubLink: string | undefined;
-  @Input() pageLink: string | undefined;
-  
-  showFullscreen: boolean = false;
-  fullscreenImageUrl: string = '';
+  @Input() projeto!: Projeto;
 
-  openModal(imageUrl: string) {
+  showFullscreen = false;
+  fullscreenImageUrl = '';
+
+  openModal(imageUrl: string): void {
     this.showFullscreen = true;
     this.fullscreenImageUrl = imageUrl;
   }
 
-  closeModal() {
+  closeModal(): void {
     this.showFullscreen = false;
   }
 }

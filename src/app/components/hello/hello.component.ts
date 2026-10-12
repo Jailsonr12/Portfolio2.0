@@ -25,33 +25,35 @@ export class HelloComponent implements OnInit {
   @Input() git?: String;
   @Input() linkedin?: String;
   @Input() curriculum?: String;
+  @Input() email?: String;
 
   nameTitles: Array<string> = [
-    'Jaja',
-    'Jailson da silva roth',
-    'Jailson Roth',
-    'Roth Jailson',
     'Jailson',
+    'Jailson Roth',
+    'Jaja',
+    'Jailson da Silva Roth',
   ];
 
   aboutMe: Array<string> = [
-    'Tenho 23 anos e estou cursando Engenharia de Software',
-    'Gosto de anime, manga, videogame, ler e ir para academia',
-    'Tenho experiência de 1 ano como Desenvolvimento Web full-stack.',
-    'Atualmente trabalho como QA e DevOps na CloudPark',
-    'Conhecimento nas linguagens: Java, TypeScript, Angular, JS e MySQL',
-    'Sempre estou em busca de mais conhecimento e aprimoramento',
-    'Muito prazer esse é meu portfólio, e um pouco sobre mim'
+    'Desenvolvedor de integrações na Senior Sistemas e líder de squad',
+    'Integro sistemas com dispositivos de controle de acesso: protocolos e drivers de fabricante',
+    'Java, Spring Boot, APIs REST, WebSocket, SQL, Docker e CI/CD',
+    'Acho a causa raiz em problemas que cruzam banco, SDK e dispositivo',
+    'Crio simuladores e ferramentas de teste para o time',
+    'Formado em Engenharia de Software pela Estácio, em Blumenau, SC',
+    'Gosto de anime, mangá, videogame, leitura e academia',
+    'Muito prazer, este é meu portfólio e um pouco sobre mim'
   ];
 
   ngOnInit(): void {
     this.title = this.title || 'Jailson';
     this.iam = this.iam || 'Muito prazer, este é meu portfólio e um pouco sobre mim';
     this.subtitleOne = 'DESENVOLVEDOR'
-    this.subtitleTwo = 'FULL-STACK'
+    this.subtitleTwo = 'BACKEND'
     this.git= 'https://github.com/Jailsonr12'
     this.linkedin = 'https://www.linkedin.com/in/jailsonroth/'
-    this.curriculum = 'https://drive.google.com/file/d/1Tk5cJhaPI956wzaAYvSSaP9MH67Ax0dF/view?usp=drive_link'
+    this.curriculum = 'assets/curriculo-jailson-roth.pdf'
+    this.email = 'mailto:jailson.rothdev@gmail.com'
     this.changeName();
     this.changeiam();
   }
