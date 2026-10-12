@@ -81,6 +81,7 @@ export class ExperienciaComponent {
       cargo: 'Software Developer I · Squad Leader',
       periodo: 'fev/2026 – atual · Blumenau, SC',
       itens: [
+        'Promovido de QA a desenvolvedor dentro da mesma squad.',
         'Sistemas corporativos em Java 8, 17 e 25: legado, aplicações modernas e novas funcionalidades.',
         'Spring Boot, APIs REST, JPA, SQL, SonarQube e pipelines CI/CD.',
         'Integrações com dispositivos de controle de acesso via SDK e WebSocket.',
@@ -113,6 +114,7 @@ export class ExperienciaComponent {
       itens: [
         'Sistema de Gestão de Terceiros (GD3): Java, Spring Boot, MySQL, Angular e TypeScript.',
         'Relatórios personalizados, paginação dinâmica e correção de falhas críticas.',
+        'No fim do estágio recebi proposta para continuar como PJ. Recusei: achei cedo para atuar como PJ.',
       ]
     },
     {
