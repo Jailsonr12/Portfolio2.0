@@ -1,4 +1,27 @@
-<main class="jo">
+<main class="cap" *ngIf="pagina === 'site'">
+  <img class="cap__logo" [src]="logo" alt="Logo Jajá Ofertas" width="120" height="120">
+  <p class="cap__marca">Jajá Ofertas</p>
+  <h1 class="cap__titulo">Promoção de verdade, sem enrolação</h1>
+  <p class="cap__sub">Um robô confere o histórico de preço antes de postar. Se não caiu de verdade, não sai.</p>
+
+  <a class="cap__botao" [href]="telegram" target="_blank" rel="noopener">Entrar no canal do Telegram</a>
+  <p class="cap__selos">Grátis · Sem cadastro · Saia quando quiser</p>
+
+  <ul class="cap__lista">
+    <li><strong>Desconto real:</strong> pelo menos 20% abaixo do preço comum dos últimos dias.</li>
+    <li><strong>Cupons da loja:</strong> o código pronto para copiar, com a validade.</li>
+    <li><strong>Aviso de erro de preço:</strong> desconto fora do comum sai marcado.</li>
+  </ul>
+
+  <a class="cap__botao cap__botao--secundario" [href]="telegram" target="_blank" rel="noopener">Quero receber as ofertas</a>
+
+  <p class="cap__rodape">
+    Links de afiliado: o canal ganha comissão se você comprar, sem custo extra para você.<br>
+    <a routerLink="/jaja-ofertas/privacidade">Privacidade</a> · <a routerLink="/jaja-ofertas/termos">Termos</a>
+  </p>
+</main>
+
+<main class="jo" *ngIf="pagina !== 'site'">
   <header class="jo__topo">
     <img [src]="logo" alt="Logo Jajá Ofertas" width="64" height="64">
     <div>
