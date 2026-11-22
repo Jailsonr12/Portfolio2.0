@@ -1,0 +1,77 @@
+<main class="jo">
+  <header class="jo__topo">
+    <img [src]="logo" alt="Logo Jajá Ofertas" width="64" height="64">
+    <div>
+      <p class="jo__marca">Jajá Ofertas</p>
+      <h1 *ngIf="pagina === 'inicio'">Promoções reais, conferidas pelo histórico de preço</h1>
+      <h1 *ngIf="pagina === 'privacidade'">Política de privacidade</h1>
+      <h1 *ngIf="pagina === 'termos'">Termos de uso</h1>
+    </div>
+  </header>
+
+  <nav class="jo__nav" aria-label="Páginas do Jajá Ofertas">
+    <a routerLink="/jaja-ofertas" [class.ativo]="pagina === 'inicio'">Início</a>
+    <a routerLink="/jaja-ofertas/privacidade" [class.ativo]="pagina === 'privacidade'">Privacidade</a>
+    <a routerLink="/jaja-ofertas/termos" [class.ativo]="pagina === 'termos'">Termos</a>
+  </nav>
+
+  <ng-container *ngIf="pagina === 'inicio'">
+    <p>Um robô anota todo dia o preço de milhares de produtos em lojas parceiras. Quando o preço cai pelo menos 20% abaixo do preço comum, a oferta sai no canal do Telegram e vira um vídeo curto no TikTok.</p>
+    <ul>
+      <li>Canal no Telegram: <a href="https://t.me/jajaofertas" target="_blank" rel="noopener">t.me/jajaofertas</a></li>
+      <li>TikTok: <a href="https://www.tiktok.com/@jajaofertas" target="_blank" rel="noopener">@jajaofertas</a></li>
+    </ul>
+    <p class="jo__suave">Os links das ofertas são de afiliado: o canal ganha comissão se você comprar, sem custo extra para você.</p>
+    <section lang="en">
+      <h2>About (English)</h2>
+      <p>Jajá Ofertas is an automated deals channel. A bot tracks product prices from official affiliate APIs and publishes only real discounts (at least 20% below the usual price) to our Telegram channel and as short videos on our own TikTok account. Links are affiliate links.</p>
+    </section>
+  </ng-container>
+
+  <ng-container *ngIf="pagina === 'privacidade'">
+    <p class="jo__suave">Atualizada em {{ atualizadoEm }}.</p>
+    <h2>Resumo</h2>
+    <p>O Jajá Ofertas <strong>não coleta dados pessoais</strong> de quem acompanha o canal ou assiste aos vídeos. Não há cadastro, formulário, cookie de rastreamento ou anúncio de terceiros nestas páginas.</p>
+    <h2>O que o robô usa</h2>
+    <div class="jo__tabela">
+      <table>
+        <tr><th>Dado</th><th>De onde vem</th><th>Para quê</th></tr>
+        <tr><td>Nome, preço, foto e link de produtos</td><td>APIs oficiais das redes de afiliados (ex.: Lomadee)</td><td>Calcular se o desconto é real e montar o post</td></tr>
+        <tr><td>Histórico de preços</td><td>Gerado por nós, a partir do item acima</td><td>Comparar o preço de hoje com o preço comum</td></tr>
+        <tr><td>Acesso à conta TikTok <strong>@jajaofertas</strong></td><td>Login do próprio dono da conta, pela API oficial do TikTok</td><td>Enviar os vídeos de oferta para a nossa conta</td></tr>
+      </table>
+    </div>
+    <h2>Integração com o TikTok</h2>
+    <p>O app usa a API oficial do TikTok somente para publicar vídeos na conta do próprio dono do projeto (@jajaofertas). Não acessamos contas, vídeos, mensagens ou dados de outros usuários do TikTok. O token de acesso fica num servidor próprio, protegido, e pode ser revogado a qualquer momento nas configurações do TikTok.</p>
+    <h2>Compartilhamento</h2>
+    <p>Não vendemos nem compartilhamos dados pessoais. Ao clicar num link de oferta, você vai para a loja, que segue a política de privacidade dela.</p>
+    <h2>Seus direitos (LGPD)</h2>
+    <p>Como não guardamos dados pessoais de quem nos acompanha, não há o que corrigir ou apagar. Se tiver qualquer dúvida, fale com a gente pelo contato abaixo.</p>
+    <h2>Contato</h2>
+    <p>E-mail: <a [href]="'mailto:' + contato">{{ contato }}</a></p>
+    <section lang="en">
+      <h2>Privacy policy (English summary)</h2>
+      <p>Jajá Ofertas does not collect personal data from viewers or channel subscribers. The app uses official affiliate APIs for product data and the official TikTok API only to upload videos to the project owner's own account (@jajaofertas). We do not access other TikTok users' data. Access tokens are stored on our own secured server and can be revoked at any time. We do not sell or share personal data. Contact: {{ contato }}.</p>
+    </section>
+  </ng-container>
+
+  <ng-container *ngIf="pagina === 'termos'">
+    <p class="jo__suave">Atualizados em {{ atualizadoEm }}.</p>
+    <h2>O que é</h2>
+    <p>O Jajá Ofertas divulga promoções de lojas parceiras no Telegram e no TikTok. Não vendemos nada: a compra acontece na loja.</p>
+    <h2>Links de afiliado</h2>
+    <p>Os links são de afiliado. Se você comprar, o canal recebe uma comissão da loja, sem custo extra para você. Todo post é identificado como publicidade (#publi).</p>
+    <h2>Preços</h2>
+    <p>O desconto é calculado pelo nosso histórico de preços, não pelo "preço de" da loja. Preço e estoque podem mudar a qualquer momento: confira sempre na página da loja antes de comprar. Descontos fora do comum saem com aviso de que pode ser erro de preço.</p>
+    <h2>Responsabilidade</h2>
+    <p>Entrega, troca, garantia e atendimento são da loja onde você comprar.</p>
+    <h2>Conteúdo gerado por IA</h2>
+    <p>Os vídeos usam voz sintética e são marcados no TikTok como conteúdo gerado por IA e como conteúdo comercial.</p>
+    <h2>Contato</h2>
+    <p>E-mail: <a [href]="'mailto:' + contato">{{ contato }}</a></p>
+    <section lang="en">
+      <h2>Terms of use (English summary)</h2>
+      <p>Jajá Ofertas shares deals from partner stores via affiliate links (we may earn a commission at no extra cost to you). Prices are checked against our own price history but may change; always verify on the store's page. Purchases, delivery and support are the store's responsibility. Videos use a synthetic voice and are labeled as AI-generated and commercial content on TikTok. Contact: {{ contato }}.</p>
+    </section>
+  </ng-container>
+</main>
