@@ -15,6 +15,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RevelarDirective } from './directives/revelar.directive';
 import { JajaNewsComponent } from './components/jaja-news/jaja-news.component';
+import { JajaOfertasComponent } from './components/jaja-ofertas/jaja-ofertas.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { JajaNewsComponent } from './components/jaja-news/jaja-news.component';
     NavComponent,
     FooterComponent,
     RevelarDirective,
-    JajaNewsComponent
+    JajaNewsComponent,
+    JajaOfertasComponent
   ],
   imports: [
     BrowserModule,

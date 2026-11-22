@@ -1,0 +1,42 @@
+.jo {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 96px 16px 64px;
+  font-size: 1.1rem;
+  line-height: 1.65;
+
+  p, li { max-width: 65ch; }
+  h2 { font-size: 1.3rem; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(127, 127, 127, .25); }
+  a { color: #e8590c; }
+}
+
+.jo__topo {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+
+  img { border-radius: 50%; flex-shrink: 0; }
+  h1 { font-size: 1.7rem; margin: 0; }
+}
+
+.jo__marca { margin: 0; font-weight: 700; color: #e8590c; }
+
+.jo__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+
+  a { text-decoration: none; padding: 4px 0; }
+  a.ativo { font-weight: 700; text-decoration: underline; }
+}
+
+.jo__suave { opacity: .75; font-size: .95rem; }
+
+.jo__tabela {
+  overflow-x: auto;
+
+  table { border-collapse: collapse; width: 100%; min-width: 520px; }
+  th, td { border: 1px solid rgba(127, 127, 127, .35); padding: 8px; text-align: left; vertical-align: top; }
+}
