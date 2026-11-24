@@ -21,7 +21,32 @@
   </p>
 </main>
 
-<main class="jo" *ngIf="pagina !== 'site'">
+<main class="cap" *ngIf="pagina === 'tiktok'">
+  <img class="cap__logo" [src]="logo" alt="Logo Jajá Ofertas" width="120" height="120">
+  <p class="cap__marca">Jajá Ofertas</p>
+
+  <ng-container *ngIf="mensagemDoBot">
+    <h1 class="cap__titulo">TikTok autorizado</h1>
+    <p class="cap__sub">Falta um passo: mande esta mensagem ao bot de operação.</p>
+    <code class="cap__codigo">{{ mensagemDoBot }}</code>
+    <button type="button" class="cap__botao" (click)="copiar()">{{ copiado ? 'Copiado ✓' : '1. Copiar a mensagem' }}</button>
+    <a class="cap__botao cap__botao--secundario" [href]="bot" target="_blank" rel="noopener">2. Abrir o bot e colar</a>
+    <p class="cap__selos">O código vale poucos minutos.</p>
+  </ng-container>
+
+  <ng-container *ngIf="!mensagemDoBot">
+    <h1 class="cap__titulo">O TikTok não autorizou</h1>
+    <p class="cap__sub">{{ erroDoTikTok }}</p>
+    <a class="cap__botao" [href]="bot" target="_blank" rel="noopener">Voltar ao bot e mandar /tiktok</a>
+  </ng-container>
+
+  <p class="cap__rodape">
+    O app só envia vídeos como rascunho para a conta do canal. Nada é publicado sem revisão.<br>
+    <a routerLink="/jaja-ofertas/privacidade">Privacidade</a> · <a routerLink="/jaja-ofertas/termos">Termos</a>
+  </p>
+</main>
+
+<main class="jo" *ngIf="pagina !== 'site' && pagina !== 'tiktok'">
   <header class="jo__topo">
     <img [src]="logo" alt="Logo Jajá Ofertas" width="64" height="64">
     <div>

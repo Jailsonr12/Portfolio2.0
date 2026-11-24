@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'jaja-ofertas/privacidade', component: JajaOfertasComponent, data: { pagina: 'privacidade' } },
   { path: 'jaja-ofertas/termos', component: JajaOfertasComponent, data: { pagina: 'termos' } },
   { path: 'jaja-ofertas/site', component: JajaOfertasComponent, data: { pagina: 'site' } },
+  { path: 'jaja-ofertas/tiktok', component: JajaOfertasComponent, data: { pagina: 'tiktok' } },
   { path: 'politoca', redirectTo: 'politica', pathMatch: 'full' },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
