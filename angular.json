@@ -25,7 +25,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/tiktok9E8jlZQifKSQwgsriUp0f3waMAlCZr7y.txt"
             ],
             "styles": [
               "src/styles.scss"
